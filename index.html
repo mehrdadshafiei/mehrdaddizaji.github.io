@@ -4,439 +4,268 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Academic portfolio of Mehrdad Shafiei Dizaji, Ph.D. — structural engineering, artificial intelligence, nondestructive evaluation, digital twins, and structural health monitoring." />
-  <title>Mehrdad Shafiei Dizaji, Ph.D. | Research Portfolio</title>
+  <title>Mehrdad Shafiei Dizaji, Ph.D. | Portfolio</title>
   <style>
     :root{
-      --bg:#07111f;
-      --bg2:#0b1730;
-      --surface:rgba(255,255,255,.085);
-      --surface-2:rgba(255,255,255,.12);
-      --text:#f7f9ff;
-      --muted:#b8c6df;
-      --line:rgba(255,255,255,.14);
-      --blue:#54a7ff;
-      --cyan:#38e1d5;
-      --purple:#9b7cff;
-      --pink:#ff6fb5;
-      --orange:#ffb25b;
-      --green:#47d7a1;
-      --shadow:0 22px 70px rgba(0,0,0,.28);
-      --radius:24px;
+      --ink:#171a20;
+      --muted:#5c5e62;
+      --soft:#f4f4f4;
+      --line:rgba(23,26,32,.12);
+      --white:#fff;
+      --accent:#3e6ae1;
+      --accent2:#00a6a6;
+      --radius:18px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 10% 0%,rgba(84,167,255,.18),transparent 26%),
-        radial-gradient(circle at 92% 12%,rgba(155,124,255,.18),transparent 28%),
-        linear-gradient(180deg,#07111f 0%,#09152a 46%,#07111f 100%);
-      line-height:1.7;
-      overflow-x:hidden;
-    }
-    body::before{
-      content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
-      background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
-      background-size:42px 42px;
-      mask-image:linear-gradient(to bottom,rgba(0,0,0,.65),transparent 82%);
-    }
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff;line-height:1.55;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    .container{width:min(1180px,calc(100% - 40px));margin:0 auto}
-    .narrow{width:min(900px,100%)}
-    .site-header{
-      position:sticky;top:0;z-index:1000;
-      background:rgba(7,17,31,.72);backdrop-filter:blur(18px);
-      border-bottom:1px solid rgba(255,255,255,.08)
+    img{display:block;max-width:100%}
+    .container{width:min(1180px,calc(100% - 44px));margin:0 auto}
+
+    /* Tesla-inspired fixed navigation */
+    .site-header{position:fixed;top:0;left:0;right:0;z-index:50;color:#fff;transition:.3s ease}
+    .site-header.scrolled{background:rgba(255,255,255,.94);color:var(--ink);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line)}
+    .nav-wrap{height:64px;display:grid;grid-template-columns:180px 1fr 180px;align-items:center;gap:18px}
+    .brand{font-weight:900;letter-spacing:.34em;font-size:1.08rem;white-space:nowrap}
+    nav{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}
+    nav a,.nav-right a{padding:8px 12px;border-radius:8px;font-size:.93rem;font-weight:700;transition:.2s}
+    nav a:hover,.nav-right a:hover{background:rgba(255,255,255,.12)}
+    .site-header.scrolled nav a:hover,.site-header.scrolled .nav-right a:hover{background:rgba(0,0,0,.06)}
+    .nav-right{display:flex;justify-content:flex-end;gap:4px}
+
+    /* Full-screen video hero */
+    .hero{height:100vh;min-height:650px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;background:#111}
+    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+    .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.40) 0%,rgba(0,0,0,.10) 42%,rgba(0,0,0,.36) 100%)}
+    .hero-fallback{position:absolute;inset:0;background:url('research-digital-twin-overview.jpg') center/cover no-repeat;z-index:-1}
+    .hero-content{position:relative;z-index:2;text-align:center;align-self:flex-start;margin-top:14vh;padding:0 22px;max-width:980px}
+    .hero h1{margin:0;font-size:clamp(3.3rem,7vw,6.2rem);line-height:.96;letter-spacing:-.055em;font-weight:780;text-shadow:0 2px 18px rgba(0,0,0,.24)}
+    .hero .subtitle{margin:14px auto 0;font-size:clamp(1.05rem,2vw,1.42rem);font-weight:650;max-width:900px;text-shadow:0 2px 18px rgba(0,0,0,.32)}
+    .hero-actions{position:absolute;z-index:2;left:50%;bottom:7vh;transform:translateX(-50%);display:flex;gap:18px;justify-content:center;flex-wrap:wrap;width:min(760px,calc(100% - 36px))}
+    .hero-btn{min-width:250px;padding:13px 24px;border-radius:4px;font-weight:800;text-align:center;backdrop-filter:blur(8px);transition:.22s}
+    .hero-btn.dark{background:rgba(23,26,32,.82);color:#fff}
+    .hero-btn.light{background:rgba(255,255,255,.82);color:#171a20}
+    .hero-btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+    .scroll-indicator{position:absolute;bottom:20px;left:50%;z-index:2;transform:translateX(-50%);font-size:1.35rem;animation:bounce 1.8s infinite}
+    @keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+
+    /* Section system */
+    .section{padding:110px 0;background:#fff}
+    .section.alt{background:#f7f7f7}
+    .section.dark{background:#111;color:#fff}
+    .eyebrow{font-size:.79rem;letter-spacing:.18em;text-transform:uppercase;font-weight:800;color:var(--accent);margin:0 0 12px}
+    .section.dark .eyebrow{color:#9bb5ff}
+    h2{font-size:clamp(2.3rem,4vw,4rem);line-height:1.02;letter-spacing:-.045em;margin:0 0 24px}
+    h3{margin:0 0 8px;line-height:1.22}
+    .lead{font-size:1.16rem;color:var(--muted);max-width:930px}
+    .section.dark .lead,.section.dark p{color:#c8c8c8}
+
+    /* About split */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+    .about-photo{border-radius:var(--radius);overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.16)}
+    .about-photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
+    .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}
+    .fact{padding:18px;border:1px solid var(--line);border-radius:14px;background:#fff}
+    .fact strong{display:block;font-size:1.2rem;margin-bottom:3px}.fact span{color:var(--muted);font-size:.93rem}
+
+    /* Research cards */
+    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+    .card{padding:28px;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.05);transition:.22s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(0,0,0,.10)}
+    .card p{margin:0;color:var(--muted)}
+
+    /* Tesla-like full-width research panels */
+    .feature-panels{display:grid;gap:26px;margin-top:42px}
+    .feature-panel{position:relative;min-height:520px;border-radius:18px;overflow:hidden;color:#fff;background:#111}
+    .feature-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .feature-panel::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.68) 0%,rgba(0,0,0,.18) 58%,rgba(0,0,0,.06) 100%)}
+    .feature-copy{position:absolute;z-index:2;left:42px;bottom:42px;max-width:560px}
+    .feature-copy .num{font-size:.86rem;letter-spacing:.16em;text-transform:uppercase;opacity:.76;font-weight:800}
+    .feature-copy h3{font-size:clamp(2rem,4vw,3.45rem);letter-spacing:-.04em;margin-top:8px}
+    .feature-copy p{font-size:1.05rem;color:#eee;margin:0 0 18px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}.tags span{padding:7px 11px;border:1px solid rgba(255,255,255,.45);border-radius:999px;font-size:.78rem;background:rgba(0,0,0,.18);backdrop-filter:blur(8px)}
+
+    /* Publications + timeline */
+    .pub-list,.timeline{display:grid;gap:12px;margin-top:34px}
+    .pub-list article,.timeline article{display:grid;grid-template-columns:100px 1fr;gap:22px;padding:22px 0;border-bottom:1px solid var(--line)}
+    .year,.when{font-weight:900;color:var(--accent)}
+    .pub-list em,.timeline p{color:var(--muted)}
+
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:58px}
+    .panel{padding:30px;border-radius:16px;background:#f7f7f7;border:1px solid var(--line)}
+    .skills{display:flex;flex-wrap:wrap;gap:9px}.skills span{padding:8px 11px;background:#fff;border:1px solid var(--line);border-radius:999px;font-size:.9rem}
+
+    /* Contact */
+    .contact{text-align:center;background:linear-gradient(140deg,#111 0%,#1e2430 100%);color:#fff}
+    .contact .lead{margin-left:auto;margin-right:auto;color:#d7d7d7}
+    .contact-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+    .contact-links a{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 18px;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:rgba(255,255,255,.07);font-weight:800;transition:.22s}
+    .contact-links a:hover{transform:translateY(-3px);background:rgba(255,255,255,.13)}
+    .icon-dot{width:12px;height:12px;border-radius:50%;display:inline-block}.email{background:#ea4335}.scholar{background:#4285f4}.linkedin{background:#0a66c2}.github{background:#fff}.youtube{background:#ff0033}.rg{background:#00ccbb}
+
+    footer{padding:26px 0;text-align:center;color:#777;background:#fff;font-size:.9rem}
+
+    .reveal{opacity:0;transform:translateY(20px);transition:.6s ease}.reveal.visible{opacity:1;transform:none}
+
+    @media (max-width:980px){
+      .nav-wrap{grid-template-columns:1fr auto}.nav-right{display:none}nav{justify-content:flex-end}.about-grid,.card-grid,.two-col{grid-template-columns:1fr}.about-photo{max-width:560px}.contact-links{grid-template-columns:repeat(2,1fr)}
     }
-    .nav-wrap{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:26px}
-    .brand{
-      display:grid;place-items:center;width:48px;height:48px;border-radius:15px;font-weight:900;letter-spacing:.5px;
-      background:linear-gradient(135deg,var(--blue),var(--purple) 55%,var(--pink));
-      box-shadow:0 10px 30px rgba(84,167,255,.28)
-    }
-    nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-    nav a{padding:9px 12px;border-radius:999px;color:var(--muted);font-size:.94rem;font-weight:650;transition:.22s}
-    nav a:hover{color:white;background:rgba(255,255,255,.09);transform:translateY(-1px)}
-    .hero{padding:96px 0 72px;position:relative}
-    .hero::after{content:"";position:absolute;width:430px;height:430px;border-radius:50%;right:-160px;top:10px;background:radial-gradient(circle,rgba(56,225,213,.18),transparent 64%);filter:blur(6px);pointer-events:none}
-    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
-    .eyebrow,.section-kicker{margin:0 0 14px;text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;font-weight:800;color:var(--cyan)}
-    h1,h2,h3,p{margin-top:0}
-    h1{font-size:clamp(3.1rem,6vw,5.8rem);line-height:.98;letter-spacing:-.055em;margin-bottom:24px;max-width:850px;background:linear-gradient(90deg,#fff 0%,#c9ddff 46%,#9fe9e4 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-    h2{font-size:clamp(2rem,3.5vw,3.3rem);line-height:1.08;letter-spacing:-.035em;margin-bottom:24px}
-    h3{line-height:1.24;letter-spacing:-.015em}
-    .hero-subtitle{font-size:1.17rem;color:var(--muted);max-width:760px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:32px 0}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:14px;font-weight:800;border:1px solid var(--line);transition:.22s ease}
-    .btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(0,0,0,.22)}
-    .btn.primary{background:linear-gradient(135deg,var(--blue),var(--purple));border-color:transparent}
-    .btn.secondary{background:rgba(255,255,255,.055)}
-    .quick-facts{display:flex;flex-wrap:wrap;gap:10px}
-    .quick-facts span,.tags span{border:1px solid var(--line);background:rgba(255,255,255,.055);padding:8px 12px;border-radius:999px;color:#d9e4f7;font-size:.88rem}
-    .hero-card{position:relative;padding:14px;border:1px solid rgba(255,255,255,.18);background:linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.055));border-radius:30px;box-shadow:var(--shadow);overflow:hidden}
-    .hero-card::before{content:"";position:absolute;inset:-2px;background:linear-gradient(135deg,rgba(84,167,255,.65),rgba(155,124,255,.35),rgba(56,225,213,.45));z-index:-1;border-radius:32px;filter:blur(18px);opacity:.45}
-    .profile-photo{width:100%;aspect-ratio:4/4.55;object-fit:cover;border-radius:21px;background:#122039}
-    .profile-copy{padding:22px 18px 10px}.profile-copy h2{font-size:1.45rem;margin-bottom:8px}.profile-copy p{color:var(--muted);margin-bottom:8px}
-    .section{padding:92px 0;position:relative}.section.alt{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.018));border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
-    .lead{font-size:1.16rem;color:#c7d4e9}
-    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
-    .card{position:relative;padding:28px;border-radius:var(--radius);border:1px solid var(--line);background:linear-gradient(155deg,rgba(255,255,255,.09),rgba(255,255,255,.038));box-shadow:0 16px 38px rgba(0,0,0,.12);transition:.24s;overflow:hidden}
-    .card::after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-30px;top:-30px;background:var(--accent,rgba(84,167,255,.4));filter:blur(8px);opacity:.27}
-    .card:nth-child(1){--accent:#54a7ff}.card:nth-child(2){--accent:#38e1d5}.card:nth-child(3){--accent:#ff6fb5}.card:nth-child(4){--accent:#9b7cff}.card:nth-child(5){--accent:#ffb25b}.card:nth-child(6){--accent:#47d7a1}
-    .card:hover{transform:translateY(-7px);border-color:rgba(255,255,255,.26);background:linear-gradient(155deg,rgba(255,255,255,.13),rgba(255,255,255,.055))}
-    .card h3{font-size:1.15rem;margin-bottom:9px}.card p{color:var(--muted);margin-bottom:0}
-    .project-list{display:grid;gap:16px;margin-top:34px}
-    .project{display:grid;grid-template-columns:72px 1fr;gap:22px;padding:28px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.045);transition:.22s}
-    .project:hover{background:rgba(255,255,255,.075);transform:translateX(5px)}
-    .project-num{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;font-weight:900;color:white;background:linear-gradient(135deg,var(--purple),var(--blue));box-shadow:0 10px 24px rgba(84,167,255,.2)}
-    .project h3{margin-bottom:6px}.project p{color:var(--muted);margin-bottom:16px}.tags{display:flex;flex-wrap:wrap;gap:8px}.tags span{padding:5px 10px;font-size:.78rem}
-    .research-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:34px}
-    .gallery-item{margin:0;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.05);box-shadow:0 18px 50px rgba(0,0,0,.18);transition:.24s}.gallery-item:hover{transform:translateY(-6px)}
-    .gallery-item img{width:100%;aspect-ratio:16/10;object-fit:cover;background:#101f37}.gallery-item figcaption{padding:20px}.gallery-item strong{display:block;font-size:1.04rem;margin-bottom:6px}.gallery-item span,.gallery-intro{color:var(--muted)}
-    .pub-list{display:grid;gap:12px;margin-top:32px}.pub-list article{display:grid;grid-template-columns:90px 1fr;gap:18px;padding:22px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.045)}
-    .year{font-weight:900;color:var(--cyan);font-size:1.06rem}.pub-list div{color:#d6e0f0}.pub-list em{color:var(--muted)}
-    .timeline{display:grid;gap:14px;margin-top:32px}.timeline article{display:grid;grid-template-columns:140px 1fr;gap:22px;padding:22px 24px;border-radius:18px;border-left:4px solid var(--blue);background:rgba(255,255,255,.045)}.timeline .when{font-weight:850;color:var(--cyan)}.timeline h3{margin-bottom:4px}.timeline p{margin-bottom:0;color:var(--muted)}
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:58px}.two-col>div{padding:30px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.045)}
-    .tags.large span{font-size:.9rem;padding:8px 12px}
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}.stats>div{min-height:150px;padding:24px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.035));display:flex;flex-direction:column;justify-content:center}.stats strong{font-size:1.4rem;background:linear-gradient(90deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}.stats span{color:var(--muted);margin-top:5px}
-    .contact{text-align:center}.contact .narrow{margin:0 auto}.contact> .container p:not(.section-kicker):not(.note){color:var(--muted)}
-    .contact-links{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
-    .contact-links a{display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:17px;border:1px solid var(--line);background:rgba(255,255,255,.055);font-weight:850;text-align:left;transition:.23s}
-    .contact-links a:hover{transform:translateY(-4px);background:rgba(255,255,255,.09);box-shadow:0 15px 34px rgba(0,0,0,.2)}
-    .channel-icon{width:28px;height:28px;flex:0 0 28px;display:block}.channel-icon.fill{fill:currentColor}.channel-icon.stroke{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-    .contact-links a[aria-label="Email"] .channel-icon{color:#EA4335}.contact-links a[aria-label="Google Scholar"] .channel-icon{color:#4285F4}.contact-links a[aria-label="LinkedIn"] .channel-icon{color:#0A66C2}.contact-links a[aria-label="GitHub"] .channel-icon{color:#f4f4f4}.contact-links a[aria-label="YouTube"] .channel-icon{color:#FF0033}.contact-links a[aria-label="ResearchGate"] .channel-icon{color:#00CCBB}
-    .note{margin-top:24px;color:#90a1bc;font-size:.9rem}
-    footer{padding:30px 0;border-top:1px solid var(--line);color:#93a4c0;text-align:center;background:rgba(0,0,0,.12)}footer p{margin:0}
-    ::selection{background:rgba(84,167,255,.35)}
-    @media (max-width:980px){.hero-grid{grid-template-columns:1fr}.hero-card{max-width:520px}.card-grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}nav{gap:2px}.nav-wrap{align-items:flex-start;padding:14px 0}nav a{font-size:.86rem;padding:7px 9px}}
-    @media (max-width:720px){.container{width:min(100% - 26px,1180px)}.site-header{position:relative}.nav-wrap{display:block}.brand{margin-bottom:12px}nav{justify-content:flex-start}.hero{padding-top:60px}h1{font-size:clamp(2.7rem,14vw,4.25rem)}.section{padding:70px 0}.card-grid,.research-gallery,.two-col,.contact-links,.stats{grid-template-columns:1fr}.project{grid-template-columns:1fr}.pub-list article,.timeline article{grid-template-columns:1fr}.project-num{width:48px;height:48px}.hero-actions .btn{width:100%}}
-    .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}.reveal.visible{opacity:1;transform:none}
-    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.reveal{opacity:1;transform:none}}
+    @media (max-width:760px){
+      .container{width:min(100% - 28px,1180px)}.site-header{background:rgba(0,0,0,.22)}.site-header.scrolled{background:rgba(255,255,255,.95)}.nav-wrap{height:auto;min-height:64px;display:flex;align-items:center;justify-content:space-between}.brand{letter-spacing:.22em}nav{display:none}.hero-content{margin-top:18vh}.hero h1{font-size:clamp(2.8rem,14vw,4.5rem)}.hero-actions{bottom:8vh;gap:10px}.hero-btn{min-width:0;width:100%}.section{padding:78px 0}.feature-panel{min-height:440px}.feature-copy{left:24px;right:24px;bottom:28px}.pub-list article,.timeline article{grid-template-columns:1fr}.facts,.contact-links{grid-template-columns:1fr}}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none}.scroll-indicator{animation:none}}
   </style>
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
       <a class="brand" href="#home">MSD</a>
       <nav>
         <a href="#about">About</a>
         <a href="#research">Research</a>
         <a href="#projects">Projects</a>
-        <a href="#research-gallery">Gallery</a>
         <a href="#publications">Publications</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
+      <div class="nav-right"><a href="Mehrdad_Shafiei_Dizaji_CV.docx">CV</a></div>
     </div>
   </header>
 
   <main>
     <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div>
-          <p class="eyebrow">Structural Engineering · AI · NDE · Digital Twins</p>
-          <h1>Mehrdad Shafiei Dizaji, Ph.D.</h1>
-          <p class="hero-subtitle">
-            Researcher developing data-driven and physics-informed methods for structural health monitoring,
-            nondestructive evaluation, infrastructure inspection, digital twins, and intelligent sensing.
-          </p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#research">Explore Research</a>
-            <a class="btn secondary" href="#publications">Selected Publications</a>
-            <a class="btn secondary" href="Mehrdad_Shafiei_Dizaji_CV.docx">Download CV</a>
-          </div>
-          <div class="quick-facts">
-            <span>Ph.D. · University of Virginia</span>
-            <span>Postdoctoral Research · FHWA / UVA</span>
-            <span>Structural Health Monitoring & AI</span>
-          </div>
-        </div>
-        <aside class="hero-card profile-card">
-          <img class="profile-photo" src="mehrdad-shafiei-dizaji.jpg" alt="Professional portrait of Mehrdad Shafiei Dizaji" />
-          <div class="profile-copy">
-            <h2>Research Focus</h2>
-            <p>Connecting structural mechanics, computer vision, deep learning, and physics-based modeling for safer infrastructure.</p>
-          </div>
-        </aside>
+      <div class="hero-fallback"></div>
+      <video autoplay muted loop playsinline poster="research-digital-twin-overview.jpg" aria-label="Engineering and research background video">
+        <source src="portfolio-background.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-content">
+        <h1>Mehrdad Shafiei Dizaji, Ph.D.</h1>
+        <p class="subtitle">Structural Engineering · Artificial Intelligence · Nondestructive Evaluation · Digital Twins</p>
       </div>
+      <div class="hero-actions">
+        <a class="hero-btn dark" href="#research">Explore Research</a>
+        <a class="hero-btn light" href="#contact">Contact Me</a>
+      </div>
+      <div class="scroll-indicator">⌄</div>
     </section>
 
     <section class="section" id="about">
-      <div class="container narrow">
-        <p class="section-kicker">About</p>
-        <h2>Research at the intersection of civil infrastructure and artificial intelligence</h2>
-        <p class="lead">
-          I am a civil and structural engineering researcher with experience in structural health monitoring,
-          nondestructive evaluation, computer vision, deep learning, finite element modeling, digital twins,
-          and physics-informed neural networks. My work focuses on translating advanced sensing and AI methods
-          into practical tools for infrastructure assessment, damage detection, and structural decision-making.
-        </p>
+      <div class="container about-grid reveal">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>Engineering research for safer, smarter infrastructure.</h2>
+          <p class="lead">I am a civil and structural engineering researcher working at the intersection of structural mechanics, computer vision, deep learning, finite element modeling, digital twins, and physics-informed neural networks. My work focuses on translating advanced sensing and AI methods into practical tools for infrastructure assessment, damage detection, and structural decision-making.</p>
+          <div class="facts">
+            <div class="fact"><strong>Ph.D.</strong><span>University of Virginia</span></div>
+            <div class="fact"><strong>Postdoctoral Research</strong><span>FHWA / UVA</span></div>
+            <div class="fact"><strong>Focus</strong><span>Structural Health Monitoring & AI</span></div>
+            <div class="fact"><strong>Methods</strong><span>FEM · NDE · Digital Twins</span></div>
+          </div>
+        </div>
+        <div class="about-photo"><img src="mehrdad-shafiei-dizaji.jpg" alt="Professional portrait of Mehrdad Shafiei Dizaji"></div>
       </div>
     </section>
 
     <section class="section alt" id="research">
-      <div class="container">
-        <p class="section-kicker">Research Areas</p>
+      <div class="container reveal">
+        <p class="eyebrow">Research Areas</p>
         <h2>Core expertise</h2>
         <div class="card-grid">
-          <article class="card">
-            <h3>AI for Structural Engineering</h3>
-            <p>Deep learning, engineered neural networks, transfer learning, and intelligent structural identification.</p>
-          </article>
-          <article class="card">
-            <h3>Structural Health Monitoring</h3>
-            <p>Full-field sensing, damage detection, structural identification, computer vision, and image-based diagnostics.</p>
-          </article>
-          <article class="card">
-            <h3>Nondestructive Evaluation</h3>
-            <p>AI-assisted NDE interpretation, visual question answering, GPR data analysis, laser scanning, and automated inspection.</p>
-          </article>
-          <article class="card">
-            <h3>Physics-Informed Neural Networks</h3>
-            <p>Physics-constrained learning for subsurface sensing and prediction, including electromagnetic-wave-informed modeling.</p>
-          </article>
-          <article class="card">
-            <h3>Digital Twins & Mixed Reality</h3>
-            <p>Adaptive digital twins, immersive structural visualization, AR/VR, and cyber-physical infrastructure systems.</p>
-          </article>
-          <article class="card">
-            <h3>Finite Element & Bridge Engineering</h3>
-            <p>Finite element model updating, bridge load rating, structural optimization, testing, and sensor-data integration.</p>
-          </article>
+          <article class="card"><h3>AI for Structural Engineering</h3><p>Deep learning, engineered neural networks, transfer learning, and intelligent structural identification.</p></article>
+          <article class="card"><h3>Structural Health Monitoring</h3><p>Full-field sensing, damage detection, structural identification, computer vision, and image-based diagnostics.</p></article>
+          <article class="card"><h3>Nondestructive Evaluation</h3><p>AI-assisted NDE interpretation, visual question answering, GPR data analysis, laser scanning, and automated inspection.</p></article>
+          <article class="card"><h3>Physics-Informed Neural Networks</h3><p>Physics-constrained learning for subsurface sensing and prediction, including electromagnetic-wave-informed modeling.</p></article>
+          <article class="card"><h3>Digital Twins & Mixed Reality</h3><p>Adaptive digital twins, immersive structural visualization, AR/VR, and cyber-physical infrastructure systems.</p></article>
+          <article class="card"><h3>Finite Element & Bridge Engineering</h3><p>Finite element model updating, bridge load rating, structural optimization, testing, and sensor-data integration.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="projects">
-      <div class="container">
-        <p class="section-kicker">Featured Research</p>
+    <section class="section dark" id="projects">
+      <div class="container reveal">
+        <p class="eyebrow">Featured Research</p>
         <h2>Selected projects</h2>
-        <div class="project-list">
-          <article class="project">
-            <div class="project-num">01</div>
-            <div>
-              <h3>Physics-Informed Neural Networks for GPR-NDE Data</h3>
-              <p>Developed a PINN framework that incorporates electromagnetic wave propagation into neural-network training for subsurface-data prediction.</p>
-              <div class="tags"><span>PINNs</span><span>GPR</span><span>NDE</span><span>FHWA</span></div>
-            </div>
+        <div class="feature-panels">
+          <article class="feature-panel">
+            <img src="research-deep-learning-attention.jpg" alt="Hybrid attention-based deep learning architecture">
+            <div class="feature-copy"><div class="num">Project 01</div><h3>Physics-Informed Neural Networks for GPR-NDE Data</h3><p>Physics-constrained learning and deep-learning architectures for subsurface sensing and prediction.</p><div class="tags"><span>PINNs</span><span>GPR</span><span>NDE</span><span>FHWA</span></div></div>
           </article>
-          <article class="project">
-            <div class="project-num">02</div>
-            <div>
-              <h3>NDEChat: AI-Based Nondestructive Evaluation</h3>
-              <p>Developed a visual question answering approach for NDE image analysis using deep learning and natural-language generation.</p>
-              <div class="tags"><span>VQA</span><span>Computer Vision</span><span>NLP</span><span>ResNet</span></div>
-            </div>
+          <article class="feature-panel">
+            <img src="research-vqa.jpg" alt="Visual question answering for structural defect localization">
+            <div class="feature-copy"><div class="num">Project 02</div><h3>NDEChat: AI-Based Nondestructive Evaluation</h3><p>Vision-and-language methods for automated NDE image interpretation, structural defect localization, and natural-language reporting.</p><div class="tags"><span>VQA</span><span>Computer Vision</span><span>NLP</span></div></div>
           </article>
-          <article class="project">
-            <div class="project-num">03</div>
-            <div>
-              <h3>Adaptive Digital Twinning for Structural Systems</h3>
-              <p>Investigated AI-enabled real-time interaction between structural simulation, experiments, and immersive visualization environments.</p>
-              <div class="tags"><span>Digital Twin</span><span>AR/VR</span><span>Cyber-Physical Systems</span></div>
-            </div>
+          <article class="feature-panel">
+            <img src="research-digital-twin-overview.jpg" alt="Adaptive digital twin research framework">
+            <div class="feature-copy"><div class="num">Project 03</div><h3>Adaptive Digital Twins & Mixed Reality</h3><p>Connecting sensing, simulation, artificial intelligence, and immersive interaction for structural systems.</p><div class="tags"><span>Digital Twin</span><span>AR/VR</span><span>Cyber-Physical Systems</span></div></div>
           </article>
-          <article class="project">
-            <div class="project-num">04</div>
-            <div>
-              <h3>Computer Vision-Based Structural Health Monitoring</h3>
-              <p>Developed full-field image-based approaches using 3D digital image correlation, topology optimization, and laser scanning for structural identification and damage assessment.</p>
-              <div class="tags"><span>3D-DIC</span><span>SHM</span><span>Topology Optimization</span></div>
-            </div>
-          </article>
-          <article class="project">
-            <div class="project-num">05</div>
-            <div>
-              <h3>Bridge Load Rating with Incomplete As-Built Information</h3>
-              <p>Developed finite-element-model-driven strategies combining field measurements, bridge testing, and sensor data for load rating.</p>
-              <div class="tags"><span>Bridges</span><span>FEM</span><span>Load Rating</span><span>VDOT</span></div>
-            </div>
+          <article class="feature-panel">
+            <img src="research-online-digital-twin.jpg" alt="Online digital twin architecture">
+            <div class="feature-copy"><div class="num">Project 04</div><h3>Structural Identification & Bridge Engineering</h3><p>Finite-element-model-driven strategies combining field measurements, image-based sensing, testing, and sensor data.</p><div class="tags"><span>Bridges</span><span>FEM</span><span>SHM</span><span>Load Rating</span></div></div>
           </article>
         </div>
       </div>
     </section>
 
-
-    <section class="section research-gallery-section" id="research-gallery">
-      <div class="container">
-        <p class="section-kicker">Research Gallery</p>
-        <h2>Research in action</h2>
-        <p class="gallery-intro">Selected visual summaries of my research in artificial intelligence, nondestructive evaluation, structural sensing, deep learning, mixed reality, and adaptive digital twins.</p>
-
-        <div class="research-gallery">
-          <figure class="gallery-item gallery-wide">
-            <img src="research-vqa.jpg" alt="Visual Question Answering framework for structural defect localization" loading="lazy">
-            <figcaption>
-              <strong>AI-Assisted NDE & Visual Question Answering</strong>
-              <span>Vision-and-language framework for automated structural defect localization and interpretation.</span>
-            </figcaption>
-          </figure>
-
-          <figure class="gallery-item gallery-wide">
-            <img src="research-deep-learning-attention.jpg" alt="Hybrid CNN ConvLSTM spatial and temporal attention deep learning architecture" loading="lazy">
-            <figcaption>
-              <strong>Hybrid Attention-Based Deep Learning</strong>
-              <span>CNN–ConvLSTM architecture integrating spatial-feature channel attention and temporal-feature frame attention for structural sensing and feature extraction.</span>
-            </figcaption>
-          </figure>
-
-          <figure class="gallery-item gallery-wide">
-            <img src="research-digital-twin-overview.jpg" alt="Digital twin visual sensing artificial intelligence and mixed reality research framework" loading="lazy">
-            <figcaption>
-              <strong>Adaptive Digital Twins & Mixed Reality</strong>
-              <span>Connecting full-field visual sensing, artificial intelligence, simulation, and immersive structural interaction.</span>
-            </figcaption>
-          </figure>
-
-          <figure class="gallery-item gallery-wide">
-            <img src="research-online-digital-twin.jpg" alt="Physics-based and measurement-based online digital twin architecture" loading="lazy">
-            <figcaption>
-              <strong>Physics- and Measurement-Based Digital Twin</strong>
-              <span>Integrating finite element models, image-based measurements, deep learning, and real-time structural interaction.</span>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt" id="publications">
-      <div class="container">
-        <p class="section-kicker">Publications</p>
+    <section class="section" id="publications">
+      <div class="container reveal">
+        <p class="eyebrow">Publications</p>
         <h2>Selected peer-reviewed work</h2>
         <div class="pub-list">
-          <article>
-            <span class="year">2023</span>
-            <div><strong>A hybrid-attention-ConvLSTM-based deep learning architecture to extract modal frequencies from limited data using transfer learning.</strong><br><em>Mechanical Systems and Signal Processing</em>, 187, 109949.</div>
-          </article>
-          <article>
-            <span class="year">2022</span>
-            <div><strong>Integrating visual sensing and structural identification using 3D-digital image correlation and topology optimization to detect and reconstruct the 3D geometry of structural damage.</strong><br><em>Structural Health Monitoring</em>.</div>
-          </article>
-          <article>
-            <span class="year">2021</span>
-            <div><strong>Subsurface damage detection and structural health monitoring using digital image correlation and topology optimization.</strong><br><em>Engineering Structures</em>, 230, 111712.</div>
-          </article>
-          <article>
-            <span class="year">2021</span>
-            <div><strong>Image-Based Tomography of Structures to Detect Internal Abnormalities Using Inverse Approach.</strong><br><em>Experimental Techniques</em>.</div>
-          </article>
-          <article>
-            <span class="year">2018</span>
-            <div><strong>Leveraging full-field measurement from 3D digital image correlation for structural identification.</strong><br><em>Experimental Mechanics</em>, 58(7), 1049–1066.</div>
-          </article>
+          <article><span class="year">2023</span><div><strong>A hybrid-attention-ConvLSTM-based deep learning architecture to extract modal frequencies from limited data using transfer learning.</strong><br><em>Mechanical Systems and Signal Processing</em>, 187, 109949.</div></article>
+          <article><span class="year">2022</span><div><strong>Integrating visual sensing and structural identification using 3D-digital image correlation and topology optimization to detect and reconstruct the 3D geometry of structural damage.</strong><br><em>Structural Health Monitoring</em>.</div></article>
+          <article><span class="year">2021</span><div><strong>Subsurface damage detection and structural health monitoring using digital image correlation and topology optimization.</strong><br><em>Engineering Structures</em>, 230, 111712.</div></article>
+          <article><span class="year">2021</span><div><strong>Image-Based Tomography of Structures to Detect Internal Abnormalities Using Inverse Approach.</strong><br><em>Experimental Techniques</em>.</div></article>
+          <article><span class="year">2018</span><div><strong>Leveraging full-field measurement from 3D digital image correlation for structural identification.</strong><br><em>Experimental Mechanics</em>, 58(7), 1049–1066.</div></article>
         </div>
-        <p class="note">Refer to Google Scholar to access to all papers.</p>
       </div>
     </section>
 
-    <section class="section" id="experience">
-      <div class="container">
-        <p class="section-kicker">Experience</p>
+    <section class="section alt" id="experience">
+      <div class="container reveal">
+        <p class="eyebrow">Experience</p>
         <h2>Academic & research appointments</h2>
         <div class="timeline">
-          <article>
-            <div class="when">2023–2025</div>
-            <div><h3>Postdoctoral Research Associate</h3><p>Turner-Fairbank Highway Research Center · Federal Highway Administration</p></div>
-          </article>
-          <article>
-            <div class="when">2021–2023</div>
-            <div><h3>Postdoctoral Research Associate</h3><p>University of Virginia · Engineering Systems and Environment</p></div>
-          </article>
-          <article>
-            <div class="when">2020–2021</div>
-            <div><h3>Postdoctoral Scholar</h3><p>University of Massachusetts Lowell · Mechanical Engineering</p></div>
-          </article>
-          <article>
-            <div class="when">2015–2020</div>
-            <div><h3>Research Assistant</h3><p>University of Virginia · Engineering Systems and Environment</p></div>
-          </article>
+          <article><div class="when">2023–2025</div><div><h3>Postdoctoral Research Associate</h3><p>Turner-Fairbank Highway Research Center · Federal Highway Administration</p></div></article>
+          <article><div class="when">2021–2023</div><div><h3>Postdoctoral Research Associate</h3><p>University of Virginia · Engineering Systems and Environment</p></div></article>
+          <article><div class="when">2020–2021</div><div><h3>Postdoctoral Scholar</h3><p>University of Massachusetts Lowell · Mechanical Engineering</p></div></article>
+          <article><div class="when">2015–2020</div><div><h3>Research Assistant</h3><p>University of Virginia · Engineering Systems and Environment</p></div></article>
         </div>
-
         <div class="two-col">
-          <div>
-            <p class="section-kicker">Education</p>
-            <h2>Degrees</h2>
-            <p><strong>Ph.D., Civil Engineering</strong><br>University of Virginia</p>
-            <p><strong>M.Sc., Civil Engineering</strong><br>Sharif University of Technology</p>
-            <p><strong>B.Sc., Civil Engineering</strong><br>University of Tabriz</p>
-          </div>
-          <div>
-            <p class="section-kicker">Technical Skills</p>
-            <h2>Tools</h2>
-            <div class="tags large">
-              <span>Python</span><span>MATLAB</span><span>TensorFlow</span><span>PyTorch</span>
-              <span>Scikit-learn</span><span>ANSYS</span><span>ABAQUS</span><span>SAP2000</span><span>ARTeMIS</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt">
-      <div class="container">
-        <p class="section-kicker">Recognition</p>
-        <h2>Selected honors</h2>
-        <div class="stats">
-          <div><strong>NRC</strong><span>Research Associateship Fellowship</span></div>
-          <div><strong>ASCE / SEI</strong><span>Young Professional & Presenter Scholarships</span></div>
-          <div><strong>Best Paper</strong><span>Multiple nominations / recognitions</span></div>
-          <div><strong>UVA</strong><span>Research, teaching & graduate fellowships</span></div>
+          <div class="panel"><p class="eyebrow">Education</p><h3>Degrees</h3><p><strong>Ph.D., Civil Engineering</strong><br>University of Virginia</p><p><strong>M.Sc., Civil Engineering</strong><br>Sharif University of Technology</p><p><strong>B.Sc., Civil Engineering</strong><br>University of Tabriz</p></div>
+          <div class="panel"><p class="eyebrow">Technical Skills</p><h3>Tools</h3><div class="skills"><span>Python</span><span>MATLAB</span><span>TensorFlow</span><span>PyTorch</span><span>Scikit-learn</span><span>ANSYS</span><span>ABAQUS</span><span>SAP2000</span><span>ARTeMIS</span></div></div>
         </div>
       </div>
     </section>
 
     <section class="section contact" id="contact">
-      <div class="container narrow">
-        <p class="section-kicker">Contact</p>
-        <h2>Research collaboration, academic opportunities & engineering innovation</h2>
-        <p>I am interested in research and professional opportunities involving structural engineering, AI, digital twins, structural health monitoring, computer vision, and nondestructive evaluation.</p>
+      <div class="container reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Let’s build smarter infrastructure.</h2>
+        <p class="lead">I am interested in research and professional opportunities involving structural engineering, AI, digital twins, structural health monitoring, computer vision, and nondestructive evaluation.</p>
         <div class="contact-links">
-          <a href="mailto:mehrdadshafiei@gmail.com" aria-label="Email">
-            <svg class="channel-icon stroke" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            <span>Email</span>
-          </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://scholar.google.com/citations?user=duLh0FEAAAAJ&amp;hl=en" aria-label="Google Scholar">
-            <svg class="channel-icon fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 9l10 6 8-4.8V16h2V9L12 3Zm-6 9.4V17l6 4 6-4v-4.6L12 16l-6-3.6Z"/></svg>
-            <span>Google Scholar</span>
-          </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/mehrdad-shafiei-dizaji-5aaa3030/" aria-label="LinkedIn">
-            <svg class="channel-icon fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5A2.2 2.2 0 1 1 5.2 8a2.2 2.2 0 0 1 0-4.5ZM3.3 9.5h3.8V21H3.3V9.5Zm6.1 0H13v1.6h.1c.5-.9 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.9v6h-3.8v-5.3c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9.4V9.5Z"/></svg>
-            <span>LinkedIn</span>
-          </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://github.com/mehrdadshafiei" aria-label="GitHub">
-            <svg class="channel-icon fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.5 9.5 0 0 1 12 6.82a9.5 9.5 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.86V21c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
-            <span>GitHub</span>
-          </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/@MehrdadShafieiDizaji1819" aria-label="YouTube">
-            <svg class="channel-icon fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12s0-3.3-.42-4.9a3 3 0 0 0-2.1-2.12C18.63 4.5 12 4.5 12 4.5s-6.63 0-8.48.48A3 3 0 0 0 1.42 7.1C1 8.7 1 12 1 12s0 3.3.42 4.9a3 3 0 0 0 2.1 2.12c1.85.48 8.48.48 8.48.48s6.63 0 8.48-.48a3 3 0 0 0 2.1-2.12C23 15.3 23 12 23 12Zm-13.2 3.2V8.8L15.5 12l-5.7 3.2Z"/></svg>
-            <span>YouTube</span>
-          </a>
-          <a target="_blank" rel="noopener noreferrer" href="https://www.researchgate.net/profile/Mehrdad-Shafiei-Dizaji/publications" aria-label="ResearchGate">
-            <svg class="channel-icon fill" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><text x="12" y="16" text-anchor="middle" font-size="10" font-family="Arial, sans-serif" font-weight="700" fill="white">RG</text></svg>
-            <span>ResearchGate</span>
-          </a>
+          <a href="mailto:mehrdadshafiei@gmail.com"><span class="icon-dot email"></span>Email</a>
+          <a href="https://scholar.google.com/citations?user=duLh0FEAAAAJ&hl=en"><span class="icon-dot scholar"></span>Google Scholar</a>
+          <a href="https://www.linkedin.com/in/mehrdad-shafiei-dizaji-5aaa3030/"><span class="icon-dot linkedin"></span>LinkedIn</a>
+          <a href="https://github.com/mehrdadshafiei"><span class="icon-dot github"></span>GitHub</a>
+          <a href="https://www.youtube.com/@MehrdadShafieiDizaji1819"><span class="icon-dot youtube"></span>YouTube</a>
+          <a href="https://www.researchgate.net/profile/Mehrdad-Shafiei-Dizaji/publications"><span class="icon-dot rg"></span>ResearchGate</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Mehrdad Shafiei Dizaji. Academic & Research Portfolio.</p>
-    </div>
-  </footer>
+  <footer><div class="container">© <span id="year"></span> Mehrdad Shafiei Dizaji · Academic & Research Portfolio</div></footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    const revealTargets = document.querySelectorAll('.card,.project,.gallery-item,.pub-list article,.timeline article,.stats > div,.two-col > div');
-    revealTargets.forEach(el => el.classList.add('reveal'));
-    const io = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
-    }), { threshold: .12 });
-    revealTargets.forEach(el => io.observe(el));
+    const header = document.getElementById('siteHeader');
+    const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
