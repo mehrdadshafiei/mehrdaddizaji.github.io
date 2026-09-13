@@ -6,6 +6,20 @@
   <meta name="description" content="Academic portfolio of Mehrdad Shafiei Dizaji, Ph.D. — structural engineering, artificial intelligence, nondestructive evaluation, digital twins, and structural health monitoring." />
   <title>Mehrdad Shafiei Dizaji, Ph.D. | Research Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .contact-links a { display:inline-flex; align-items:center; gap:10px; }
+    .contact-links .channel-icon { width:28px; height:28px; flex:0 0 28px; display:block; }
+    .contact-links .channel-icon.fill { fill:currentColor; }
+    .contact-links .channel-icon.stroke { fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .contact-links a[aria-label="Email"] .channel-icon { color:#EA4335; }
+    .contact-links a[aria-label="Google Scholar"] .channel-icon { color:#4285F4; }
+    .contact-links a[aria-label="LinkedIn"] .channel-icon { color:#0A66C2; }
+    .contact-links a[aria-label="GitHub"] .channel-icon { color:#181717; }
+    .contact-links a[aria-label="YouTube"] .channel-icon { color:#FF0000; }
+    .contact-links a[aria-label="ResearchGate"] .channel-icon { color:#00CCBB; }
+    .contact-links a { transition: transform .2s ease, box-shadow .2s ease; }
+    .contact-links a:hover { transform: translateY(-2px); }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -284,12 +298,30 @@
         <h2>Research collaboration, academic opportunities & engineering innovation</h2>
         <p>I am interested in research and professional opportunities involving structural engineering, AI, digital twins, structural health monitoring, computer vision, and nondestructive evaluation.</p>
         <div class="contact-links">
-          <a href="mailto:mehrdadshafiei@gmail.com">Email</a>
-          <a href="https://scholar.google.com/citations?user=duLh0FEAAAAJ&hl=en" aria-label="Google Scholar">Google Scholar</a>
-          <a href="https://www.linkedin.com/in/mehrdad-shafiei-dizaji-5aaa3030/" aria-label="LinkedIn">LinkedIn</a>
-          <a href="https://github.com/mehrdadshafiei" aria-label="GitHub">GitHub</a>
-          <a href="https://www.youtube.com/@MehrdadShafieiDizaji1819" aria-label="YouTube">YouTube</a
-          <a href="https://www.researchgate.net/profile/Mehrdad-Shafiei-Dizaji/publications" aria-label="ResearchGate">ResearchGate</a
+          <a href="mailto:mehrdadshafiei@gmail.com" aria-label="Email">
+            <svg class="channel-icon stroke" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span>Email</span>
+          </a>
+          <a href="https://scholar.google.com/citations?user=duLh0FEAAAAJ&amp;hl=en" aria-label="Google Scholar">
+            <svg class="channel-icon fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 9l10 6 8-4.8V16h2V9L12 3Zm-6 9.4V17l6 4 6-4v-4.6L12 16l-6-3.6Z"/></svg>
+            <span>Google Scholar</span>
+          </a>
+          <a href="https://www.linkedin.com/in/mehrdad-shafiei-dizaji-5aaa3030/" aria-label="LinkedIn">
+            <svg class="channel-icon fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 3.5A2.2 2.2 0 1 1 5.2 8a2.2 2.2 0 0 1 0-4.5ZM3.3 9.5h3.8V21H3.3V9.5Zm6.1 0H13v1.6h.1c.5-.9 1.7-2 3.6-2 3.9 0 4.6 2.5 4.6 5.9v6h-3.8v-5.3c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9.4V9.5Z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/mehrdadshafiei" aria-label="GitHub">
+            <svg class="channel-icon fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.5 9.5 0 0 1 12 6.82a9.5 9.5 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.86V21c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.youtube.com/@MehrdadShafieiDizaji1819" aria-label="YouTube">
+            <svg class="channel-icon fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12s0-3.3-.42-4.9a3 3 0 0 0-2.1-2.12C18.63 4.5 12 4.5 12 4.5s-6.63 0-8.48.48A3 3 0 0 0 1.42 7.1C1 8.7 1 12 1 12s0 3.3.42 4.9a3 3 0 0 0 2.1 2.12c1.85.48 8.48.48 8.48.48s6.63 0 8.48-.48a3 3 0 0 0 2.1-2.12C23 15.3 23 12 23 12Zm-13.2 3.2V8.8L15.5 12l-5.7 3.2Z"/></svg>
+            <span>YouTube</span>
+          </a>
+          <a href="https://www.researchgate.net/profile/Mehrdad-Shafiei-Dizaji/publications" aria-label="ResearchGate">
+            <svg class="channel-icon fill" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><text x="12" y="16" text-anchor="middle" font-size="10" font-family="Arial, sans-serif" font-weight="700" fill="white">RG</text></svg>
+            <span>ResearchGate</span>
+          </a>
         </div>
         <p class="note">Replace the placeholder links above with your actual profiles before publishing.</p>
       </div>
