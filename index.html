@@ -107,9 +107,23 @@
     @media (max-width:720px){.container{width:min(100% - 26px,1180px)}.site-header{position:relative}.nav-wrap{display:block}.brand{margin-bottom:12px}nav{justify-content:flex-start}.hero{padding-top:60px}h1{font-size:clamp(2.7rem,14vw,4.25rem)}.section{padding:70px 0}.card-grid,.research-gallery,.two-col,.contact-links,.stats{grid-template-columns:1fr}.project{grid-template-columns:1fr}.pub-list article,.timeline article{grid-template-columns:1fr}.project-num{width:48px;height:48px}.hero-actions .btn{width:100%}}
     .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}.reveal.visible{opacity:1;transform:none}
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.reveal{opacity:1;transform:none}}
+    .research-background{position:fixed;inset:0;z-index:0;pointer-events:none;background:#000 url('research-background-poster.jpg') center/cover no-repeat}
+    .research-background video{width:100%;height:100%;object-fit:cover;opacity:.52}
+    .research-background::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.80),rgba(0,0,0,.35))}
+    main,footer{position:relative;z-index:1}
+    .section.alt{background:rgba(0,0,0,.80)}
+    .motion-toggle{position:fixed;right:18px;bottom:18px;z-index:1100;border:1px solid var(--line);border-radius:999px;padding:10px 16px;color:#fff;background:rgba(0,0,0,.85);font:inherit;font-size:.8rem;cursor:pointer}
+    .motion-toggle:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+    @media(prefers-reduced-motion:reduce){.research-background video{display:none}}
   </style>
 </head>
 <body>
+  <div class="research-background" aria-hidden="true">
+    <video id="research-background-video" muted loop playsinline preload="metadata" poster="research-background-poster.jpg" tabindex="-1">
+      <source data-src="research-background.mp4" type="video/mp4">
+    </video>
+  </div>
+  <button class="motion-toggle" id="motion-toggle" type="button" hidden>Pause background</button>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="#home">MSD</a>
@@ -442,6 +456,28 @@
   </footer>
 
   <script>
+    const bgVideo = document.getElementById('research-background-video');
+    const motionToggle = document.getElementById('motion-toggle');
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let userPaused = false;
+    function updateMotionLabel() { motionToggle.textContent = bgVideo.paused ? 'Play background' : 'Pause background'; }
+    function startBackground() {
+      if (motionPreference.matches) { bgVideo.pause(); motionToggle.hidden = true; return; }
+      motionToggle.hidden = false;
+      const source = bgVideo.querySelector('source');
+      if (!source.src) { source.src = source.dataset.src; bgVideo.load(); }
+      if (!userPaused && !document.hidden) bgVideo.play().catch(updateMotionLabel);
+    }
+    motionToggle.addEventListener('click', () => {
+      userPaused = !bgVideo.paused;
+      if (userPaused) bgVideo.pause(); else bgVideo.play().catch(updateMotionLabel);
+    });
+    bgVideo.addEventListener('play', updateMotionLabel);
+    bgVideo.addEventListener('pause', updateMotionLabel);
+    bgVideo.addEventListener('error', () => { motionToggle.hidden = true; });
+    document.addEventListener('visibilitychange', () => { if(document.hidden) bgVideo.pause(); else startBackground(); });
+    motionPreference.addEventListener('change', startBackground);
+    startBackground();
     document.getElementById("year").textContent = new Date().getFullYear();
     const revealTargets = document.querySelectorAll('.card,.project,.gallery-item,.pub-list article,.timeline article,.stats > div,.two-col > div');
     revealTargets.forEach(el => el.classList.add('reveal'));
