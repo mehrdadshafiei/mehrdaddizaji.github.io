@@ -115,6 +115,10 @@
     .motion-toggle{position:fixed;right:18px;bottom:18px;z-index:1100;border:1px solid var(--line);border-radius:999px;padding:10px 16px;color:#fff;background:rgba(0,0,0,.85);font:inherit;font-size:.8rem;cursor:pointer}
     .motion-toggle:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
     @media(prefers-reduced-motion:reduce){.research-background video{display:none}}
+    .animation-intro{padding:0;min-height:65svh}
+    .about-section{background:rgba(0,0,0,.9)}
+    .about-section h1{font-size:clamp(2.1rem,3.8vw,3.3rem);line-height:1.1}
+    @media(max-width:720px){.animation-intro{padding:0;min-height:55svh}}
   </style>
 </head>
 <body>
@@ -128,12 +132,13 @@
     <div class="container nav-wrap">
       <a class="brand" href="#home">MSD</a>
       <nav>
-        <a href="#about">About</a>
+        <a href="#about">About me</a>
         <a href="#research">Research</a>
         <a href="#projects">Projects</a>
         <a href="#research-demo">Demo</a>
         <a href="#research-gallery">Gallery</a>
         <a href="#publications">Publications</a>
+        <a href="#cv">CV</a>
         <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -141,46 +146,29 @@
   </header>
 
   <main>
-    <section class="hero" id="home">
+    <section class="hero animation-intro" id="home" aria-label="Animated research model"></section>
+
+    <section class="section about-section" id="about">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">Structural Engineering · AI · NDE · Digital Twins</p>
+          <p class="section-kicker">About me</p>
           <h1>Mehrdad Shafiei Dizaji, Ph.D.</h1>
-          <p class="hero-subtitle">
-            Researcher developing data-driven and physics-informed methods for structural health monitoring,
-            nondestructive evaluation, infrastructure inspection, digital twins, and intelligent sensing.
-          </p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#research">Explore Research</a>
-            <a class="btn secondary" href="#publications">Selected Publications</a>
-            <a class="btn secondary" href="Mehrdad_Shafiei_Dizaji_CV.pdf" download>Download CV (PDF)</a>
-          </div>
+          <p class="eyebrow">Structural Engineering · AI · NDE · Digital Twins</p>
+          <p class="lead">I am a civil and structural engineering researcher developing data-driven and physics-informed methods for structural health monitoring, nondestructive evaluation, infrastructure inspection, digital twins, and intelligent sensing.</p>
+          <p class="hero-subtitle">My work connects structural mechanics, computer vision, deep learning, finite element modeling, and sensor data to create practical tools for infrastructure assessment, damage detection, and structural decision-making.</p>
           <div class="quick-facts">
             <span>Ph.D. · University of Virginia</span>
             <span>Postdoctoral Research · FHWA / UVA</span>
             <span>Structural Health Monitoring & AI</span>
           </div>
+          <div class="hero-actions">
+            <a class="btn primary" href="#research">Explore Research</a>
+            <a class="btn secondary" href="#publications">Selected Publications</a>
+          </div>
         </div>
         <aside class="hero-card profile-card">
           <img class="profile-photo" src="mehrdad-shafiei-dizaji.jpg" alt="Professional portrait of Mehrdad Shafiei Dizaji" />
-          <div class="profile-copy">
-            <h2>Research Focus</h2>
-            <p>Connecting structural mechanics, computer vision, deep learning, and physics-based modeling for safer infrastructure.</p>
-          </div>
         </aside>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container narrow">
-        <p class="section-kicker">About</p>
-        <h2>Research at the intersection of civil infrastructure and artificial intelligence</h2>
-        <p class="lead">
-          I am a civil and structural engineering researcher with experience in structural health monitoring,
-          nondestructive evaluation, computer vision, deep learning, finite element modeling, digital twins,
-          and physics-informed neural networks. My work focuses on translating advanced sensing and AI methods
-          into practical tools for infrastructure assessment, damage detection, and structural decision-making.
-        </p>
       </div>
     </section>
 
@@ -351,6 +339,18 @@
           </article>
         </div>
         <p class="note">Refer to Google Scholar to access to all papers.</p>
+      </div>
+    </section>
+
+    <section class="section alt" id="cv">
+      <div class="container narrow">
+        <p class="section-kicker">CV</p>
+        <h2>Curriculum vitae</h2>
+        <p class="lead">View or download my full CV for details of my education, research appointments, publications, and professional experience.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="Mehrdad_Shafiei_Dizaji_CV.pdf" target="_blank" rel="noopener noreferrer">View CV (PDF)</a>
+          <a class="btn secondary" href="Mehrdad_Shafiei_Dizaji_CV.pdf" download>Download CV (PDF)</a>
+        </div>
       </div>
     </section>
 
