@@ -43,13 +43,13 @@
       background:rgba(0,0,0,.92);backdrop-filter:blur(18px);
       border-bottom:1px solid rgba(255,255,255,.08)
     }
-    .nav-wrap{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:26px}
+    .nav-wrap{min-height:76px;display:flex;align-items:center;justify-content:flex-start;gap:26px}
     .brand{
       display:grid;place-items:center;width:48px;height:48px;border-radius:15px;font-weight:900;letter-spacing:.5px;
       background:linear-gradient(135deg,var(--blue),var(--purple) 55%,var(--pink));
       box-shadow:0 10px 30px rgba(84,167,255,.28)
     }
-    nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+    nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-start}
     nav a{padding:9px 12px;border-radius:999px;color:var(--muted);font-size:.94rem;font-weight:650;transition:.22s}
     nav a:hover{color:white;background:rgba(255,255,255,.09);transform:translateY(-1px)}
     .hero{padding:96px 0 72px;position:relative}
@@ -178,7 +178,6 @@
   <button class="motion-toggle" id="motion-toggle" type="button" hidden>Pause background</button>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="#home">MSD</a>
       <nav>
         <a href="#about">About me</a>
         <a href="#research">Research</a>
