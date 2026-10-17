@@ -969,11 +969,12 @@
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
     let userPaused = false;
     let userPlayed = false;
+    let backgroundVisible = true;
     function syncTwinMotion() {
-      const paused = userPaused || (motionPreference.matches && !userPlayed) || document.hidden;
+      const paused = userPaused || (motionPreference.matches && !userPlayed) || document.hidden || !backgroundVisible;
       twinScene.classList.toggle('twin-paused', paused);
       if (paused) twinScene.pauseAnimations(); else twinScene.unpauseAnimations();
-      motionToggle.hidden = false;
+      motionToggle.hidden = !backgroundVisible;
       motionToggle.textContent = paused ? 'Play background' : 'Pause background';
       motionToggle.setAttribute('aria-pressed', String(!paused));
     }
@@ -985,6 +986,35 @@
     });
     motionPreference.addEventListener('change', () => { userPlayed = false; syncTwinMotion(); });
     document.addEventListener('visibilitychange', syncTwinMotion);
+    // Keep the fixed background visible only through Home and About me.
+    const backgroundLayer = document.querySelector('.research-background');
+    const backgroundEnd = document.getElementById('about');
+    let backgroundBoundaryFrame = null;
+    function updateBackgroundBoundary() {
+      backgroundBoundaryFrame = null;
+      const bottom = backgroundEnd.getBoundingClientRect().bottom;
+      const viewportHeight = window.innerHeight;
+      const visible = bottom > 0;
+      const clip = Math.max(0, Math.min(viewportHeight, viewportHeight - bottom));
+      backgroundLayer.style.clipPath = `inset(0 0 ${clip}px 0)`;
+      backgroundLayer.style.visibility = visible ? 'visible' : 'hidden';
+      if (backgroundVisible !== visible) {
+        backgroundVisible = visible;
+        syncTwinMotion();
+      }
+    }
+    function scheduleBackgroundBoundary() {
+      if (backgroundBoundaryFrame === null) {
+        backgroundBoundaryFrame = requestAnimationFrame(updateBackgroundBoundary);
+      }
+    }
+    window.addEventListener('scroll', scheduleBackgroundBoundary, { passive: true });
+    window.addEventListener('resize', scheduleBackgroundBoundary);
+    window.addEventListener('pageshow', scheduleBackgroundBoundary);
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(scheduleBackgroundBoundary).observe(backgroundEnd);
+    }
+    updateBackgroundBoundary();
     syncTwinMotion();
     document.getElementById("year").textContent = new Date().getFullYear();
     const revealTargets = document.querySelectorAll('.card,.project,.gallery-item,.pub-list article,.timeline article,.stats > div,.two-col > div');
