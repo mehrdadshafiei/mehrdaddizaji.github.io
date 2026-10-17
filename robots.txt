@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mehrdadshafiei.github.io/mehrdaddizaji.github.io/sitemap.xml
