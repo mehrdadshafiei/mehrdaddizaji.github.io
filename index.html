@@ -196,6 +196,9 @@
     @keyframes about-caret{50%{opacity:0}}
     @media(prefers-reduced-motion:reduce){#about .typing-active::after{display:none}}
   </style>
+<style>
+.nde-vqa-animation{position:relative;overflow:hidden;background:#070e19;border:1px solid #29465d;border-radius:12px;color:#d7e9f5;min-height:280px;font-family:Inter,system-ui,sans-serif;box-sizing:border-box}.nde-vqa-head{display:flex;align-items:center;gap:9px;padding:12px 15px;border-bottom:1px solid #254154;font-size:11px;letter-spacing:.13em;font-weight:750}.nde-live-dot{width:8px;height:8px;background:#4ce5ba;border-radius:50%;box-shadow:0 0 10px #4ce5ba;animation:ndePulse 2s infinite}.nde-vqa-status{margin-left:auto;color:#62d8bd;font-size:9px}.nde-vqa-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:12px;padding:13px}.nde-vqa-scan{position:relative;overflow:hidden;border-radius:6px;border:1px solid #294d65;min-height:200px}.nde-vqa-scan svg{display:block;width:100%;height:100%;min-height:200px;object-fit:cover}.nde-vqa-sweep{position:absolute;left:0;right:0;top:-10%;height:3px;background:#53f5db;box-shadow:0 0 18px 5px #35e7ce66;animation:ndeSweep 5s ease-in-out infinite alternate}.nde-detection-box{animation:ndeDetect 3s infinite}.nde-vqa-scan-label{position:absolute;bottom:8px;left:9px;font:10px monospace;color:#b6e8f4;background:#07121bcc;padding:4px}.nde-vqa-panel{display:flex;flex-direction:column;gap:13px;padding:9px 3px}.nde-vqa-panel-title{font-size:10px;color:#69d9ef;letter-spacing:.12em;font-weight:800}.nde-vqa-question,.nde-vqa-answer{font-size:clamp(11px,1.2vw,14px);line-height:1.5;display:flex;gap:9px;align-items:flex-start}.nde-vqa-question span,.nde-vqa-answer span{display:inline-grid;place-items:center;flex:none;width:23px;height:23px;border-radius:5px;background:#183850;color:#76d7fb;font-weight:800}.nde-vqa-answer{color:#7bf0c9;animation:ndeAnswer 5s ease-in-out infinite}.nde-vqa-answer span{background:#14493c;color:#7bf0c9}.nde-vqa-confidence{margin-top:auto;font-size:9px;color:#92a9bd;letter-spacing:.07em}.nde-vqa-confidence div{height:5px;background:#243b4b;border-radius:10px;margin:9px 0;overflow:hidden}.nde-vqa-confidence i{display:block;height:100%;width:88%;background:linear-gradient(90deg,#2cb8dc,#64f1bc);transform-origin:left;animation:ndeBar 5s infinite}.nde-vqa-confidence small{font-size:9px}.nde-vqa-foot{display:flex;justify-content:center;align-items:center;gap:14px;padding:11px 7px;border-top:1px solid #254154;font-size:9px;letter-spacing:.08em;color:#90b9ce}.nde-vqa-foot b{color:#54e4c4}@keyframes ndeSweep{to{top:105%}}@keyframes ndePulse{50%{opacity:.3}}@keyframes ndeDetect{0%,20%{opacity:.25}35%,90%{opacity:1}100%{opacity:.25}}@keyframes ndeAnswer{0%,30%{opacity:.15;transform:translateY(5px)}45%,90%{opacity:1;transform:none}100%{opacity:.15}}@keyframes ndeBar{0%,25%{transform:scaleX(.08)}65%,95%{transform:scaleX(1)}}@media(max-width:620px){.nde-vqa-layout{grid-template-columns:1fr}.nde-vqa-panel{min-height:145px}.nde-vqa-foot{gap:6px;font-size:8px;flex-wrap:wrap}}@media(prefers-reduced-motion:reduce){.nde-vqa-animation *{animation:none!important}}
+</style>
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
@@ -387,7 +390,24 @@
 
         <div class="research-gallery">
           <figure class="gallery-item gallery-wide">
-            <img src="research-vqa.jpg" alt="Visual Question Answering framework for structural defect localization" loading="lazy">
+            <div class="nde-vqa-animation" role="img" aria-label="Animated AI nondestructive evaluation: bridge inspection image is scanned, cracks detected, and a visual question answered">
+  <div class="nde-vqa-head"><span class="nde-live-dot"></span> AI VISION INSPECTION <span class="nde-vqa-status">LIVE ANALYSIS</span></div>
+  <div class="nde-vqa-layout">
+    <div class="nde-vqa-scan">
+      <svg viewBox="0 0 480 260" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+        <defs><linearGradient id="ndeBridge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#152b43"/><stop offset="1" stop-color="#07111e"/></linearGradient><pattern id="ndeGrid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#4f91b5" stroke-opacity=".12"/></pattern></defs>
+        <rect width="480" height="260" fill="url(#ndeBridge)"/><rect width="480" height="260" fill="url(#ndeGrid)"/>
+        <path d="M10 105H470V127H10Z" fill="#8397a6"/><path d="M18 107H463M20 125H462" stroke="#c7d8e3" stroke-width="2"/><path d="M60 127V242H110V127M365 127V242H417V127" fill="#536d81" stroke="#aec0cd" stroke-width="3"/>
+        <path d="M45 105L110 47L174 105M174 105L240 47L305 105M305 105L370 47L435 105" fill="none" stroke="#b4cad7" stroke-width="8"/><path d="M110 47H370" stroke="#d3e0e7" stroke-width="7"/><path d="M110 47V105M240 47V105M370 47V105" stroke="#8eacbe" stroke-width="4"/>
+        <path d="M240 129l-8 15 12 9 -13 14 8 13 -11 14 9 15" fill="none" stroke="#ff916e" stroke-width="3" stroke-linecap="round"/>
+        <rect class="nde-detection-box" x="209" y="128" width="61" height="92" rx="3" fill="#ff8762" fill-opacity=".08" stroke="#ff956b" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="209" y="119" fill="#ffb397" font-size="12" font-family="monospace">CRACK DETECTED</text>
+      </svg>
+      <div class="nde-vqa-sweep"></div><span class="nde-vqa-scan-label">CAM 01 · BRIDGE DECK</span>
+    </div>
+    <div class="nde-vqa-panel"><div class="nde-vqa-panel-title">VISUAL QUESTION ANSWERING</div><div class="nde-vqa-question"><span>Q</span> What defect is visible in the structure?</div><div class="nde-vqa-answer"><span>A</span> Crack detected near the central support.</div><div class="nde-vqa-confidence"><span>AI INTERPRETATION</span><div><i></i></div><small>DETECTION + LANGUAGE REASONING</small></div></div>
+  </div><div class="nde-vqa-foot"><span>IMAGE INPUT</span><b>→</b><span>FEATURE EXTRACTION</span><b>→</b><span>VQA RESPONSE</span></div>
+</div>
             <figcaption>
               <strong>AI-Assisted NDE & Visual Question Answering</strong>
               <span>Vision-and-language framework for automated structural defect localization and interpretation.</span>
