@@ -366,6 +366,9 @@
 <style>
 .shm-overview{margin-top:24px;border:1px solid #365768;border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at 25% 20%,#153241,#060b13 78%);color:#d9edf6}.shm-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid #2b485b}.shm-head strong{color:#88e4da;font-size:.7rem;letter-spacing:.12em}.shm-overview button{font:inherit;font-size:.7rem;color:#e0f4fa;background:#122d3c;border:1px solid #4a7386;border-radius:18px;padding:6px 12px;cursor:pointer}.shm-overview :focus-visible{outline:2px solid #8fffe1;outline-offset:3px}.shm-controls{display:flex;flex-wrap:wrap;gap:15px;align-items:center;padding:13px 18px;font-size:.72rem;color:#bad1df}.shm-controls label{display:flex;gap:10px;align-items:center}.shm-controls input{width:150px;accent-color:#77e8d2}.shm-controls output{color:#85e9d1;min-width:3em}.shm-status{margin-left:auto;color:#9fe5dd}.shm-canvas{overflow-x:auto}.shm-overview svg{display:block;width:100%;height:auto}.shm-overview text{font-family:Inter,system-ui,sans-serif}.shm-stream{stroke-dasharray:5 12;animation:shmStream 2s linear infinite}.shm-paused *{animation-play-state:paused!important}.shm-note{font-size:.67rem!important;color:#9bb6c9!important;line-height:1.65!important;margin:0!important;padding:12px 18px 17px!important}@keyframes shmStream{to{stroke-dashoffset:-68}}@media(max-width:650px){.shm-canvas svg{min-width:700px}.shm-head,.shm-controls{padding:12px}.shm-status{margin-left:0}}
 </style>
+<style>
+.dlvm-overview{margin-top:24px;border:1px solid #3b5370;border-radius:18px;overflow:hidden;background:radial-gradient(ellipse at top right,#182b45,#070d16 75%);color:#def0fa}.dlvm-head{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #2d465e}.dlvm-head strong{color:#8eddeb;font-size:.7rem;letter-spacing:.12em}.dlvm-overview button,.dlvm-overview select{font:inherit;font-size:.72rem;color:#e3f5ff;background:#152b3f;border:1px solid #516f8b;border-radius:18px;padding:6px 12px;cursor:pointer}.dlvm-overview :focus-visible{outline:2px solid #87ffe2;outline-offset:3px}.dlvm-controls{display:flex;flex-wrap:wrap;align-items:center;gap:15px;padding:14px 18px;color:#b3cde0;font-size:.72rem}.dlvm-controls label{display:flex;gap:8px;align-items:center}.dlvm-canvas{overflow-x:auto}.dlvm-overview svg{width:100%;height:auto;display:block}.dlvm-overview text{font-family:Inter,system-ui,sans-serif}.dlvm-stream{stroke-dasharray:5 12;animation:dlvmStream 2s linear infinite}.dlvm-feature{animation:dlvmFeature 5s ease-in-out infinite;animation-delay:var(--delay,0s)}.dlvm-paused *{animation-play-state:paused!important}.dlvm-results{padding:2px 18px 16px}.dlvm-results h4{font-size:.76rem;color:#bbaafa;margin:0 0 10px}.dlvm-frequencies{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:6px}.dlvm-frequency{padding:8px 3px;text-align:center;border:1px solid #2a4b61;border-radius:8px;background:#0f2233;font-size:.72rem}.dlvm-frequency small{display:block;color:#91acc5;font-size:.6rem}.dlvm-frequency b{color:#c9e9f0;font-size:.79rem}.dlvm-frequency.dlvm-selected{border-color:#88e8d4;background:#183c46}.dlvm-note{padding:0 18px 17px!important;margin:0!important;font-size:.67rem!important;line-height:1.7!important;color:#9bb7ce!important}.dlvm-note a{text-decoration:underline;color:#a8dbeb}@keyframes dlvmStream{to{stroke-dashoffset:-68}}@keyframes dlvmFeature{0%,100%{opacity:.35}45%,70%{opacity:1}}@media(max-width:700px){.dlvm-canvas svg{min-width:650px}.dlvm-frequencies{grid-template-columns:repeat(3,1fr)}.dlvm-controls{gap:10px}.dlvm-controls label{flex-wrap:wrap}}
+</style>
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
@@ -588,6 +591,10 @@
               <div class="tags"><span>Bridges</span><span>FEM</span><span>Load Rating</span><span>VDOT</span></div>
             </div>
           </article>
+
+          <article class="project" id="modal-frequency-project"><div class="project-num">06</div><div><h3>Video-Based Modal Frequency Estimation</h3><p>Developed a hybrid-attention CNN–ConvLSTM model to estimate modal frequencies from structural vibration videos, transferring knowledge from simple beams to an independent turbine blade using limited data.</p><div class="tags"><span>Modal Analysis</span><span>ConvLSTM</span><span>Hybrid Attention</span><span>Transfer Learning</span></div>
+            <div class="dlvm-overview" id="modal-transfer-overview"><div class="dlvm-head"><strong>DEEP LEARNING FROM VIBRATION MEASUREMENTS / DLVM</strong><button id="dlvm-motion" type="button" aria-pressed="true">Pause animation</button></div><div class="dlvm-controls"><label for="dlvm-case">Turbine-blade test <select id="dlvm-case"><option value="baseline">Baseline · top view</option><option value="mass">Added mass · top view</option></select></label><label for="dlvm-mode">Highlight mode <select id="dlvm-mode"><option value="0">Mode 1</option><option value="1">Mode 2</option><option value="2">Mode 3</option><option value="3">Mode 4</option><option value="4">Mode 5</option><option value="5">Mode 6</option><option value="6">Mode 7</option><option value="7">Mode 8</option><option value="8">Mode 9</option></select></label></div><div class="dlvm-canvas" tabindex="0" role="region" aria-label="Video modal analysis and transfer learning overview; scroll horizontally on small screens"><svg viewBox="0 0 1000 470" role="img" aria-labelledby="dlvm-title dlvm-desc"><title id="dlvm-title">Deep learning from vibration measurements with transfer learning</title><desc id="dlvm-desc">Camera video sequences of simple cantilever beams train an Inception CNN with spatial-feature channel attention, ConvLSTM and temporal-feature frame attention. Transfer learning fine-tunes the network using front-view turbine blade data. The model estimates nine frequencies from top-view baseline and added-mass test data. Animated motion is schematic.</desc><text x="28" y="30" fill="#87e5dc" font-size="12" letter-spacing="1.5">01 / BASELINE VIDEO DATASET A</text><text x="28" y="53" fill="#abc5da" font-size="11" >Simple beams · different materials and dimensions</text><rect x="28" y="76" width="280" height="212" rx="12" fill="#0a1726" stroke="#345b76"/><path d="M64 126V243M50 137 64 126M50 158 64 147M50 179 64 168M50 200 64 189M50 221 64 210" stroke="#6d94ad" stroke-width="2"/><path d="M68 179H284" stroke="#607e98" stroke-dasharray="4 5"/><path id="dlvm-beam-motion" d="M68 179H284" stroke="#65d9d0" stroke-width="7" fill="none" stroke-linecap="round"/><text x="45" y="100" fill="#7cafc6" font-size="10" >CAMERA VIDEO · FRAME SEQUENCE</text><text x="168" y="271" fill="#abc5da" font-size="10" text-anchor="middle">Train on the first three modal frequencies</text><rect x="46" y="305" width="68" height="40" rx="5" fill="#142e3e" stroke="#4b7890"/><path class="dlvm-feature" style="--delay:0.0s" d="M53 320Q83 315 107 329" fill="none" stroke="#7adecd" stroke-width="3"/><rect x="126" y="305" width="68" height="40" rx="5" fill="#142e3e" stroke="#4b7890"/><path class="dlvm-feature" style="--delay:0.6s" d="M133 320Q163 320 187 329" fill="none" stroke="#7adecd" stroke-width="3"/><rect x="206" y="305" width="68" height="40" rx="5" fill="#142e3e" stroke="#4b7890"/><path class="dlvm-feature" style="--delay:1.2s" d="M213 320Q243 325 267 329" fill="none" stroke="#7adecd" stroke-width="3"/><text x="168" y="366" fill="#abc5da" font-size="10" text-anchor="middle">Consecutive frames retain motion information</text><text x="385" y="30" fill="#bfaaf1" font-size="12" letter-spacing="1">02 / LEARN SPATIOTEMPORAL FEATURES</text><rect x="390" y="76" width="230" height="56" rx="9" fill="#17283c" stroke="#556286" class="dlvm-feature" style="--delay:0.0s"/><text x="505" y="99" fill="#e2eafa" font-size="14" text-anchor="middle">Inception CNN</text><text x="505" y="119" fill="#abc5da" font-size="10" text-anchor="middle">Spatial visual features</text><path d="M505 135v10" fill="none" stroke="#92bfe4" class="dlvm-stream"/><rect x="390" y="148" width="230" height="56" rx="9" fill="#17283c" stroke="#556286" class="dlvm-feature" style="--delay:0.45s"/><text x="505" y="171" fill="#e2eafa" font-size="14" text-anchor="middle">SFCA</text><text x="505" y="191" fill="#abc5da" font-size="10" text-anchor="middle">Channel attention</text><path d="M505 207v10" fill="none" stroke="#92bfe4" class="dlvm-stream"/><rect x="390" y="220" width="230" height="56" rx="9" fill="#17283c" stroke="#556286" class="dlvm-feature" style="--delay:0.9s"/><text x="505" y="243" fill="#e2eafa" font-size="14" text-anchor="middle">ConvLSTM</text><text x="505" y="263" fill="#abc5da" font-size="10" text-anchor="middle">Temporal dynamics</text><path d="M505 279v10" fill="none" stroke="#92bfe4" class="dlvm-stream"/><rect x="390" y="292" width="230" height="56" rx="9" fill="#17283c" stroke="#556286" class="dlvm-feature" style="--delay:1.35s"/><text x="505" y="315" fill="#e2eafa" font-size="14" text-anchor="middle">TFFA</text><text x="505" y="335" fill="#abc5da" font-size="10" text-anchor="middle">Frame attention</text><path d="M317 180H380M630 180H681" stroke="#79d7dc" stroke-width="2" fill="none" class="dlvm-stream"/><text x="700" y="30" fill="#87e5dc" font-size="12" letter-spacing="1">03 / TRANSFER TO DATASET B</text><text x="700" y="53" fill="#abc5da" font-size="11" >Independent turbine blade</text><rect x="696" y="76" width="277" height="270" rx="12" fill="#0d2230" stroke="#3f657c"/><path d="M743 317H915" stroke="#557b90" stroke-width="2"/><path d="M820 302 820 126" stroke="#51768d" stroke-dasharray="4 5"/><path id="dlvm-blade-motion" d="M806 303Q803 218 813 145L820 104 828 145Q837 218 834 303Z" stroke="#8ae8d8" fill="#2b6775" stroke-width="2"/><g id="dlvm-added-mass" visibility="hidden"><rect x="818" y="132" width="18" height="15" rx="2" fill="#f3bf78"/><text x="842" y="143" fill="#f3bf78" font-size="10" >Added mass</text></g><text x="834" y="98" fill="#a4cfe2" font-size="10" text-anchor="middle">Fine-tune on front-view frames</text><text x="834" y="334" fill="#a4cfe2" font-size="10" text-anchor="middle">Test on top-view frames</text><text x="834" y="371" fill="#c4b4f8" font-size="13" text-anchor="middle">Nine modal frequency estimates</text><path d="M504 358V399H834V380" fill="none" stroke="#b9a1e7" stroke-width="1.5" class="dlvm-stream"/><text x="505" y="426" fill="#a7ccdc" font-size="12" text-anchor="middle">Knowledge transfer extends estimation from simple beams to a more complex structure</text><text x="505" y="451" fill="#819fb8" font-size="10" text-anchor="middle">Schematic motion illustrates video input; the network output is modal frequency, not animated mode shape.</text></svg></div><div class="dlvm-results"><h4 id="dlvm-result-title">Reported DLVM estimates · baseline top-view test (Hz)</h4><div class="dlvm-frequencies" id="dlvm-frequencies" aria-label="Reported frequency estimates"></div></div><p class="dlvm-note">Dizaji, Mao and Haile (2023), <a href="https://doi.org/10.1016/j.ymssp.2022.109949" target="_blank" rel="noopener noreferrer">“A hybrid-attention-ConvLSTM-based deep learning architecture to extract modal frequencies from limited data using transfer learning.”</a> Frequency values reproduce the paper’s DLVM estimates in Tables 2–3. Added mass mimics a damaged condition; reference frequencies for that test were available only for modes 1, 2, 4 and 5. Animated motion and feature flow are illustrative. This preview does not analyze uploaded videos.</p></div>
+          </div></article>
         </div>
       </div>
     </section>
@@ -1193,6 +1200,53 @@
  document.addEventListener('visibilitychange',sync);
  if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:.02}).observe(panel);
  draw();sync();
+})();
+</script>
+<script>
+(() => {
+ const panel=document.getElementById('modal-transfer-overview');
+ const button=document.getElementById('dlvm-motion');
+ const test=document.getElementById('dlvm-case');
+ const mode=document.getElementById('dlvm-mode');
+ const preference=matchMedia('(prefers-reduced-motion: reduce)');
+ const frequencies={baseline:[4.98,15.3,24.22,33.33,55.22,56.22,79.19,117.2,121.19],mass:[3.52,11.98,21.88,28.95,50.11,53.89,79.19,99.33,110.28]};
+ let paused=preference.matches,phase=0,frame=null,last=null,visible=true;
+ function render(){
+  const values=frequencies[test.value], selected=Number(mode.value);
+  document.getElementById('dlvm-result-title').textContent='Reported DLVM estimates · '+(test.value==='mass'?'added-mass':'baseline')+' top-view test (Hz)';
+  document.getElementById('dlvm-frequencies').replaceChildren(...values.map((v,i)=>{
+   const cell=document.createElement('div');cell.className='dlvm-frequency'+(i===selected?' dlvm-selected':'');
+   const label=document.createElement('small');label.textContent='MODE '+(i+1);
+   const value=document.createElement('b');value.textContent=v.toFixed(2);
+   cell.append(label,value);return cell;
+  }));
+  document.getElementById('dlvm-added-mass').setAttribute('visibility',test.value==='mass'?'visible':'hidden');
+  draw();
+ }
+ function draw(){
+  const amplitude=14*Math.sin(phase);
+  const points=Array.from({length:31},(_,i)=>{const u=i/30;return [(68+216*u).toFixed(2),(179+amplitude*u*u).toFixed(2)].join(',');});
+  document.getElementById('dlvm-beam-motion').setAttribute('d','M'+points.join('L'));
+  const offset=amplitude*.7;
+  document.getElementById('dlvm-blade-motion').setAttribute('d',`M806 303Q${803+offset*.4} 218 ${813+offset} 145L${820+offset} 104 ${828+offset} 145Q${837+offset*.4} 218 834 303Z`);
+  document.getElementById('dlvm-added-mass').setAttribute('transform',`translate(${offset} 0)`);
+ }
+ function animate(time){
+  frame=null;if(paused||document.hidden||!visible){last=null;return;}
+  if(last!==null)phase+=Math.min(time-last,100)/240;
+  last=time;draw();frame=requestAnimationFrame(animate);
+ }
+ function sync(){
+  const stopped=paused||document.hidden||!visible;panel.classList.toggle('dlvm-paused',stopped);
+  button.textContent=paused?'Play animation':'Pause animation';button.setAttribute('aria-pressed',String(!paused));
+  if(stopped&&frame!==null){cancelAnimationFrame(frame);frame=null;last=null;}
+  if(!stopped&&frame===null)frame=requestAnimationFrame(animate);
+ }
+ test.addEventListener('change',render);mode.addEventListener('change',render);
+ button.addEventListener('click',()=>{paused=!paused;sync();});
+ preference.addEventListener('change',()=>{paused=preference.matches;sync();});document.addEventListener('visibilitychange',sync);
+ if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:.02}).observe(panel);
+ render();sync();
 })();
 </script>
 </body>
