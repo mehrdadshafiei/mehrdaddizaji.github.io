@@ -176,7 +176,9 @@
     .demo-play-caption{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);padding:6px 14px;border-radius:999px;background:rgba(0,0,0,.8);font:600 .85rem Inter,system-ui,sans-serif;white-space:nowrap}
     .demo-cover:hover .demo-play-control,.demo-cover:focus-visible .demo-play-control{background:#116d85}
     .demo-cover:focus-visible{outline:3px solid var(--cyan);outline-offset:-4px}
-    .demo-player iframe{display:block;width:100%;height:100%;border:0}
+    #research-demo .demo-player{aspect-ratio:auto;background:radial-gradient(ellipse at center,#132333,#000 75%);display:flex;justify-content:center}
+    #research-demo video{display:block;width:100%;height:min(72vh,680px);min-height:300px;object-fit:contain;background:transparent}
+    .demo-description{margin-top:28px}.demo-description h3{font-size:1.3rem;margin-bottom:12px}.demo-description p{color:var(--muted)}.demo-description .tags{margin-top:20px}
     @media(max-width:720px){.demo-play-control{width:58px;height:58px}.demo-play-caption{bottom:8px;font-size:.72rem}}
 
     /* Compact About me typography and a layout-stable typing reveal. */
@@ -505,19 +507,24 @@
 
     <section class="section alt" id="research-demo">
       <div class="container narrow">
-        <p class="section-kicker">Research Demo</p>
-        <h2>Detecting invisible defects with 3D digital image correlation</h2>
-        <p class="lead">A short demonstration of my research using 3D digital image correlation for defect detection.</p>
+        <p class="section-kicker">Application Demo · Augmented Reality</p>
+        <h2>Structural analysis brought into the real world</h2>
+        <p class="lead">Explore a bridge model through a mobile augmented reality interface that brings structural analysis results into the surrounding physical space.</p>
         <div class="demo-player" id="demo-player">
-          <button class="demo-cover" id="demo-play" type="button" aria-label="Play research demo: Detecting invisible defects with 3D digital image correlation">
-            <img src="demo-cover.jpg" alt="Digital image correlation result showing a colored structural response map on a test specimen" width="1713" height="874" loading="lazy">
-            <span class="demo-play-control" aria-hidden="true"><svg viewBox="0 0 24 24" width="27" height="27" fill="currentColor"><path d="M8 5v14l11-7Z"/></svg></span>
-            <span class="demo-play-caption" aria-hidden="true">Play research demo</span>
-          </button>
+          <video id="research-demo-video" controls playsinline preload="metadata" aria-label="Augmented reality structural analysis application demonstration" aria-describedby="research-demo-description">
+            <source src="Media1.mp4#t=0.1" type="video/mp4">
+            Your browser does not support embedded video. <a href="Media1.mp4">Open the application demo video</a>.
+          </video>
+        </div>
+        <div id="research-demo-description" class="demo-description">
+          <h3>From numerical results to spatial understanding</h3>
+          <p>This recording demonstrates my augmented reality structural visualization work. The mobile interface offers element, member, and system analysis views. In the bridge example, a three-dimensional model appears in the camera view, allowing the user to inspect it from different viewpoints.</p>
+          <p>The demonstration shows a finite element mesh, load and support indicators, and color-coded structural response contours. On-screen controls switch between response components, including strain and displacement, while node information connects the visualization to locations in the model. This approach helps make structural behavior easier to explore and explain in engineering education and design discussions.</p>
+          <div class="tags"><span>Augmented Reality</span><span>Finite Element Visualization</span><span>Structural Mechanics</span><span>Engineering Education</span></div>
         </div>
         <div class="hero-actions">
-          <a class="btn secondary" href="https://www.youtube.com/watch?v=mMS5JGtyUCg" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
-          <a class="btn secondary" href="https://www.youtube.com/@MehrdadShafieiDizaji1819" target="_blank" rel="noopener noreferrer">More Research Videos</a>
+          <a class="btn secondary" href="Media1.mp4" target="_blank" rel="noopener noreferrer">Open Demo Video</a>
+          <a class="btn secondary" href="#developed-apps">Explore Developed Apps</a>
         </div>
       </div>
     </section>
@@ -856,17 +863,6 @@
   </footer>
 
   <script>
-    document.getElementById('demo-play').addEventListener('click', () => {
-      const frame = document.createElement('iframe');
-      frame.src = 'https://www.youtube-nocookie.com/embed/mMS5JGtyUCg?autoplay=1&rel=0';
-      frame.title = 'Detect Invisible Defects Using 3D Digital Image Correlation Technique — Mehrdad Shafiei Dizaji';
-      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      frame.allowFullscreen = true;
-      frame.referrerPolicy = 'strict-origin-when-cross-origin';
-      document.getElementById('demo-player').replaceChildren(frame);
-      frame.focus();
-    });
-
     const twinScene = document.getElementById('digital-twin-scene');
     const motionToggle = document.getElementById('motion-toggle');
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
