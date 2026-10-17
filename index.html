@@ -386,6 +386,25 @@
       margin-bottom: 20px;
     }
   </style>
+<style id="research-proposals-styles">
+.proposals-section{scroll-margin-top:105px}
+#research-proposals-title{display:flex;align-items:center;gap:13px}
+.proposal-section-icon{display:inline-flex;flex:0 0 auto}
+.proposal-section-icon .nav-picture{width:32px;height:32px;color:var(--cyan)}
+.proposals-intro{max-width:850px;color:var(--muted);font-size:.95rem}
+.proposal-list{display:grid;gap:14px;margin-top:28px}
+.proposal-item{display:grid;grid-template-columns:138px minmax(0,1fr) auto;gap:24px;align-items:start;padding:25px;border:1px solid var(--line);border-left:3px solid #459eaa;border-radius:18px;background:linear-gradient(130deg,rgba(56,225,213,.055),rgba(255,255,255,.035))}
+.proposal-year{font-size:1.05rem;font-weight:800;color:var(--cyan)}
+.proposal-status{display:block;width:fit-content;margin-top:9px;padding:4px 8px;border:1px solid #4a5570;border-radius:8px;font-size:.64rem;font-weight:650;line-height:1.5;color:#bfcae1}
+.proposal-status.awarded{border-color:#336d65;color:#9be5c8;background:#10372c55}
+.proposal-detail h3{font-size:1.02rem;line-height:1.45;margin:0 0 10px;color:#edf4ff}
+.proposal-item .proposal-program{font-size:.84rem;line-height:1.6;margin:0 0 6px;color:#b6cedf}
+.proposal-item .proposal-role{font-size:.77rem;margin:0;color:#93adbf}
+.proposal-funding{min-width:135px;text-align:right;font-size:1.02rem;font-weight:800;color:#a8e6de;white-space:nowrap}
+.proposal-funding span{display:block;font-size:.65rem;font-weight:500;color:#8fa9ba;margin-top:5px}
+@media(max-width:850px){.proposal-item{grid-template-columns:110px minmax(0,1fr);gap:18px}.proposal-funding{grid-column:2;text-align:left;min-width:0}}
+@media(max-width:560px){.proposal-item{grid-template-columns:1fr;padding:20px;gap:13px}.proposal-year{display:flex;align-items:center;gap:12px}.proposal-status{margin-top:0}.proposal-funding{grid-column:1}.proposal-detail h3{font-size:.95rem}#research-proposals-title{gap:10px}}
+</style>
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
@@ -430,6 +449,7 @@
         <a href="#about"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><circle cx="24" cy="16" r="7"/><path d="M10 40v-4c0-7 6-11 14-11s14 4 14 11v4"/><path d="M18 39h12"/></svg><span>About me</span></a>
         <a href="#research"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M19 7h10M22 7v12L11 36a4 4 0 0 0 3 6h20a4 4 0 0 0 3-6L26 19V7"/><path d="M17 29h14"/><circle cx="23" cy="35" r="1"/><path d="M36 10v8m-4-4h8"/></svg><span>Research</span></a>
         <a href="#projects"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M6 16a4 4 0 0 1 4-4h11l4 5h13a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z"/><path d="m19 27-5 4 5 4m10-8 5 4-5 4m-6 2 2-12"/></svg><span>Projects</span></a>
+        <a href="#research-proposals"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 5h20l8 8v29H10Z"/><path d="M29 5v9h9M16 33h16M16 38h10"/><path d="M19 22a5 5 0 1 1 10 0c0 2-2 3-2 5h-6c0-2-2-3-2-5ZM22 30h4"/></svg><span>Proposals</span></a>
         <a href="#research-demo"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="6" y="10" width="36" height="28" rx="7"/><path d="m21 18 11 6-11 6Z"/><path d="M17 43h14"/></svg><span>Demo</span></a>
         <a href="#research-gallery"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="7" y="7" width="34" height="34" rx="7"/><circle cx="17" cy="17" r="3"/><path d="m8 34 10-10 7 7 6-7 10 12"/></svg><span>Gallery</span></a>
         <a href="#publications"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M24 12c-5-5-12-5-19-3v29c7-2 14-2 19 3 5-5 12-5 19-3V9c-7-2-14-2-19 3Zm0 0v29"/><path d="M11 17h7m-7 7h7m12-7h7m-7 7h7"/></svg><span>Publications</span></a>
@@ -623,6 +643,41 @@
       </div>
     </section>
 
+
+    <section class="section alt proposals-section" id="research-proposals" aria-labelledby="research-proposals-title">
+      <div class="container">
+        <p class="section-kicker">Research Development &amp; Funding</p>
+        <h2 id="research-proposals-title"><span class="proposal-section-icon"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 5h20l8 8v29H10Z"/><path d="M29 5v9h9M16 33h16M16 38h10"/><path d="M19 22a5 5 0 1 1 10 0c0 2-2 3-2 5h-6c0-2-2-3-2-5ZM22 30h4"/></svg></span>Research Proposals</h2>
+        <p class="proposals-intro">Selected funded and submitted proposals, alongside a PhD qualifying-examination proposal, spanning AI-based damage prediction, digital twins, and infrastructure assessment.</p>
+        <div class="proposal-list">
+          <article class="proposal-item">
+            <div class="proposal-year">2023<span class="proposal-status awarded">Awarded</span></div>
+            <div class="proposal-detail"><h3>Data Fusion Using Multi-Model Deep Learning Strategy to Predict the Spatial-temporal Implications of Damage on the Life Cycle of Structural Systems</h3><p class="proposal-program">NRC Research Associateship Program</p><p class="proposal-role">Role: Principal Investigator (PI)</p></div>
+            <div class="proposal-funding">$73,000 annually<span>Annual fellowship funding</span></div>
+          </article>
+          <article class="proposal-item">
+            <div class="proposal-year">2022<span class="proposal-status awarded">Awarded</span></div>
+            <div class="proposal-detail"><h3>Engaging the Two-Way Interaction for a Digital Twin for Large Scale Infrastructure</h3><p class="proposal-program">CCI–Smart Cities Program, University of Virginia</p><p class="proposal-role">Role: Supporting contributor (partial assistance)</p></div>
+            <div class="proposal-funding">$30,000<span>Award amount</span></div>
+          </article>
+          <article class="proposal-item">
+            <div class="proposal-year">2021<span class="proposal-status awarded">Awarded</span></div>
+            <div class="proposal-detail"><h3>Digital Twin Framework of Cyber-Physical Structural Systems</h3><p class="proposal-program">NSF EAGER</p><p class="proposal-role">Role: Supporting contributor (partial assistance)</p></div>
+            <div class="proposal-funding">$300,000<span>Award amount</span></div>
+          </article>
+          <article class="proposal-item">
+            <div class="proposal-year">2019<span class="proposal-status">Qualifying examination</span></div>
+            <div class="proposal-detail"><h3>Deep Learning-Based Automated 3D Crack Detection for Post-Disaster Building Assessment</h3><p class="proposal-program">Proposal in partial fulfillment of the PhD qualifying examination</p><p class="proposal-role">Role: Principal Investigator (PI)</p></div>
+            
+          </article>
+          <article class="proposal-item">
+            <div class="proposal-year">2019<span class="proposal-status">Submitted</span></div>
+            <div class="proposal-detail"><h3>Image-based Tomography for Bridge Damage Identification</h3><p class="proposal-program">Submitted to BRAC</p><p class="proposal-role">Role: Co-Principal Investigator (Co-PI)</p></div>
+            
+          </article>
+        </div>
+      </div>
+    </section>
 
     <section class="section alt" id="research-demo">
       <div class="container narrow">
