@@ -421,6 +421,23 @@
 #active-twin .adt-note{color:#a6b8c7;font-size:.78rem;margin-top:14px}
 @media(max-width:780px){#active-twin .adt-layout{grid-template-columns:1fr}#adt-canvas{height:330px}#active-twin .adt-scene{min-height:330px}}
 </style>
+<style id="resume-summary-styles">
+#cv .resume-summary{margin-top:28px;padding:clamp(20px,4vw,36px);border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,rgba(84,167,255,.09),rgba(56,225,213,.025))}
+#cv .resume-summary-header{padding-bottom:22px;border-bottom:1px solid var(--line)}
+#cv .resume-summary-header .section-kicker{font-size:.65rem;margin-bottom:12px}
+#cv .resume-summary h3{font-size:clamp(1.2rem,3vw,1.55rem);margin-bottom:8px}
+#cv .resume-summary p{font-size:.88rem;line-height:1.75;color:var(--muted);margin-bottom:0}
+#cv .resume-summary .resume-role{font-size:.8rem;color:var(--cyan);margin-bottom:14px}
+#cv .resume-summary-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:30px;padding-top:24px}
+#cv .resume-summary h4{font-size:.82rem;letter-spacing:.04em;color:#edf5ff;margin:0 0 16px}
+#cv .resume-summary h4:not(:first-child){margin-top:26px}
+#cv .resume-summary ul{list-style:none;margin:0;padding:0}
+#cv .resume-summary li+li{margin-top:18px}
+#cv .resume-summary li strong{display:block;font-size:.85rem;line-height:1.5;font-weight:650}
+#cv .resume-summary li span{display:block;font-size:.76rem;color:var(--cyan);margin:4px 0 6px}
+#cv .resume-summary li p{font-size:.82rem}
+@media(max-width:640px){#cv .resume-summary-grid{grid-template-columns:1fr;gap:26px}}
+</style>
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
@@ -905,8 +922,44 @@
         <p class="section-kicker">CV</p>
         <h2>Curriculum vitae</h2>
         <p class="lead">View or download my full CV for details of my education, research appointments, publications, and professional experience.</p>
+        <article class="resume-summary" aria-labelledby="resume-summary-title">
+          <header class="resume-summary-header">
+            <p class="section-kicker">Résumé · Short version</p>
+            <h3 id="resume-summary-title">Mehrdad Shafiei Dizaji, Ph.D.</h3>
+            <p class="resume-role">Structural Engineering · AI · Infrastructure Monitoring</p>
+            <p>Structural engineering researcher connecting experimental measurements, finite element models, and artificial intelligence to assess infrastructure. Expertise includes computer vision, nondestructive evaluation, structural identification, and digital twins.</p>
+          </header>
+          <div class="resume-summary-grid">
+            <div>
+              <h4>Research experience</h4>
+              <ul class="resume-experience">
+                <li><strong>Turner-Fairbank Highway Research Center, FHWA</strong><span>Postdoctoral Research Associate · June 2023–Present</span><p>AI-enabled NDE image analysis, the NDEChat platform, and physics-informed prediction of NDE data.</p></li>
+                <li><strong>University of Virginia</strong><span>Postdoctoral Research Associate · 2021–2023</span><p>Digital twins integrating structural simulation, experimental measurements, AI, and immersive visualization.</p></li>
+                <li><strong>University of Massachusetts Lowell</strong><span>Postdoctoral Scholar · 2020–2021</span><p>Attention-based deep learning for extracting structural modal frequencies from limited data.</p></li>
+                <li><strong>University of Virginia</strong><span>Doctoral Research Assistant · 2015–2020</span><p>3D digital image correlation, damage identification, finite element model updating, and bridge load testing.</p></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Education</h4>
+              <ul class="resume-education">
+                <li><strong>Ph.D., Civil Engineering</strong><span>University of Virginia · 2020</span></li>
+                <li><strong>M.Sc., Civil Engineering</strong><span>Sharif University of Technology · 2008</span></li>
+                <li><strong>B.Sc., Civil Engineering</strong><span>University of Tabriz · 2005</span></li>
+              </ul>
+              <h4>Technical skills</h4>
+              <p>Python, MATLAB, TensorFlow, PyTorch, scikit-learn, Abaqus, ANSYS, SAP2000, ARTeMIS; 3D-DIC, structural testing, and sensor-data analysis.</p>
+              <h4>Selected bridge work</h4>
+              <p>Full-scale load testing of four highway bridges, Hampton Roads Bridge-Tunnel testing, Mecklenburg Bridge damage assessment, and Varina-Enon Bridge monitoring using 3D-DIC.</p>
+            </div>
+          </div>
+        </article>
+
+        <div class="hero-actions" aria-label="Résumé and full CV documents">
+          <a class="btn primary" href="Mehrdad_Shafiei_Dizaji_Resume.pdf" target="_blank" rel="noopener noreferrer">View Résumé (Short PDF)</a>
+          <a class="btn secondary" href="Mehrdad_Shafiei_Dizaji_Resume.pdf" download>Download Résumé (PDF)</a>
+        </div>
         <div class="hero-actions">
-          <a class="btn primary" href="Mehrdad_Shafiei_Dizaji_CV.pdf" target="_blank" rel="noopener noreferrer">View CV (PDF)</a>
+          <a class="btn secondary" href="Mehrdad_Shafiei_Dizaji_CV.pdf" target="_blank" rel="noopener noreferrer">View CV (PDF)</a>
           <a class="btn secondary" href="Mehrdad_Shafiei_Dizaji_CV.pdf" download>Download CV (PDF)</a>
         </div>
       </div>
