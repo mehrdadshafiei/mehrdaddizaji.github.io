@@ -698,8 +698,8 @@
     <section class="section alt" id="active-twin" aria-labelledby="adt-title"><div class="container">
 <p class="section-kicker">AI · Structural Health Monitoring · Physics-Based Simulation</p>
 <h2 id="adt-title">Active Digital Twin</h2>
-<p class="hero-subtitle">Explore an interactive, sensor-equipped bridge digital twin. Rotate the model, change traffic and structural stiffness, and observe how a synchronized virtual bridge responds. This demonstration illustrates the physics-informed monitoring and predictive modeling workflow.</p>
-<div class="adt-layout"><div class="adt-scene"><canvas id="adt-canvas" aria-label="Interactive three-dimensional perspective bridge simulation with traffic, supports, and structural monitoring points"></canvas><div class="adt-overlay"><span class="adt-chip">● SIMULATED LIVE TWIN</span><p>DRAG TO ROTATE · SCROLL TO ZOOM</p></div></div>
+<p class="hero-subtitle">Explore an interactive, sensor-equipped steel truss bridge digital twin. Rotate the model, change traffic and structural stiffness, and observe how a synchronized virtual bridge responds. This demonstration illustrates the physics-informed monitoring and predictive modeling workflow.</p>
+<div class="adt-layout"><div class="adt-scene"><canvas id="adt-canvas" aria-label="Interactive three-dimensional perspective steel truss bridge simulation with traffic, supports, and structural monitoring points"></canvas><div class="adt-overlay"><span class="adt-chip">● SIMULATED LIVE TWIN</span><p>DRAG TO ROTATE · SCROLL TO ZOOM</p></div></div>
 <div class="adt-panel"><span class="adt-chip">INTERACTIVE CONTROL CENTER</span>
 <label for="adt-load">Traffic load <output id="adt-load-v">60%</output></label><input id="adt-load" type="range" min="0" max="100" value="60">
 <label for="adt-stiff">Structural stiffness <output id="adt-stiff-v">80%</output></label><input id="adt-stiff" type="range" min="20" max="100" value="80">
@@ -1514,23 +1514,48 @@ function draw(t){raf=requestAnimationFrame(draw);if(!visible||document.hidden)re
 ctx.strokeStyle='#17364b';ctx.lineWidth=.65;for(let i=-13;i<=13;i++){line([[-13,-2.5,i],[13,-2.5,i]],'#17364b');line([[i,-2.5,-13],[i,-2.5,13]],'#17364b')}
 for(const x of [-7,0,7]){poly([[x-.32,-2.5,-1.6],[x+.32,-2.5,-1.6],[x+.32,beam(x),-1.6],[x-.32,beam(x),-1.6]],'#435767','#7197a9');poly([[x-.32,-2.5,1.6],[x+.32,-2.5,1.6],[x+.32,beam(x),1.6],[x-.32,beam(x),1.6]],'#435767','#7197a9')}
 for(let i=0;i<48;i++){let x=-8+i/3,xx=x+1/3;const col=heat?`hsl(${175-145*(Number(load.value)/100)*(1-Number(stiff.value)/130)*(1-Math.abs(x)/9)},85%,50%)`:'#637b91';poly([[x,beam(x),-1.8],[xx,beam(xx),-1.8],[xx,beam(xx),1.8],[x,beam(x),1.8]],col,'#1b3445')}
-for(const z of [-1.75,1.75]){const rail=[];for(let i=0;i<=48;i++){const x=-8+i/3;rail.push([x,beam(x)+.65,z]);if(i%4===0)line([[x,beam(x),z],[x,beam(x)+.65,z]],'#a9e5ed',1.5)}line(rail,'#b2e5ed',2)}
+// Twin steel through-trusses: lower/upper chords, verticals, Warren diagonals, portal frames and cross bracing.
+const trussHeight=2.55, bays=8, step=2;
+for(const z of [-1.93,1.93]){
+ const lower=[],upper=[];
+ for(let i=0;i<=bays;i++){const x=-8+i*step,base=beam(x);lower.push([x,base,z]);upper.push([x,base+trussHeight,z]);}
+ // Deep dark structural shadow followed by highlighted steel members.
+ const member=(a,b,width=3)=>{line([a,b],'#08131d',width+2);line([a,b],heat?'#d7a26d':'#8ca8b9',width);line([[a[0],a[1]+.035,a[2]],[b[0],b[1]+.035,b[2]]],'#d5e6ef',.75)};
+ for(let i=0;i<bays;i++){const x=-8+i*step,xx=x+step;member([x,beam(x),z],[xx,beam(xx),z],4.5);member([x,beam(x)+trussHeight,z],[xx,beam(xx)+trussHeight,z],4);member([x,beam(x),z],[xx,beam(xx)+trussHeight,z],3.2)}
+ for(let i=0;i<=bays;i++){const x=-8+i*step;member([x,beam(x),z],[x,beam(x)+trussHeight,z],3.2);const p=point(x,beam(x)+trussHeight,z);ctx.beginPath();ctx.arc(...p,Math.max(2,zoom*3.1),0,Math.PI*2);ctx.fillStyle='#d9e9f1';ctx.fill()}
+}
+for(let i=0;i<=bays;i+=2){const x=-8+i*step;line([[x,beam(x)+trussHeight,-1.93],[x,beam(x)+trussHeight,1.93]],'#8daebd',3);if(i<bays){const xx=x+step*2;line([[x,beam(x)+trussHeight,-1.93],[xx,beam(xx)+trussHeight,1.93]],'#557d90',1.8);line([[x,beam(x)+trussHeight,1.93],[xx,beam(xx)+trussHeight,-1.93]],'#557d90',1.8)}}
+for(const x of [-8,8]){line([[x,beam(x)+trussHeight,-1.93],[x,beam(x)+trussHeight,1.93]],'#e0e9ee',4);line([[x,beam(x)+trussHeight,-1.93],[x,beam(x)+1.15,1.93]],'#7493a6',2)}
+
 for(let i=0;i<16;i++){const x=-7.5+i;line([[x,beam(x)+.012,-.08],[x+.48,beam(x+.48)+.012,-.08]],'#f7d99a',2)}
 // Detailed animated vehicles: sculpted chassis, cabin glass, tires, lamps and shadows.
-function vehicle(x,z,kind){const y=beam(x)+.13,truck=kind===1,len=truck?1.95:1.35,half=len/2,w=.56;
- const paint=['#dce5ed','#f0a34e','#328cc8'][kind],dark='#172736',glass='#85c7e2';
- // Soft contact shadow and dark undercarriage
- poly([[x-half-.08,y-.025,z-.37],[x+half+.08,y-.025,z-.37],[x+half+.08,y-.025,z+.37],[x-half-.08,y-.025,z+.37]],'rgba(1,9,17,.43)');
- poly([[x-half,y+.10,z-w/2],[x+half,y+.10,z-w/2],[x+half,y+.10,z+w/2],[x-half,y+.10,z+w/2]],'#1b2c3a');
- // Main body and visible side panels
- poly([[x-half,y+.12,z-w/2],[x+half,y+.12,z-w/2],[x+half,y+.42,z-w/2],[x-half,y+.42,z-w/2]],paint,'#a9bbc9');
- poly([[x-half,y+.12,z+w/2],[x+half,y+.12,z+w/2],[x+half,y+.42,z+w/2],[x-half,y+.42,z+w/2]],paint,'#d8e7f2');
- poly([[x-half,y+.42,z-w/2],[x+half,y+.42,z-w/2],[x+half,y+.42,z+w/2],[x-half,y+.42,z+w/2]],paint,'#eff9ff');
- if(truck){const rear=x-.15;poly([[x-half,y+.43,z-.28],[rear,y+.43,z-.28],[rear,y+1.05,z-.28],[x-half,y+1.05,z-.28]],'#d8e2eb','#f4f8fc');poly([[x-half,y+1.05,z-.28],[rear,y+1.05,z-.28],[rear,y+1.05,z+.28],[x-half,y+1.05,z+.28]],'#f0f4f8');poly([[rear,y+.47,z-.28],[x+half-.1,y+.47,z-.28],[x+half-.26,y+.78,z-.28],[rear+.10,y+.78,z-.28]],glass,'#203c52')}
- else{const roof0=x-.31,roof1=x+.28;poly([[roof0-.2,y+.42,z-.27],[roof1+.20,y+.42,z-.27],[roof1,y+.79,z-.23],[roof0,y+.79,z-.23]],glass,'#d7f2ff');poly([[roof0,y+.79,z-.23],[roof1,y+.79,z-.23],[roof1,y+.79,z+.23],[roof0,y+.79,z+.23]],'#c9d8e5');poly([[roof0-.2,y+.42,z+.27],[roof1+.20,y+.42,z+.27],[roof1,y+.79,z+.23],[roof0,y+.79,z+.23]],glass,'#e3f7ff')}
- // Wheel discs, hubs and fenders on both sides
- for(const wx of [x-half*.64,x+half*.64])for(const wz of [z-w/2-.015,z+w/2+.015]){const p=point(wx,y+.15,wz);ctx.beginPath();ctx.ellipse(p[0],p[1],Math.max(2.5,zoom*5.7),Math.max(2.5,zoom*5.7),0,0,Math.PI*2);ctx.fillStyle='#07121c';ctx.fill();ctx.strokeStyle='#708999';ctx.lineWidth=1.5;ctx.stroke();ctx.beginPath();ctx.arc(p[0],p[1],Math.max(1.5,zoom*2.4),0,Math.PI*2);ctx.fillStyle='#c0d3dd';ctx.fill()}
- for(const zSide of [z-.19,z+.19]){const head=point(x+half,y+.30,zSide),tail=point(x-half,y+.30,zSide);ctx.fillStyle='#f9f7d0';ctx.beginPath();ctx.arc(...head,Math.max(1.5,zoom*2.7),0,Math.PI*2);ctx.fill();ctx.fillStyle='#f04e48';ctx.beginPath();ctx.arc(...tail,Math.max(1.5,zoom*2.5),0,Math.PI*2);ctx.fill()}
+function vehicle(x,z,kind){const y=beam(x)+.12,truck=kind===1,len=truck?2.35:1.55,half=len/2,w=truck?.66:.62;
+ const paint=['#cbd7e1','#e2a454','#3d8cbf'][kind],light=['#f1f7fc','#ffd394','#83c6e8'][kind],glass='#6095b1',tire='#090e15';
+ const quad=(v,c,edge)=>poly(v,c,edge||'rgba(3,16,27,.5)');
+ // Soft tire-contact shadow.
+ quad([[x-half-.14,y-.035,z-w/2-.12],[x+half+.14,y-.035,z-w/2-.12],[x+half+.14,y-.035,z+w/2+.12],[x-half-.14,y-.035,z+w/2+.12]],'rgba(0,0,0,.42)');
+ // Chassis, sculpted side faces, hood, front fascia and roof.
+ quad([[x-half,y+.13,z-w/2],[x+half,y+.13,z-w/2],[x+half,y+.46,z-w/2],[x-half,y+.46,z-w/2]],paint);
+ quad([[x-half,y+.13,z+w/2],[x+half,y+.13,z+w/2],[x+half,y+.46,z+w/2],[x-half,y+.46,z+w/2]],paint);
+ quad([[x+half,y+.13,z-w/2],[x+half,y+.13,z+w/2],[x+half,y+.46,z+w/2],[x+half,y+.46,z-w/2]],'#9eafbd');
+ quad([[x-half,y+.46,z-w/2],[x+half,y+.46,z-w/2],[x+half,y+.46,z+w/2],[x-half,y+.46,z+w/2]],light);
+ const back=truck?x-half+.06:x-.47,front=truck?x+.15:x+.43,roof=truck?1.17:.90;
+ // Roof and cabin: separate glass panels with realistic pillars.
+ quad([[back,y+roof,z-.27],[front,y+roof,z-.27],[front,y+roof,z+.27],[back,y+roof,z+.27]],'#c9d8e1');
+ for(const side of [-1,1]){const zs=z+side*w/2,zt=z+side*.27;
+ quad([[back-.16,y+.46,zs],[front+.16,y+.46,zs],[front,y+roof,zt],[back,y+roof,zt]],glass,'#1c3646');
+ line([[back,y+.46,zs],[back,y+roof,zt]],'#d6e4ea',2);
+ line([[front,y+.46,zs],[front,y+roof,zt]],'#d6e4ea',2);
+ if(!truck)line([[x-.02,y+.46,zs],[x-.02,y+roof,zt]],'#dce8ef',1.7);
+ line([[x-half+.13,y+.32,zs],[x+half-.13,y+.32,zs]],'#eef6f9',.9);
+ const mirror=point(front+.04,y+.51,zs+side*.09);ctx.fillStyle='#d7e7ef';ctx.fillRect(mirror[0]-2,mirror[1]-2,4,4);
+ }
+ quad([[front,y+roof,z-.27],[front+.16,y+.46,z-w/2],[front+.16,y+.46,z+w/2],[front,y+roof,z+.27]],'#a5d5e7','#d7ecf6');
+ quad([[back,y+roof,z-.27],[back-.16,y+.46,z-w/2],[back-.16,y+.46,z+w/2],[back,y+roof,z+.27]],'#436c83','#d7e5ed');
+ if(truck){quad([[x-half,y+.5,z-.33],[back,y+.5,z-.33],[back,y+1.12,z-.33],[x-half,y+1.12,z-.33]],'#e5e9eb');quad([[x-half,y+1.12,z-.33],[back,y+1.12,z-.33],[back,y+1.12,z+.33],[x-half,y+1.12,z+.33]],'#f5f7f8')}
+ // Four wheels with sidewalls, metallic hubs and bright reflections.
+ for(const wx of [x-half*.67,x+half*.67])for(const side of [-1,1]){const wz=z+side*(w/2+.035),p=point(wx,y+.17,wz),radius=Math.max(3.1,zoom*(truck?7:6));ctx.beginPath();ctx.arc(p[0],p[1],radius,0,Math.PI*2);ctx.fillStyle=tire;ctx.fill();ctx.lineWidth=1.6;ctx.strokeStyle='#344551';ctx.stroke();ctx.beginPath();ctx.arc(p[0],p[1],radius*.49,0,Math.PI*2);ctx.fillStyle='#a5b6c0';ctx.fill();ctx.beginPath();ctx.arc(p[0],p[1],radius*.19,0,Math.PI*2);ctx.fillStyle='#e5eef2';ctx.fill()}
+ for(const side of [-1,1]){const zz=z+side*.22;for(const [xx,col] of [[x+half,'#fff6d2'],[x-half,'#f14b43']]){const p=point(xx,y+.34,zz);ctx.beginPath();ctx.arc(...p,Math.max(1.7,zoom*2.5),0,Math.PI*2);ctx.fillStyle=col;ctx.shadowBlur=4;ctx.shadowColor=col;ctx.fill();ctx.shadowBlur=0}}
 }
 for(let i=0;i<3;i++){const x=((phase*(1.3+i*.35)+i*5)%19)-9.5;vehicle(x,i%2?.75:-.75,i)}
 for(const x of [-5,-2,0,2,5]){const p=point(x,beam(x)+.95,-1.8);ctx.beginPath();ctx.arc(...p,4.5,0,Math.PI*2);ctx.fillStyle='#4dfbe4';ctx.shadowColor='#4dfbe4';ctx.shadowBlur=16;ctx.fill();ctx.shadowBlur=0;line([[x,beam(x),-1.8],[x,beam(x)+.9,-1.8]],'#3cf3db')}
