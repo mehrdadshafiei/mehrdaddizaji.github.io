@@ -405,6 +405,22 @@
 @media(max-width:850px){.proposal-item{grid-template-columns:110px minmax(0,1fr);gap:18px}.proposal-funding{grid-column:2;text-align:left;min-width:0}}
 @media(max-width:560px){.proposal-item{grid-template-columns:1fr;padding:20px;gap:13px}.proposal-year{display:flex;align-items:center;gap:12px}.proposal-status{margin-top:0}.proposal-funding{grid-column:1}.proposal-detail h3{font-size:.95rem}#research-proposals-title{gap:10px}}
 </style>
+<style>
+#active-twin .adt-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(250px,.8fr);gap:20px}
+#active-twin .adt-scene{position:relative;min-height:440px;border:1px solid #25455a;border-radius:22px;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#15334a,#050b14 75%)}
+#adt-canvas{display:block;width:100%;height:440px;touch-action:pan-y;cursor:grab}
+#active-twin .adt-panel{padding:22px;background:#0a1421;border:1px solid #25455a;border-radius:22px}
+#active-twin .adt-panel label{display:flex;justify-content:space-between;font-size:.87rem;margin:16px 0 6px;color:#c7deee}
+#active-twin input[type=range]{width:100%;accent-color:#36d8df}
+#active-twin .adt-metric{font-variant-numeric:tabular-nums;font-size:1.5rem;font-weight:800;color:#7af0e4}
+#active-twin .adt-chip{display:inline-block;padding:6px 10px;border:1px solid #396173;border-radius:999px;font-size:.72rem;color:#9de9e4}
+#active-twin .adt-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+#active-twin button{border:1px solid #3e7185;background:#132c3e;color:white;padding:9px 12px;border-radius:10px;cursor:pointer}
+#active-twin button[aria-pressed=true]{background:#176475}
+#active-twin .adt-overlay{position:absolute;left:18px;top:16px;pointer-events:none;color:#c9ecf7;font-size:.75rem;letter-spacing:.08em}
+#active-twin .adt-note{color:#a6b8c7;font-size:.78rem;margin-top:14px}
+@media(max-width:780px){#active-twin .adt-layout{grid-template-columns:1fr}#adt-canvas{height:330px}#active-twin .adt-scene{min-height:330px}}
+</style>
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
@@ -450,7 +466,7 @@
         <a href="#research"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M19 7h10M22 7v12L11 36a4 4 0 0 0 3 6h20a4 4 0 0 0 3-6L26 19V7"/><path d="M17 29h14"/><circle cx="23" cy="35" r="1"/><path d="M36 10v8m-4-4h8"/></svg><span>Research</span></a>
         <a href="#projects"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M6 16a4 4 0 0 1 4-4h11l4 5h13a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z"/><path d="m19 27-5 4 5 4m10-8 5 4-5 4m-6 2 2-12"/></svg><span>Projects</span></a>
         <a href="#research-proposals"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 5h20l8 8v29H10Z"/><path d="M29 5v9h9M16 33h16M16 38h10"/><path d="M19 22a5 5 0 1 1 10 0c0 2-2 3-2 5h-6c0-2-2-3-2-5ZM22 30h4"/></svg><span>Proposals</span></a>
-        <a href="#research-demo"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="6" y="10" width="36" height="28" rx="7"/><path d="m21 18 11 6-11 6Z"/><path d="M17 43h14"/></svg><span>Demo</span></a>
+        <a href="#active-twin"><span>Active Digital Twin</span></a><a href="#research-demo"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="6" y="10" width="36" height="28" rx="7"/><path d="m21 18 11 6-11 6Z"/><path d="M17 43h14"/></svg><span>Demo</span></a>
         <a href="#research-gallery"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="7" y="7" width="34" height="34" rx="7"/><circle cx="17" cy="17" r="3"/><path d="m8 34 10-10 7 7 6-7 10 12"/></svg><span>Gallery</span></a>
         <a href="#publications"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M24 12c-5-5-12-5-19-3v29c7-2 14-2 19 3 5-5 12-5 19-3V9c-7-2-14-2-19 3Zm0 0v29"/><path d="M11 17h7m-7 7h7m12-7h7m-7 7h7"/></svg><span>Publications</span></a>
         <a href="#cv"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M13 5h17l9 9v28H13Z"/><path d="M29 5v10h10M20 29h12m-12 6h12"/><circle cx="23" cy="21" r="3"/></svg><span>CV</span></a>
@@ -679,7 +695,21 @@
       </div>
     </section>
 
-    <section class="section alt" id="research-demo">
+    <section class="section alt" id="active-twin" aria-labelledby="adt-title"><div class="container">
+<p class="section-kicker">AI · Structural Health Monitoring · Physics-Based Simulation</p>
+<h2 id="adt-title">Active Digital Twin</h2>
+<p class="hero-subtitle">Explore an interactive, sensor-equipped bridge digital twin. Rotate the model, change traffic and structural stiffness, and observe how a synchronized virtual bridge responds. This demonstration illustrates the physics-informed monitoring and predictive modeling workflow.</p>
+<div class="adt-layout"><div class="adt-scene"><canvas id="adt-canvas" aria-label="Interactive three-dimensional perspective bridge simulation with traffic, supports, and structural monitoring points"></canvas><div class="adt-overlay"><span class="adt-chip">● SIMULATED LIVE TWIN</span><p>DRAG TO ROTATE · SCROLL TO ZOOM</p></div></div>
+<div class="adt-panel"><span class="adt-chip">INTERACTIVE CONTROL CENTER</span>
+<label for="adt-load">Traffic load <output id="adt-load-v">60%</output></label><input id="adt-load" type="range" min="0" max="100" value="60">
+<label for="adt-stiff">Structural stiffness <output id="adt-stiff-v">80%</output></label><input id="adt-stiff" type="range" min="20" max="100" value="80">
+<label for="adt-speed">Simulation speed <output id="adt-speed-v">1.0×</output></label><input id="adt-speed" type="range" min="0" max="200" value="100">
+<div class="adt-buttons"><button id="adt-view" aria-pressed="false">Stress heatmap</button><button id="adt-predict" aria-pressed="false">AI forecast</button><button id="adt-reset">Reset view</button></div>
+<hr style="border:0;border-top:1px solid #25455a;margin:22px 0">
+<div style="font-size:.8rem;color:#b5cbd9">Estimated midspan deflection (illustrative)</div><div class="adt-metric" id="adt-deflect">—</div>
+<div style="font-size:.8rem;color:#b5cbd9;margin-top:12px">Relative condition indicator</div><div class="adt-metric" id="adt-health">—</div>
+<p class="adt-note">Illustrative synthetic data and simplified beam response—not calibrated FEA, measured sensor data, a validated safety assessment, or an operational real-time monitoring system.</p></div></div></div></section>
+<section class="section alt" id="research-demo">
       <div class="container narrow">
         <p class="section-kicker">Application Demo · Augmented Reality</p>
         <h2>Structural analysis brought into the real world</h2>
@@ -1470,6 +1500,35 @@
  preference.addEventListener('change',()=>{paused=preference.matches;sync();});document.addEventListener('visibilitychange',sync);
  if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:.02}).observe(panel);
  render();sync();
+})();
+</script>
+<script>
+(()=>{const canvas=document.getElementById('adt-canvas');if(!canvas)return;const ctx=canvas.getContext('2d');if(!ctx)return;
+const $=id=>document.getElementById(id),load=$('adt-load'),stiff=$('adt-stiff'),speed=$('adt-speed');let yaw=-.55,pitch=.45,zoom=1,drag=null,heat=false,forecast=false,phase=0,last=0,visible=true,raf=0;
+function resize(){const d=Math.min(devicePixelRatio||1,2),b=canvas.getBoundingClientRect();canvas.width=Math.round(b.width*d);canvas.height=Math.round(b.height*d);ctx.setTransform(d,0,0,d,0,0)}
+function point(x,y,z){let a=x*Math.cos(yaw)-z*Math.sin(yaw),b=x*Math.sin(yaw)+z*Math.cos(yaw);return [a*zoom*32+canvas.clientWidth/2,(b*Math.sin(pitch)-y*Math.cos(pitch))*zoom*32+canvas.clientHeight*.58]}
+function line(pts,color,width=1){ctx.beginPath();pts.forEach((p,i)=>{const q=point(...p);i?ctx.lineTo(...q):ctx.moveTo(...q)});ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke()}
+function poly(pts,fill,stroke){ctx.beginPath();pts.forEach((p,i)=>{const q=point(...p);i?ctx.lineTo(...q):ctx.moveTo(...q)});ctx.closePath();ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke()}}
+function beam(x){const L=Number(load.value)/100,K=Number(stiff.value)/100;return -.12-(.18+1.15*L/K)*Math.pow(Math.max(0,1-(x/8)**2),2)}
+function draw(t){raf=requestAnimationFrame(draw);if(!visible||document.hidden)return;const dt=Math.min((t-last)||0,80)/1000;last=t;phase+=dt*Number(speed.value)/100;const w=canvas.clientWidth,h=canvas.clientHeight;ctx.clearRect(0,0,w,h);
+ctx.strokeStyle='#17364b';ctx.lineWidth=.65;for(let i=-13;i<=13;i++){line([[-13,-2.5,i],[13,-2.5,i]],'#17364b');line([[i,-2.5,-13],[i,-2.5,13]],'#17364b')}
+for(const x of [-7,0,7]){poly([[x-.32,-2.5,-1.6],[x+.32,-2.5,-1.6],[x+.32,beam(x),-1.6],[x-.32,beam(x),-1.6]],'#435767','#7197a9');poly([[x-.32,-2.5,1.6],[x+.32,-2.5,1.6],[x+.32,beam(x),1.6],[x-.32,beam(x),1.6]],'#435767','#7197a9')}
+for(let i=0;i<48;i++){let x=-8+i/3,xx=x+1/3;const col=heat?`hsl(${175-145*(Number(load.value)/100)*(1-Number(stiff.value)/130)*(1-Math.abs(x)/9)},85%,50%)`:'#637b91';poly([[x,beam(x),-1.8],[xx,beam(xx),-1.8],[xx,beam(xx),1.8],[x,beam(x),1.8]],col,'#1b3445')}
+for(const z of [-1.75,1.75]){const rail=[];for(let i=0;i<=48;i++){const x=-8+i/3;rail.push([x,beam(x)+.65,z]);if(i%4===0)line([[x,beam(x),z],[x,beam(x)+.65,z]],'#a9e5ed',1.5)}line(rail,'#b2e5ed',2)}
+for(let i=0;i<16;i++){const x=-7.5+i;line([[x,beam(x)+.012,-.08],[x+.48,beam(x+.48)+.012,-.08]],'#f7d99a',2)}
+for(let i=0;i<3;i++){let x=((phase*(1.3+i*.35)+i*5)%18)-9;const y=beam(x)+.13,z=i%2?.7:-.75;poly([[x-.45,y,z-.35],[x+.45,y,z-.35],[x+.45,y,z+.35],[x-.45,y,z+.35]],i===1?'#e5a971':'#4bd5e2','#e9ffff');poly([[x-.25,y+.35,z-.27],[x+.25,y+.35,z-.27],[x+.25,y+.35,z+.27],[x-.25,y+.35,z+.27]],'#a8e2f0')}
+for(const x of [-5,-2,0,2,5]){const p=point(x,beam(x)+.95,-1.8);ctx.beginPath();ctx.arc(...p,4.5,0,Math.PI*2);ctx.fillStyle='#4dfbe4';ctx.shadowColor='#4dfbe4';ctx.shadowBlur=16;ctx.fill();ctx.shadowBlur=0;line([[x,beam(x),-1.8],[x,beam(x)+.9,-1.8]],'#3cf3db')}
+if(forecast){const f=[];for(let i=0;i<=64;i++){let x=-8+i/4;f.push([x,beam(x)*1.35-.2,2.1])}line(f,'#ffbf75',3)}
+const L=Number(load.value)/100,K=Number(stiff.value)/100;const d=(.6+4.6*L/K);$('adt-deflect').textContent=d.toFixed(2)+' mm';$('adt-health').textContent=(Math.max(0,100-12*L/K)).toFixed(0)+'/100';}
+function update(){ $('adt-load-v').textContent=load.value+'%';$('adt-stiff-v').textContent=stiff.value+'%';$('adt-speed-v').textContent=(speed.value/100).toFixed(1)+'×'}
+[load,stiff,speed].forEach(e=>e.addEventListener('input',update));
+$('adt-view').onclick=()=>{heat=!heat;$('adt-view').setAttribute('aria-pressed',heat)};
+$('adt-predict').onclick=()=>{forecast=!forecast;$('adt-predict').setAttribute('aria-pressed',forecast)};
+$('adt-reset').onclick=()=>{yaw=-.55;pitch=.45;zoom=1;load.value=60;stiff.value=80;speed.value=100;heat=false;forecast=false;$('adt-view').setAttribute('aria-pressed',false);$('adt-predict').setAttribute('aria-pressed',false);update()};
+canvas.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId)});canvas.addEventListener('pointermove',e=>{if(!drag)return;yaw+=(e.clientX-drag[0])*.008;pitch=Math.max(.1,Math.min(1.2,pitch+(e.clientY-drag[1])*.005));drag=[e.clientX,e.clientY]});canvas.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('pointercancel',()=>drag=null);
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.55,Math.min(2,zoom-e.deltaY*.001))},{passive:false});
+if('IntersectionObserver'in window)new IntersectionObserver(es=>{visible=es[0].isIntersecting;last=0}).observe(canvas);
+window.addEventListener('resize',resize);resize();update();raf=requestAnimationFrame(draw);
 })();
 </script>
 </body>
