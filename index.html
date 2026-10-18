@@ -438,6 +438,35 @@
 #cv .resume-summary li p{font-size:.82rem}
 @media(max-width:640px){#cv .resume-summary-grid{grid-template-columns:1fr;gap:26px}}
 </style>
+<style id="industry-project-styles">
+#industry-projects .industry-project{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:linear-gradient(145deg,rgba(84,167,255,.07),rgba(255,255,255,.025))}
+#industry-projects .industry-project-intro{padding:clamp(22px,4vw,38px)}
+#industry-projects .industry-report-label{color:var(--cyan);font-size:.72rem;letter-spacing:.06em;margin-bottom:14px}
+#industry-projects .industry-project-intro h3{font-size:clamp(1.2rem,2.4vw,1.65rem);max-width:850px;margin-bottom:18px}
+#industry-projects .industry-project-intro>p:not(.industry-report-label){color:var(--muted);font-size:.92rem;max-width:900px}
+#industry-projects .industry-project-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:24px clamp(22px,4vw,38px);border-block:1px solid var(--line);background:rgba(56,225,213,.025)}
+#industry-projects .industry-project-facts strong{display:block;font-size:.85rem;color:#edf5ff;margin-bottom:8px}
+#industry-projects .industry-project-facts span{display:block;font-size:.8rem;color:var(--muted)}
+#industry-projects .industry-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding:clamp(18px,3vw,30px)}
+#industry-projects .industry-figure{min-width:0;margin:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#091018}
+#industry-projects .industry-image-button{position:relative;display:block;width:100%;border:0;padding:12px;background:#fff;cursor:zoom-in}
+#industry-projects .industry-image-button img{width:100%;height:290px;object-fit:contain}
+#industry-projects .industry-enlarge{position:absolute;right:10px;bottom:10px;border-radius:8px;background:rgba(0,0,0,.8);color:#fff;padding:4px 9px;font-size:.7rem}
+#industry-projects .industry-image-button:focus-visible,#industry-projects button:focus-visible{outline:3px solid var(--cyan);outline-offset:-3px}
+#industry-projects figcaption{padding:20px}#industry-projects .industry-figure-ref{font-size:.7rem;color:var(--cyan)}
+#industry-projects figcaption h4{font-size:.95rem;margin:10px 0}
+#industry-projects figcaption p,#industry-projects .industry-outcome p{font-size:.85rem;color:var(--muted);margin-bottom:0}
+#industry-projects .industry-outcome{margin:0 clamp(18px,3vw,30px) 24px;padding:22px;border-left:3px solid var(--cyan);background:rgba(56,225,213,.045);border-radius:0 14px 14px 0}
+#industry-projects .industry-outcome h4{font-size:.95rem;margin:0 0 10px}
+#industry-projects .industry-attribution{font-size:.72rem;color:var(--muted);padding:0 clamp(22px,4vw,38px) 26px;margin:0}
+#industry-image-dialog{width:min(1100px,96vw);max-height:94vh;border:1px solid #395767;border-radius:18px;background:#091018;color:#fff;padding:18px}
+#industry-image-dialog::backdrop{background:rgba(0,0,0,.88)}
+#industry-image-dialog .industry-dialog-toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:14px}
+#industry-image-caption{font-size:.85rem;margin:0}
+#industry-image-close{flex-shrink:0;border:1px solid #496777;background:#182b38;color:#fff;padding:9px 12px;border-radius:9px;cursor:pointer}
+#industry-image-full{display:block;width:100%;height:auto;background:#fff}
+@media(max-width:700px){#industry-projects .industry-gallery,#industry-projects .industry-project-facts{grid-template-columns:1fr}#industry-projects .industry-image-button img{height:230px}}
+</style>
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
@@ -482,6 +511,7 @@
         <a href="#about"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><circle cx="24" cy="16" r="7"/><path d="M10 40v-4c0-7 6-11 14-11s14 4 14 11v4"/><path d="M18 39h12"/></svg><span>About me</span></a>
         <a href="#research"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M19 7h10M22 7v12L11 36a4 4 0 0 0 3 6h20a4 4 0 0 0 3-6L26 19V7"/><path d="M17 29h14"/><circle cx="23" cy="35" r="1"/><path d="M36 10v8m-4-4h8"/></svg><span>Research</span></a>
         <a href="#projects"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M6 16a4 4 0 0 1 4-4h11l4 5h13a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z"/><path d="m19 27-5 4 5 4m10-8 5 4-5 4m-6 2 2-12"/></svg><span>Projects</span></a>
+        <a href="#industry-projects"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M7 33h34M10 33V18m28 15V18M10 21h28M10 21l14 10 14-10M18 33v8m12-8v8M7 41h34"/><path d="M17 14v-4h14v4"/></svg><span>Industry Projects</span></a>
         <a href="#research-proposals"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 5h20l8 8v29H10Z"/><path d="M29 5v9h9M16 33h16M16 38h10"/><path d="M19 22a5 5 0 1 1 10 0c0 2-2 3-2 5h-6c0-2-2-3-2-5ZM22 30h4"/></svg><span>Proposals</span></a>
         <a href="#active-twin"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M24 5 39 13.5v17L24 39 9 30.5v-17Z"/><path d="m9 13.5 15 9 15-9M24 22.5V39"/><circle cx="24" cy="22.5" r="3.5" fill="currentColor" stroke="none"/><circle cx="24" cy="5" r="2.5" fill="currentColor" stroke="none"/><circle cx="9" cy="30.5" r="2.5" fill="currentColor" stroke="none"/><circle cx="39" cy="30.5" r="2.5" fill="currentColor" stroke="none"/></svg><span>Active Digital Twin</span></a><a href="#research-demo"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="6" y="10" width="36" height="28" rx="7"/><path d="m21 18 11 6-11 6Z"/><path d="M17 43h14"/></svg><span>Demo</span></a>
         <a href="#research-gallery"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="7" y="7" width="34" height="34" rx="7"/><circle cx="17" cy="17" r="3"/><path d="m8 34 10-10 7 7 6-7 10 12"/></svg><span>Gallery</span></a>
@@ -667,6 +697,39 @@
       </div>
     </section>
 
+
+    <section class="section alt" id="industry-projects" aria-labelledby="industry-projects-title">
+<div class="container">
+<p class="section-kicker">Applied engineering · Field testing · Bridge assessment</p>
+<h2 id="industry-projects-title">Industry Projects</h2>
+<article class="industry-project">
+<div class="industry-project-intro"><p class="industry-report-label">VDOT / VTRC · University of Virginia · Final report · May 2020</p>
+<h3>Load Rating Strategies for Bridges With Limited or Missing As-Built Information</h3>
+<p>Assessing bridge load-carrying capacity when drawings and structural details are incomplete. This collaborative project combined field measurements, finite element model updating, and vibration-based identification to estimate unknown structural properties and support analytical load ratings.</p>
+<div class="tags"><span>Bridge load rating</span><span>Full-scale field testing</span><span>Finite element model updating</span><span>Structural identification</span></div>
+</div>
+<div class="industry-project-facts"><div><strong>4 study bridges</strong><span>Two slab bridges and two T-beam bridges in Virginia</span></div><div><strong>My role</strong><span>Graduate Research Assistant, UVA · Report co-author</span></div><div><strong>Engineering application</strong><span>Measurement-informed assessment for bridges with limited records</span></div></div>
+<div class="industry-gallery"><figure class="industry-figure">
+<button class="industry-image-button" type="button" data-industry-image="industry-projects/study-bridges.webp" aria-label="Enlarge: Four Virginia bridge case studies">
+<img src="industry-projects/study-bridges.webp" alt="War Branch, Smacks Creek, Flat Creek, and Brattons Creek bridges: two reinforced concrete slab bridges and two T-beam bridges." width="1156" height="618" loading="lazy" decoding="async"><span class="industry-enlarge">Enlarge ↗</span></button>
+<figcaption><span class="industry-figure-ref">Figure 8 · report p. 28</span><h4>Four Virginia bridge case studies</h4><p>War Branch, Smacks Creek, Flat Creek, and Brattons Creek bridges: two reinforced concrete slab bridges and two T-beam bridges.</p></figcaption></figure>
+<figure class="industry-figure">
+<button class="industry-image-button" type="button" data-industry-image="industry-projects/bridge-instrumentation.webp" aria-label="Enlarge: Field instrumentation & load testing">
+<img src="industry-projects/bridge-instrumentation.webp" alt="War Branch Bridge instrumentation layout for live-load testing, showing strain gauges, string potentiometers, and tiltmeters." width="1030" height="530" loading="lazy" decoding="async"><span class="industry-enlarge">Enlarge ↗</span></button>
+<figcaption><span class="industry-figure-ref">Figure 9 · report p. 29</span><h4>Field instrumentation & load testing</h4><p>War Branch Bridge instrumentation layout for live-load testing, showing strain gauges, string potentiometers, and tiltmeters.</p></figcaption></figure>
+<figure class="industry-figure">
+<button class="industry-image-button" type="button" data-industry-image="industry-projects/bridge-fe-models.webp" aria-label="Enlarge: Finite element models & internal geometry">
+<img src="industry-projects/bridge-fe-models.webp" alt="Solid and wireframe representations of the four study bridges, used to represent structural geometry and investigate unknown details." width="1170" height="1008" loading="lazy" decoding="async"><span class="industry-enlarge">Enlarge ↗</span></button>
+<figcaption><span class="industry-figure-ref">Figure 19 · report p. 37</span><h4>Finite element models & internal geometry</h4><p>Solid and wireframe representations of the four study bridges, used to represent structural geometry and investigate unknown details.</p></figcaption></figure>
+<figure class="industry-figure">
+<button class="industry-image-button" type="button" data-industry-image="industry-projects/load-rating-workflow.webp" aria-label="Enlarge: From field measurements to load rating">
+<img src="industry-projects/load-rating-workflow.webp" alt="Static, vibration, and hybrid model-updating approaches connect measured bridge response with calibrated analytical load ratings." width="1190" height="668" loading="lazy" decoding="async"><span class="industry-enlarge">Enlarge ↗</span></button>
+<figcaption><span class="industry-figure-ref">Figure 2 · report p. 8</span><h4>From field measurements to load rating</h4><p>Static, vibration, and hybrid model-updating approaches connect measured bridge response with calibrated analytical load ratings.</p></figcaption></figure></div>
+<div class="industry-outcome"><h4>Project findings</h4><p>Across the four study bridges, ratings from finite element model updating were equal to or up to 17% lower than conventional calculations. The simplified vibration-based method produced differences from −16% to +16%. The study also demonstrated the feasibility of using a limited number of sensors for these methods.</p></div>
+<p class="industry-attribution">Source: Harris, Ozbulut, Bagheri, Shafiei Dizaji, Ndong &amp; Alipour, <em>Load Rating Strategies for Bridges With Limited or Missing As-Built Information</em>, FHWA/VTRC 20-R27 (May 2020). Figures reproduced from the report; © 2020 Commonwealth of Virginia.</p>
+</article></div>
+<dialog id="industry-image-dialog" aria-labelledby="industry-image-caption"><div class="industry-dialog-toolbar"><p id="industry-image-caption"></p><button type="button" id="industry-image-close" aria-label="Close enlarged figure">Close ✕</button></div><img id="industry-image-full" alt=""></dialog>
+</section>
 
     <section class="section alt proposals-section" id="research-proposals" aria-labelledby="research-proposals-title">
       <div class="container">
@@ -1614,6 +1677,13 @@ canvas.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY];canvas.setP
 canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.55,Math.min(2,zoom-e.deltaY*.001))},{passive:false});
 if('IntersectionObserver'in window)new IntersectionObserver(es=>{visible=es[0].isIntersecting;last=0}).observe(canvas);
 window.addEventListener('resize',resize);resize();update();raf=requestAnimationFrame(draw);
+})();
+</script>
+<script>
+(()=>{const dialog=document.getElementById('industry-image-dialog'),full=document.getElementById('industry-image-full'),caption=document.getElementById('industry-image-caption');if(!dialog)return;
+document.querySelectorAll('[data-industry-image]').forEach(button=>button.addEventListener('click',()=>{full.src=button.dataset.industryImage;full.alt=button.querySelector('img').alt;caption.textContent=button.closest('figure').querySelector('h4').textContent;dialog.showModal();}));
+document.getElementById('industry-image-close').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('click',e=>{if(e.target===dialog){const b=dialog.getBoundingClientRect();if(e.clientX<b.left||e.clientX>b.right||e.clientY<b.top||e.clientY>b.bottom)dialog.close();}});
 })();
 </script>
 </body>
