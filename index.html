@@ -953,20 +953,17 @@
       </div>
     </section>
 
-    <section class="section alt" id="active-twin" aria-labelledby="adt-title"><div class="container">
-<p class="section-kicker">AI · Structural Health Monitoring · Physics-Based Simulation</p>
-<h2 id="adt-title">Active Digital Twin</h2>
-<p class="hero-subtitle">Explore an interactive, sensor-equipped steel truss bridge digital twin. Rotate the model, change traffic and structural stiffness, and observe how a synchronized virtual bridge responds. This demonstration illustrates the physics-informed monitoring and predictive modeling workflow.</p>
-<div class="adt-layout"><div class="adt-scene"><canvas id="adt-canvas" aria-label="Interactive three-dimensional perspective steel truss bridge simulation with traffic, supports, and structural monitoring points"></canvas><div class="adt-overlay"><span class="adt-chip">● SIMULATED LIVE TWIN</span><p>DRAG TO ROTATE · SCROLL TO ZOOM</p></div></div>
-<div class="adt-panel"><span class="adt-chip">INTERACTIVE CONTROL CENTER</span>
-<label for="adt-load">Traffic load <output id="adt-load-v">60%</output></label><input id="adt-load" type="range" min="0" max="100" value="60">
-<label for="adt-stiff">Structural stiffness <output id="adt-stiff-v">80%</output></label><input id="adt-stiff" type="range" min="20" max="100" value="80">
-<label for="adt-speed">Simulation speed <output id="adt-speed-v">1.0×</output></label><input id="adt-speed" type="range" min="0" max="200" value="100">
-<div class="adt-buttons"><button id="adt-view" aria-pressed="false">Stress heatmap</button><button id="adt-predict" aria-pressed="false">AI forecast</button><button id="adt-reset">Reset view</button></div>
-<hr style="border:0;border-top:1px solid #25455a;margin:22px 0">
-<div style="font-size:.8rem;color:#b5cbd9">Estimated midspan deflection (illustrative)</div><div class="adt-metric" id="adt-deflect">—</div>
-<div style="font-size:.8rem;color:#b5cbd9;margin-top:12px">Relative condition indicator</div><div class="adt-metric" id="adt-health">—</div>
-<p class="adt-note">Illustrative synthetic data and simplified beam response—not calibrated FEA, measured sensor data, a validated safety assessment, or an operational real-time monitoring system.</p></div></div></div></section>
+    <section class="section alt" id="active-twin" aria-labelledby="adt-title">
+      <div class="container">
+        <p class="section-kicker">AI · Structural Health Monitoring · Physics-Based Simulation</p>
+        <h2 id="adt-title">Active Digital Twin</h2>
+        <p class="hero-subtitle">Explore the proposed active AI digital twin through an interactive animation of bridge mechanics, observations, model updating, diagnosis, and active sensing. Play the sequence, choose a chapter, or adjust the loading and structural condition to see how the illustrative model responds.</p>
+        <div style="border:1px solid #36506a;border-radius:18px;overflow:hidden;background:#0b1524">
+          <iframe id="active-twin-interactive" src="active-digital-twin-interactive.html" title="Active AI Digital Twin — interactive animation and equations" loading="lazy" style="display:block;width:100%;height:1250px;border:0" allowfullscreen></iframe>
+        </div>
+        <p style="margin-top:14px"><a href="active-digital-twin-interactive.html" target="_blank" rel="noopener">Open the interactive animation in a full window ↗</a></p>
+      </div>
+    </section>
 <section class="section alt" id="research-demo">
       <div class="container narrow">
         <p class="section-kicker">Application Demo · Augmented Reality</p>
@@ -1845,73 +1842,17 @@
 })();
 </script>
 <script>
-(()=>{const canvas=document.getElementById('adt-canvas');if(!canvas)return;const ctx=canvas.getContext('2d');if(!ctx)return;
-const $=id=>document.getElementById(id),load=$('adt-load'),stiff=$('adt-stiff'),speed=$('adt-speed');let yaw=-.55,pitch=.45,zoom=1,drag=null,heat=false,forecast=false,phase=0,last=0,visible=true,raf=0;
-function resize(){const d=Math.min(devicePixelRatio||1,2),b=canvas.getBoundingClientRect();canvas.width=Math.round(b.width*d);canvas.height=Math.round(b.height*d);ctx.setTransform(d,0,0,d,0,0)}
-function point(x,y,z){let a=x*Math.cos(yaw)-z*Math.sin(yaw),b=x*Math.sin(yaw)+z*Math.cos(yaw);return [a*zoom*32+canvas.clientWidth/2,(b*Math.sin(pitch)-y*Math.cos(pitch))*zoom*32+canvas.clientHeight*.58]}
-function line(pts,color,width=1){ctx.beginPath();pts.forEach((p,i)=>{const q=point(...p);i?ctx.lineTo(...q):ctx.moveTo(...q)});ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke()}
-function poly(pts,fill,stroke){ctx.beginPath();pts.forEach((p,i)=>{const q=point(...p);i?ctx.lineTo(...q):ctx.moveTo(...q)});ctx.closePath();ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke()}}
-function beam(x){const L=Number(load.value)/100,K=Number(stiff.value)/100;return -.12-(.18+1.15*L/K)*Math.pow(Math.max(0,1-(x/8)**2),2)}
-function draw(t){raf=requestAnimationFrame(draw);if(!visible||document.hidden)return;const dt=Math.min((t-last)||0,80)/1000;last=t;phase+=dt*Number(speed.value)/100;const w=canvas.clientWidth,h=canvas.clientHeight;ctx.clearRect(0,0,w,h);
-ctx.strokeStyle='#17364b';ctx.lineWidth=.65;for(let i=-13;i<=13;i++){line([[-13,-2.5,i],[13,-2.5,i]],'#17364b');line([[i,-2.5,-13],[i,-2.5,13]],'#17364b')}
-for(const x of [-7,0,7]){poly([[x-.32,-2.5,-1.6],[x+.32,-2.5,-1.6],[x+.32,beam(x),-1.6],[x-.32,beam(x),-1.6]],'#435767','#7197a9');poly([[x-.32,-2.5,1.6],[x+.32,-2.5,1.6],[x+.32,beam(x),1.6],[x-.32,beam(x),1.6]],'#435767','#7197a9')}
-for(let i=0;i<48;i++){let x=-8+i/3,xx=x+1/3;const col=heat?`hsl(${175-145*(Number(load.value)/100)*(1-Number(stiff.value)/130)*(1-Math.abs(x)/9)},85%,50%)`:'#637b91';poly([[x,beam(x),-1.8],[xx,beam(xx),-1.8],[xx,beam(xx),1.8],[x,beam(x),1.8]],col,'#1b3445')}
-// Twin steel through-trusses: lower/upper chords, verticals, Warren diagonals, portal frames and cross bracing.
-const trussHeight=2.55, bays=8, step=2;
-for(const z of [-1.93,1.93]){
- const lower=[],upper=[];
- for(let i=0;i<=bays;i++){const x=-8+i*step,base=beam(x);lower.push([x,base,z]);upper.push([x,base+trussHeight,z]);}
- // Deep dark structural shadow followed by highlighted steel members.
- const member=(a,b,width=3)=>{line([a,b],'#08131d',width+2);line([a,b],heat?'#d7a26d':'#8ca8b9',width);line([[a[0],a[1]+.035,a[2]],[b[0],b[1]+.035,b[2]]],'#d5e6ef',.75)};
- for(let i=0;i<bays;i++){const x=-8+i*step,xx=x+step;member([x,beam(x),z],[xx,beam(xx),z],4.5);member([x,beam(x)+trussHeight,z],[xx,beam(xx)+trussHeight,z],4);member([x,beam(x),z],[xx,beam(xx)+trussHeight,z],3.2)}
- for(let i=0;i<=bays;i++){const x=-8+i*step;member([x,beam(x),z],[x,beam(x)+trussHeight,z],3.2);const p=point(x,beam(x)+trussHeight,z);ctx.beginPath();ctx.arc(...p,Math.max(2,zoom*3.1),0,Math.PI*2);ctx.fillStyle='#d9e9f1';ctx.fill()}
-}
-for(let i=0;i<=bays;i+=2){const x=-8+i*step;line([[x,beam(x)+trussHeight,-1.93],[x,beam(x)+trussHeight,1.93]],'#8daebd',3);if(i<bays){const xx=x+step*2;line([[x,beam(x)+trussHeight,-1.93],[xx,beam(xx)+trussHeight,1.93]],'#557d90',1.8);line([[x,beam(x)+trussHeight,1.93],[xx,beam(xx)+trussHeight,-1.93]],'#557d90',1.8)}}
-for(const x of [-8,8]){line([[x,beam(x)+trussHeight,-1.93],[x,beam(x)+trussHeight,1.93]],'#e0e9ee',4);line([[x,beam(x)+trussHeight,-1.93],[x,beam(x)+1.15,1.93]],'#7493a6',2)}
-
-for(let i=0;i<16;i++){const x=-7.5+i;line([[x,beam(x)+.012,-.08],[x+.48,beam(x+.48)+.012,-.08]],'#f7d99a',2)}
-// Detailed animated vehicles: sculpted chassis, cabin glass, tires, lamps and shadows.
-function vehicle(x,z,kind){const y=beam(x)+.12,truck=kind===1,len=truck?2.35:1.55,half=len/2,w=truck?.66:.62;
- const paint=['#cbd7e1','#e2a454','#3d8cbf'][kind],light=['#f1f7fc','#ffd394','#83c6e8'][kind],glass='#6095b1',tire='#090e15';
- const quad=(v,c,edge)=>poly(v,c,edge||'rgba(3,16,27,.5)');
- // Soft tire-contact shadow.
- quad([[x-half-.14,y-.035,z-w/2-.12],[x+half+.14,y-.035,z-w/2-.12],[x+half+.14,y-.035,z+w/2+.12],[x-half-.14,y-.035,z+w/2+.12]],'rgba(0,0,0,.42)');
- // Chassis, sculpted side faces, hood, front fascia and roof.
- quad([[x-half,y+.13,z-w/2],[x+half,y+.13,z-w/2],[x+half,y+.46,z-w/2],[x-half,y+.46,z-w/2]],paint);
- quad([[x-half,y+.13,z+w/2],[x+half,y+.13,z+w/2],[x+half,y+.46,z+w/2],[x-half,y+.46,z+w/2]],paint);
- quad([[x+half,y+.13,z-w/2],[x+half,y+.13,z+w/2],[x+half,y+.46,z+w/2],[x+half,y+.46,z-w/2]],'#9eafbd');
- quad([[x-half,y+.46,z-w/2],[x+half,y+.46,z-w/2],[x+half,y+.46,z+w/2],[x-half,y+.46,z+w/2]],light);
- const back=truck?x-half+.06:x-.47,front=truck?x+.15:x+.43,roof=truck?1.17:.90;
- // Roof and cabin: separate glass panels with realistic pillars.
- quad([[back,y+roof,z-.27],[front,y+roof,z-.27],[front,y+roof,z+.27],[back,y+roof,z+.27]],'#c9d8e1');
- for(const side of [-1,1]){const zs=z+side*w/2,zt=z+side*.27;
- quad([[back-.16,y+.46,zs],[front+.16,y+.46,zs],[front,y+roof,zt],[back,y+roof,zt]],glass,'#1c3646');
- line([[back,y+.46,zs],[back,y+roof,zt]],'#d6e4ea',2);
- line([[front,y+.46,zs],[front,y+roof,zt]],'#d6e4ea',2);
- if(!truck)line([[x-.02,y+.46,zs],[x-.02,y+roof,zt]],'#dce8ef',1.7);
- line([[x-half+.13,y+.32,zs],[x+half-.13,y+.32,zs]],'#eef6f9',.9);
- const mirror=point(front+.04,y+.51,zs+side*.09);ctx.fillStyle='#d7e7ef';ctx.fillRect(mirror[0]-2,mirror[1]-2,4,4);
- }
- quad([[front,y+roof,z-.27],[front+.16,y+.46,z-w/2],[front+.16,y+.46,z+w/2],[front,y+roof,z+.27]],'#a5d5e7','#d7ecf6');
- quad([[back,y+roof,z-.27],[back-.16,y+.46,z-w/2],[back-.16,y+.46,z+w/2],[back,y+roof,z+.27]],'#436c83','#d7e5ed');
- if(truck){quad([[x-half,y+.5,z-.33],[back,y+.5,z-.33],[back,y+1.12,z-.33],[x-half,y+1.12,z-.33]],'#e5e9eb');quad([[x-half,y+1.12,z-.33],[back,y+1.12,z-.33],[back,y+1.12,z+.33],[x-half,y+1.12,z+.33]],'#f5f7f8')}
- // Four wheels with sidewalls, metallic hubs and bright reflections.
- for(const wx of [x-half*.67,x+half*.67])for(const side of [-1,1]){const wz=z+side*(w/2+.035),p=point(wx,y+.17,wz),radius=Math.max(3.1,zoom*(truck?7:6));ctx.beginPath();ctx.arc(p[0],p[1],radius,0,Math.PI*2);ctx.fillStyle=tire;ctx.fill();ctx.lineWidth=1.6;ctx.strokeStyle='#344551';ctx.stroke();ctx.beginPath();ctx.arc(p[0],p[1],radius*.49,0,Math.PI*2);ctx.fillStyle='#a5b6c0';ctx.fill();ctx.beginPath();ctx.arc(p[0],p[1],radius*.19,0,Math.PI*2);ctx.fillStyle='#e5eef2';ctx.fill()}
- for(const side of [-1,1]){const zz=z+side*.22;for(const [xx,col] of [[x+half,'#fff6d2'],[x-half,'#f14b43']]){const p=point(xx,y+.34,zz);ctx.beginPath();ctx.arc(...p,Math.max(1.7,zoom*2.5),0,Math.PI*2);ctx.fillStyle=col;ctx.shadowBlur=4;ctx.shadowColor=col;ctx.fill();ctx.shadowBlur=0}}
-}
-for(let i=0;i<3;i++){const x=((phase*(1.3+i*.35)+i*5)%19)-9.5;vehicle(x,i%2?.75:-.75,i)}
-for(const x of [-5,-2,0,2,5]){const p=point(x,beam(x)+.95,-1.8);ctx.beginPath();ctx.arc(...p,4.5,0,Math.PI*2);ctx.fillStyle='#4dfbe4';ctx.shadowColor='#4dfbe4';ctx.shadowBlur=16;ctx.fill();ctx.shadowBlur=0;line([[x,beam(x),-1.8],[x,beam(x)+.9,-1.8]],'#3cf3db')}
-if(forecast){const f=[];for(let i=0;i<=64;i++){let x=-8+i/4;f.push([x,beam(x)*1.35-.2,2.1])}line(f,'#ffbf75',3)}
-const L=Number(load.value)/100,K=Number(stiff.value)/100;const d=(.6+4.6*L/K);$('adt-deflect').textContent=d.toFixed(2)+' mm';$('adt-health').textContent=(Math.max(0,100-12*L/K)).toFixed(0)+'/100';}
-function update(){ $('adt-load-v').textContent=load.value+'%';$('adt-stiff-v').textContent=stiff.value+'%';$('adt-speed-v').textContent=(speed.value/100).toFixed(1)+'×'}
-[load,stiff,speed].forEach(e=>e.addEventListener('input',update));
-$('adt-view').onclick=()=>{heat=!heat;$('adt-view').setAttribute('aria-pressed',heat)};
-$('adt-predict').onclick=()=>{forecast=!forecast;$('adt-predict').setAttribute('aria-pressed',forecast)};
-$('adt-reset').onclick=()=>{yaw=-.55;pitch=.45;zoom=1;load.value=60;stiff.value=80;speed.value=100;heat=false;forecast=false;$('adt-view').setAttribute('aria-pressed',false);$('adt-predict').setAttribute('aria-pressed',false);update()};
-canvas.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId)});canvas.addEventListener('pointermove',e=>{if(!drag)return;yaw+=(e.clientX-drag[0])*.008;pitch=Math.max(.1,Math.min(1.2,pitch+(e.clientY-drag[1])*.005));drag=[e.clientX,e.clientY]});canvas.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('pointercancel',()=>drag=null);
-canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(.55,Math.min(2,zoom-e.deltaY*.001))},{passive:false});
-if('IntersectionObserver'in window)new IntersectionObserver(es=>{visible=es[0].isIntersecting;last=0}).observe(canvas);
-window.addEventListener('resize',resize);resize();update();raf=requestAnimationFrame(draw);
+(() => {
+  const frame = document.getElementById('active-twin-interactive');
+  if (!frame) return;
+  function fitAnimation() {
+    const content = frame.contentDocument && frame.contentDocument.querySelector('main');
+    if (!content) return;
+    const fit = () => { frame.style.height = Math.ceil(content.getBoundingClientRect().height + 2) + 'px'; };
+    fit();
+    if ('ResizeObserver' in window) new ResizeObserver(fit).observe(content);
+  }
+  frame.addEventListener('load', fitAnimation);
 })();
 </script>
 <script>

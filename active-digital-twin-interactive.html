@@ -1,0 +1,140 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Active AI Digital Twin | Mehrdad Shafiei Dizaji</title>
+<style>
+:root{color-scheme:dark;--background:#0b1524;--foreground:#e6eef8;--muted-foreground:#a9b9cd;--border:#36506a;--viz-series-1:#56ded5;--viz-series-2:#f3bd68;--viz-series-3:#b7a2ff;--viz-series-4:#ff8391;--primary:#dce9f7;--primary-foreground:#12243b;--card:#132238}
+*{box-sizing:border-box}body{margin:0;background:var(--background);color:var(--foreground);font:15px/1.5 system-ui,sans-serif}main{max-width:1060px;padding:24px;margin:auto}h2{font-size:25px;line-height:1.25;font-weight:500;margin:0}.btn{font:inherit;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:transparent;color:inherit;cursor:pointer}.btn-primary,.btn[aria-pressed=true]{background:var(--primary);color:var(--primary-foreground);border-color:transparent}.btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--viz-series-1);outline-offset:3px}.form-range{width:100%;accent-color:var(--viz-series-1)}.form-select{font:inherit;background:var(--background);color:inherit;border:1px solid var(--border);border-radius:8px;padding:8px}.form-label{display:block}.text-small{font-size:12px}.viz-controls{display:flex;flex-wrap:wrap;align-items:end;gap:14px}.adt-fields output{float:right}.adt-foot{color:var(--muted-foreground)}.adt-eq{font-size:19px;background:color-mix(in srgb,var(--viz-series-1) 5%,transparent);padding:15px}.adt-head{padding-bottom:10px}details{margin-top:24px;color:var(--muted-foreground)}summary{cursor:pointer}details p{max-width:850px}a{color:var(--viz-series-1)}.video-mode main{width:960px;max-width:none;padding:28px}.video-mode .adt-chapters,.video-mode .adt-timeline,.video-mode .viz-controls,.video-mode .adt-fields,.video-mode .adt-foot,.video-mode details{display:none}.video-mode #adt-explainer canvas{height:560px}.video-mode .adt-eq{margin-bottom:0}.video-mode .adt-head{padding-bottom:20px}
+@media(max-width:480px){main{padding:16px}h2{font-size:21px}.adt-eq{font-size:16px}}
+</style></head><body><main><div id="adt-explainer">
+  <style>
+    #adt-explainer{color:var(--foreground);font-family:inherit}
+    #adt-explainer canvas{display:block;width:100%;height:510px}
+    #adt-explainer .adt-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    #adt-explainer .adt-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px;margin:14px 0}
+    #adt-explainer .adt-chapters{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+    #adt-explainer .adt-timeline{display:flex;align-items:center;gap:12px;margin:12px 0}
+    #adt-explainer .adt-timeline input{flex:1;min-width:80px}
+    #adt-explainer .adt-foot{margin:12px 0}
+    #adt-explainer .adt-eq{min-height:46px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;text-align:center;margin:10px 0;font-family:Georgia,serif}
+    #adt-explainer output{font-variant-numeric:tabular-nums}
+    @media(max-width:480px){#adt-explainer .adt-fields{grid-template-columns:1fr}#adt-explainer canvas{height:460px}}
+  </style>
+  <div class="adt-head"><h2>Active AI digital twin</h2><span class="text-small">Mehrdad Shafiei Dizaji, Ph.D.</span></div>
+  <div class="adt-chapters" aria-label="Video chapters">
+    <button class="btn" type="button" data-chapter="0">1 · Mechanics</button>
+    <button class="btn" type="button" data-chapter="1">2 · Observations</button>
+    <button class="btn" type="button" data-chapter="2">3 · Surrogate</button>
+    <button class="btn" type="button" data-chapter="3">4 · Update</button>
+    <button class="btn" type="button" data-chapter="4">5 · Diagnosis</button>
+    <button class="btn" type="button" data-chapter="5">6 · Active sensing</button>
+  </div>
+  <canvas role="img" aria-label="Animated bridge, satellite line of sight, predicted deformation, and measurement selection. Deformation is exaggerated."></canvas>
+  <div class="adt-eq" aria-live="polite"></div>
+  <div class="adt-timeline"><button type="button" class="btn btn-primary" data-play>Play</button><input class="form-range" aria-label="Video time" type="range" min="0" max="72" step="0.1" value="0" data-time><output data-clock>0:00 / 1:12</output></div>
+  <div class="viz-controls"><label class="form-label">Condition <select class="form-select" data-condition><option value="normal">Normal operation</option><option value="bearing">Changed bearing restraint</option><option value="settlement">Support settlement</option><option value="stiffness" selected>Effective stiffness loss</option></select></label><button class="btn" type="button" data-sense>Take recommended measurement</button></div>
+  <div class="adt-fields">
+    <label class="form-label">Traffic load <output data-value="load">250 kN</output><input class="form-range" data-param="load" type="range" min="50" max="450" value="250" step="10"></label>
+    <label class="form-label">Temperature change <output data-value="temp">15 °C</output><input class="form-range" data-param="temp" type="range" min="-20" max="40" value="15"></label>
+    <label class="form-label">Effective stiffness reduction <output data-value="damage">25%</output><input class="form-range" data-param="damage" type="range" min="0" max="55" value="25"></label>
+    <label class="form-label">Support settlement <output data-value="settle">8 mm</output><input class="form-range" data-param="settle" type="range" min="0" max="20" value="8"></label>
+  </div>
+  <div class="adt-foot text-small" data-result aria-live="polite">Illustrative reduced model · synthetic observations · deformation exaggerated · no field validation</div>
+  <script>
+  (()=>{
+    const root=document.getElementById('adt-explainer'), canvas=root.querySelector('canvas'),ctx=canvas.getContext('2d');
+    const $=s=>root.querySelector(s), all=s=>[...root.querySelectorAll(s)];
+    const titles=['Mechanics drives the response','Observe what each sensor measures','Fast predictions, checked by physics','Measurements correct the forecast','Investigate unexplained departures','Choose the next useful measurement'];
+    const eqs=[
+      'Mü + C u̇ + K(z)u = fD + fL + fT + fs   [1]',
+      'ySAR = ℓᵀ[u(tk) − u(t0)] + a + v   [6]',
+      'q = Sψ(η,z),   u = Vq;   L = λd Ldata + λp Lphysics   [7–10]',
+      'G = Pxy(Pyy + R)⁻¹;   xa = xf + G(y − yf)   [12–13, mean form]',
+      'r = y − yf;   J = rᵀS⁻¹r;   p(H|y) ∝ p(y|H)p(H)   [14–15]',
+      'a* = arg maxa IG(a) / ca   [16–17]'
+    ];
+    const captions=[
+      'Traffic, temperature, bearing restraint and settlement change bridge response.',
+      'Field sensors observe local response. Satellite motion is a projection, not a 3D vector.',
+      'A reduced predictor accelerates response estimates; equilibrium checks its error.',
+      'Forecast and measurement uncertainty determine how strongly the twin updates.',
+      'Screen the forecast residual before updating. An anomaly alone is not proof of damage.',
+      'Compare expected information per cost, then request an engineer-reviewed measurement.'
+    ];
+    let time=0,playing=false,last=0,stage=-1,sensed=false,measuredAction=0,measuredValue=0,condition='stiffness',W=900,H=510;
+    const params={load:250,temp:15,damage:25,settle:8};
+    let theme={};
+    function colors(){const c=getComputedStyle(root);const g=n=>c.getPropertyValue(n).trim();theme={fg:g('--foreground'),muted:g('--muted-foreground'),bg:g('--background'),border:g('--border'),one:g('--viz-series-1'),two:g('--viz-series-2'),three:g('--viz-series-3'),four:g('--viz-series-4')};}
+    function line(a,b,col,width=1,dash=[]){ctx.beginPath();ctx.strokeStyle=col;ctx.lineWidth=width;ctx.setLineDash(dash);ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke();ctx.setLineDash([]);}
+    function poly(pts,col,stroke){ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.closePath();ctx.fillStyle=col;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke()}}
+    function dot(x,y,r,c){ctx.beginPath();ctx.fillStyle=c;ctx.arc(x,y,r,0,Math.PI*2);ctx.fill()}
+    function text(t,x,y,size=14,color=theme.fg,align='left'){ctx.fillStyle=color;ctx.font=`${size}px system-ui, sans-serif`;ctx.textAlign=align;ctx.fillText(t,x,y)}
+    function wrap(t,x,y,max,size=14){let row='',n=0;for(const word of t.split(' ')){let next=row+word+' ';ctx.font=`${size}px system-ui`;if(ctx.measureText(next).width>max&&row){text(row,x,y+22*n,size);n++;row=word+' '}else row=next}text(row,x,y+22*n,size);return n+1;}
+    function arrow(a,b,col){line(a,b,col,1.5);const v=Math.atan2(b[1]-a[1],b[0]-a[0]);line(b,[b[0]-8*Math.cos(v-.45),b[1]-8*Math.sin(v-.45)],col,1.5);line(b,[b[0]-8*Math.cos(v+.45),b[1]-8*Math.sin(v+.45)],col,1.5)}
+    // A single vertical bending mode: K0=50 MN/m; L=30 m; q in mm.
+    // Thermal equivalent force 0.6 kN/°C is an illustrative gradient term.
+    function mechanics(t){const phase=(t%12)/12,position=.08+.84*phase,modal=params.load*Math.sin(Math.PI*position),thermal=.6*params.temp;
+      const d=condition==='stiffness'?params.damage/100:0,sett=condition==='settlement'?params.settle:0,bear=condition==='bearing'? .12*params.temp:0;
+      const q0=(modal+thermal)/50,q=(modal+thermal)/(50*(1-d)),u=q+sett*.5+bear;
+      const knots=[0,.1,.2,.3,.4,.5,.6],i=Math.min(5,Math.floor(d*10)),a=(d-knots[i])/.1;
+      const inv=(1-a)/(1-knots[i])+a/(1-knots[i+1]),qs=(modal+thermal)/50*inv;
+      const residual=50*(1-d)*qs-modal-thermal;
+      const xf=q0,y=u+.10*Math.sin(t*1.7),pf=1.4**2,R=.5**2,gain=pf/(pf+R),xa=xf+gain*(y-xf),J=(y-xf)**2/(pf+R);
+      return{phase,position,q,q0,u,sett,bear,d,qs,residual,xf,y,xa,gain,J,los:-u*Math.cos(35*Math.PI/180)};}
+    const hypotheses=['Normal','Bearing','Settlement','Stiffness'];
+    function probs(m){const sig=1.49,means=[m.q0,m.q0+.12*params.temp,m.q0+params.settle*.5,(params.load*Math.sin(Math.PI*m.position)+.6*params.temp)/(50*(1-params.damage/100))];let ls=means.map(v=>-.5*((m.y-v)/sig)**2);if(sensed){const action=measuredAction,ob=measuredValue;ls=ls.map((l,i)=>l-.5*((ob-measurementMeans(action)[i])/measureSigma(action))**2)}const mx=Math.max(...ls),p=ls.map(l=>Math.exp(l-mx));return p.map(v=>v/p.reduce((a,b)=>a+b,0));}
+    function measurementMeans(a){return a===0?[0,.12*params.temp,0,0]:a===1?[0,0,params.settle,0]:[0,0,0,params.damage/10];}
+    function measureSigma(a){return [.4,1,.8][a]}
+    // Deterministic quadrature of I(H;Y) for Gaussian candidate measurements.
+    function info(p,a){const mu=measurementMeans(a),s=measureSigma(a),lo=Math.min(...mu)-5*s,hi=Math.max(...mu)+5*s,dy=(hi-lo)/180;let ig=0;for(let j=0;j<180;j++){const y=lo+(j+.5)*dy,fs=mu.map(v=>Math.exp(-.5*((y-v)/s)**2)/(s*Math.sqrt(2*Math.PI))),mix=fs.reduce((v,f,i)=>v+p[i]*f,0);for(let i=0;i<4;i++)if(fs[i]>1e-18&&mix>0)ig+=p[i]*fs[i]*Math.log(fs[i]/mix)*dy;}return Math.max(0,ig);}
+    function baseProbs(m){const ys=sensed;sensed=false;const p=probs(m);sensed=ys;return p}
+    function recommend(m){const p=baseProbs(m),cost=[1,1.4,2],scores=cost.map((c,a)=>info(p,a)/c);return[scores.indexOf(Math.max(...scores)),scores]}
+    let cached={};
+    function draw(t){time=t;const m=mechanics(t),st=Math.min(5,Math.floor(t/12));cached={m,st};if(st!==stage){stage=st;$('.adt-eq').textContent=eqs[st];all('[data-chapter]').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===st)))}
+      ctx.clearRect(0,0,W,H);const mobile=W<560,pad=mobile?12:24;const scale=Math.min(1,(W-2*pad)/820),cx=W/2,cy=mobile?206:240;
+      text(String(st+1).padStart(2,'0')+' / 06',pad,24,12,theme.muted);wrap(titles[st],pad,52,W-pad*2,mobile?16:20);
+      // Isometric bridge projection, two parallel trusses.
+      const pt=(x,y,z,amp=1)=>[cx+(x-.5)*660*scale+z*65*scale,cy-y*65*scale-z*36*scale+(Math.sin(Math.PI*x)*m.q+(x*m.sett)+m.bear*Math.sin(Math.PI*x))*amp*2.7];
+      const steel=theme.border,accent=theme.one;
+      for(let z=0;z<2;z++){const groundL=pt(0,0,z),groundR=pt(1,0,z);poly([[groundL[0]-10,groundL[1]+10],[groundL[0]+10,groundL[1]+10],[groundL[0]+14,groundL[1]+54],[groundL[0]-14,groundL[1]+54]],theme.border);poly([[groundR[0]-10,groundR[1]+10],[groundR[0]+10,groundR[1]+10],[groundR[0]+14,groundR[1]+54],[groundR[0]-14,groundR[1]+54]],theme.border)}
+      poly([pt(0,0,0),pt(1,0,0),pt(1,0,1),pt(0,0,1)],theme.bg,steel);
+      for(let j=0;j<9;j++)line(pt(j/8,0,0),pt(j/8,0,1),steel);
+      for(let z=1;z>=0;z--)for(let j=0;j<8;j++){const a=j/8,b=(j+1)/8;line(pt(a,0,z),pt(b,0,z),steel,1.5);line(pt(a,1,z),pt(b,1,z),steel,1.5);line(pt(a,0,z),pt(a,1,z),steel);line(pt(a,j%2,z),pt(b,1-j%2,z),steel);}
+      // Predicted/deformed centreline, contrasted with undeformed baseline.
+      let prev;for(let j=0;j<=70;j++){const p=pt(j/70,0,.5,st===3?m.xa/Math.max(m.u,.001):1);if(prev)line(prev,p,accent,2);prev=p}line(pt(0,0,.5,0),pt(1,0,.5,0),steel,1,[4,5]);
+      // Truck, modeled load position follows the 12-second crossing.
+      const x=m.position,c=pt(x,0,.46);poly([[c[0]-18,c[1]-9],[c[0]+17,c[1]-9],[c[0]+26,c[1]-21],[c[0]-8,c[1]-21]],theme.two);poly([[c[0]-18,c[1]-9],[c[0]-18,c[1]-28],[c[0]+7,c[1]-28],[c[0]+17,c[1]-9]],theme.two,theme.fg);dot(c[0]-10,c[1]-3,4,theme.fg);dot(c[0]+15,c[1]-3,4,theme.fg);arrow([c[0],c[1]-67],[c[0],c[1]-35],theme.two);
+      if(!mobile)text(params.load+' kN',c[0],c[1]-77,12,theme.fg,'center');
+      for(const x of [.2,.5,.8]){const p=pt(x,0,0);dot(...p,5,theme.one);if(st>=1){const pulse=(t*.5+x)%1;ctx.globalAlpha=1-pulse;ctx.strokeStyle=theme.one;ctx.beginPath();ctx.arc(...p,5+12*pulse,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=1}}
+      if(st>=1){const sat=[W-pad-45,mobile?115:102],target=pt(.67,0,.5);line(sat,target,theme.three,1,[5,5]);const p=(t*.4)%1;dot(sat[0]+(target[0]-sat[0])*p,sat[1]+(target[1]-sat[1])*p,3,theme.three);poly([[sat[0]-6,sat[1]-5],[sat[0]+6,sat[1]-5],[sat[0]+6,sat[1]+5],[sat[0]-6,sat[1]+5]],theme.three);poly([[sat[0]-26,sat[1]-10],[sat[0]-10,sat[1]-6],[sat[0]-10,sat[1]+4],[sat[0]-26,sat[1]]],theme.border);poly([[sat[0]+10,sat[1]-6],[sat[0]+26,sat[1]-2],[sat[0]+26,sat[1]+8],[sat[0]+10,sat[1]+4]],theme.border);text('LOS · 35° from vertical',sat[0]+25,sat[1]+26,12,theme.fg,'right');}
+      const bottom=mobile?310:345;
+      if(st===0){text('Displacement '+m.u.toFixed(2)+' mm',pad,bottom,14);text('K / K₀ = '+(1-m.d).toFixed(2),W-pad,bottom,14,theme.fg,'right');if(condition==='settlement')text('Prescribed support movement: '+m.sett+' mm',pad,bottom+26,12);else text('Thermal equivalent force: '+(.6*params.temp).toFixed(1)+' kN',pad,bottom+26,12);}
+      if(st===1){text('Local vertical: '+m.u.toFixed(2)+' mm',pad,bottom,14);text('LOS: '+m.los.toFixed(2)+' mm',W-pad,bottom,14,theme.fg,'right');text('LOS sign: toward satellite (+); vertical motion is downward (+).',pad,bottom+26,12);}
+      if(st===2){text('Reduced model: '+m.q.toFixed(3)+' mm',pad,bottom,14);text('Surrogate: '+m.qs.toFixed(3)+' mm',W-pad,bottom,14,theme.fg,'right');text('Equilibrium residual: '+m.residual.toFixed(2)+' kN',pad,bottom+26,12);}
+      if(st===3){const yy=bottom+10;const vals=[m.xf,m.y,m.xa],names=['Forecast','Observed','Updated'],cols=[theme.two,theme.three,theme.one];vals.forEach((v,i)=>{const xx=pad+(W-pad*2)*(i+.5)/3;dot(xx,yy,6,cols[i]);text(names[i],xx,yy+23,12,theme.fg,'center');text(v.toFixed(2)+' mm',xx,yy+44,14,theme.fg,'center')});text('Gain '+m.gain.toFixed(2)+' · σforecast = 1.4 mm · σsensor = 0.5 mm',pad,bottom-18,12);}
+      if(st===4){const p=probs(m),barW=(W-pad*2-30)/4;p.forEach((v,i)=>{let xx=pad+i*(barW+10);ctx.fillStyle=theme.border;ctx.fillRect(xx,bottom,barW,5);ctx.fillStyle=theme.one;ctx.fillRect(xx,bottom,barW*v,5);text(hypotheses[i],xx,bottom+25,mobile?11:12);text((v*100).toFixed(0)+'%',xx,bottom+45,14)});text('Forecast J = '+m.J.toFixed(2)+' · candidate-dependent probabilities',pad,bottom-15,12);}
+      if(st===5){const [best,scores]=recommend(m),names=['Bearing travel','Pier survey','Local strain'],max=Math.max(...scores,.001);scores.forEach((v,i)=>{const yy=bottom-15+i*25;const label=mobile?['Bearing','Survey','Strain'][i]:names[i];text(label,pad,yy+4,12);const left=mobile?80:135,w=Math.max(20,W-left-pad-110);ctx.fillStyle=theme.border;ctx.fillRect(left,yy-5,w,7);ctx.fillStyle=theme.one;ctx.globalAlpha=i===best?1:.45;ctx.fillRect(left,yy-5,w*v/max,7);ctx.globalAlpha=1;text(v.toFixed(3)+' nat / cost',W-pad,yy+4,12,theme.fg,'right')});}
+      wrap(captions[st],pad,H-62,W-pad*2,13);text('Illustrative model • synthetic data • exaggerated deformation',pad,H-12,11,theme.muted);
+      $('.adt-eq').textContent=eqs[st];$('[data-time]').value=t;$('[data-clock]').textContent=`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')} / 1:12`;
+    }
+    function resize(){const r=canvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;W=r.width;H=r.height;canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);colors();draw(time)}
+    function frame(ts){if(playing){if(last)time+=Math.min(.1,(ts-last)/1000);if(time>=72){time=72;playing=false;$('[data-play]').textContent='Replay'}draw(time)}last=ts;requestAnimationFrame(frame)}
+    $('[data-play]').onclick=()=>{if(time>=72)time=0;playing=!playing;last=0;$('[data-play]').textContent=playing?'Pause':'Play'};
+    $('[data-time]').oninput=e=>{time=+e.target.value;draw(time)};
+    all('[data-chapter]').forEach(b=>b.onclick=()=>{time=+b.dataset.chapter*12;draw(time)});
+    $('[data-condition]').onchange=e=>{condition=e.target.value;sensed=false;$('[data-result]').textContent='Illustrative reduced model · synthetic observations · deformation exaggerated · no field validation';draw(time)};
+    all('[data-param]').forEach(i=>i.oninput=()=>{params[i.dataset.param]=+i.value;sensed=false;const key=i.dataset.param;root.querySelector(`[data-value="${key}"]`).textContent=i.value+({load:' kN',temp:' °C',damage:'%',settle:' mm'}[key]);draw(time)});
+    $('[data-sense]').onclick=()=>{time=60;const m=mechanics(time),[best]=recommend(m);measuredAction=best;measuredValue=measurementMeans(best)[['normal','bearing','settlement','stiffness'].indexOf(condition)];sensed=true;draw(time);const p=probs(mechanics(time));$('[data-result]').textContent=['Bearing travel','Pier elevation survey','Local strain'][best]+' · synthetic measurement added. Updated hypotheses: '+p.map((v,i)=>hypotheses[i]+' '+(v*100).toFixed(0)+'%').join(' · ');};
+    new ResizeObserver(resize).observe(canvas);new MutationObserver(()=>{colors();draw(time)}).observe(document.documentElement,{attributes:true,attributeFilter:['class','style','data-theme']});
+    window.adt={renderAt(t){playing=false;draw(t)},getState(){return{time,condition,params:{...params},...cached}},setCondition(v){condition=v;$('[data-condition]').value=v;sensed=false;draw(time)}};
+    colors();resize();requestAnimationFrame(frame);
+  })();
+  </script>
+</div>
+<details><summary>Model assumptions and equation guide</summary>
+<p>This is an educational animation of a proposed research system, not a trained AI system, operational twin or validated damage detector. It uses synthetic observations and one bending mode of a simply supported 30 m bridge. Parameters and costs are illustrative.</p>
+<p><b>Mechanics, equations 1–4.</b> The slow branch is used: q = (P sin(πx/L) + 0.6 ΔT) / [50(1−d)] in mm, with P in kN and 50 kN/mm baseline modal stiffness. The 0.6 kN/°C thermal coefficient represents an illustrative equivalent gradient load; uniform temperature does not automatically cause vertical bending in a free bridge. Support settlement adds a linear prescribed displacement. The bearing scenario adds an illustrative temperature-dependent modal response. Only the selected condition is applied. Dead-load displacement is removed by the reference state. This animation does not integrate vibration or contact dynamics.</p>
+<p><b>Observations, equations 5–6.</b> The satellite view is 35° from vertical. With downward-positive model displacement, yLOS = −u cos(35°), so positive LOS is toward the satellite. Here u is a reference-epoch displacement change. A single LOS cannot recover three-dimensional displacement. Synthetic field measurements add a deterministic 0.10 mm oscillation to the vertical response. Actual acquisition delays and shared atmospheric errors are not simulated.</p>
+<p><b>Surrogate, equations 7–10.</b> Linear interpolation of 1/(1−d) on 0.1-spaced stiffness-loss knots emulates an approximate response surrogate; it is not a trained neural network. The displayed force residual is 50(1−d)qs − P sin(πx/L) − 0.6ΔT. The original document proposes dimensionless scaled data and physics losses for training and validation.</p>
+<p><b>Updating, equations 11–14.</b> A scalar Gaussian mean update illustrates the ensemble Kalman filter principle: G = 1.4²/(1.4²+0.5²). The forecast holds the normal-condition baseline fixed. The innovation statistic is J = (y−yf)²/(1.4²+0.5²). This does not run the full perturbed-observation ensemble filter. No field alarm threshold is claimed.</p>
+<p><b>Diagnosis, equation 15.</b> Four candidate hypotheses start with equal priors. Their relative probabilities follow Gaussian likelihoods with a common 1.49 mm standard deviation. They are illustrative, conditional on this deliberately restricted candidate set, and not calibrated field probabilities. Ambiguity may remain.</p>
+<p><b>Active sensing, equations 16–17.</b> Expected mutual information I(H;Y) is integrated numerically for three hypothetical Gaussian measurement channels. It is divided by relative costs 1, 1.4 and 2. Bearing, survey and strain channels use illustrative response signatures and noise scales. Taking a measurement adds its synthetic likelihood to the displayed diagnosis. This demonstrates one-step discrete hypothesis learning, rather than the document's full joint condition-parameter information gain. No bridge is controlled.</p>
+<p><b>Verification, equation 18.</b> RMSE, false-alert episodes per monitored bridge-year, detection delay and uncertainty coverage require independent evaluation; they are not asserted by this animation. Source: Mehrdad Shafiei Dizaji, <i>Technical formulation of the proposed active AI digital twin</i>, supplied document.</p>
+</details></main></body></html>
