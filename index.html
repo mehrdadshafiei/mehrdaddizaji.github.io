@@ -517,6 +517,16 @@
     .site-header .navigation-portrait{width:64px;height:74px;object-fit:cover;border-radius:6px;display:block;margin:2px auto 0}
     @media(max-width:720px){.site-header .navigation-portrait{width:54px;height:63px}}
   </style>
+<style>
+#topology-optimization .to-view{background:radial-gradient(ellipse at center,#11293e,#050c17 80%)}
+#topology-optimization .to-paper-figures{display:grid;gap:18px;margin-top:22px}
+#topology-optimization .to-paper-figures figure{margin:0;border:1px solid #294b60;border-radius:14px;overflow:hidden;background:#0b1622}
+#topology-optimization .to-paper-figures a{display:block;background:#fff;padding:10px;cursor:zoom-in}
+#topology-optimization .to-paper-figures img{width:100%;height:auto;object-fit:contain}
+#topology-optimization .to-paper-figures figcaption{padding:16px;font-size:.74rem;line-height:1.7;color:#a9bfd0}
+#topology-optimization .to-paper-figures strong{display:block;color:#ecf5fc;font-size:.85rem;margin-bottom:6px}
+#topology-optimization .to-paper-figures span{display:block;color:#70d9d5;font-size:.65rem;margin-top:8px}
+</style>
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
@@ -764,7 +774,7 @@
 #topology-optimization .to-footer{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:0 20px 18px;align-items:center}
 #topology-optimization .to-footer p{font-size:.69rem;line-height:1.65;margin:0;color:#9cb7c7}
 #topology-optimization .to-legend{font-size:.64rem;display:flex;justify-content:space-between;gap:8px;color:#9cb7c7;margin-top:5px}
-#topology-optimization .to-gradient{height:6px;border-radius:5px;background:linear-gradient(90deg,#fa8b65,#eac981,#58cabb,#4a8db3)}
+#topology-optimization .to-gradient{height:6px;border-radius:5px;background:linear-gradient(90deg,#2228b9,#0096f5,#23e1b2,#f7e932,#f35e21,#b4132e)}
 #topology-optimization .to-note{padding:12px 20px;border-top:1px solid #24404c;font-size:.65rem;line-height:1.6;color:#91a8b6;margin:0}
 @media(max-width:800px){#topology-optimization .to-views{grid-template-columns:1fr}#topology-optimization canvas{height:245px}#topology-optimization .to-footer{grid-template-columns:1fr}#topology-optimization .to-controls{gap:9px}}
 </style>
@@ -774,21 +784,25 @@
 <p>Reconstructing hidden defects in steel coupons from full-field surface measurements. A finite element model updates element stiffness through a regularized SIMP formulation and the method of moving asymptotes (MMA), minimizing the mismatch between computed response and experimental 3D digital image correlation data.</p>
 <div class="tags"><span>Topology Optimization</span><span>3D-DIC</span><span>Inverse Identification</span><span>Subsurface Damage</span></div>
 <div class="to-lab" role="region" aria-label="Interactive topology optimization of steel specimens">
-<div class="to-bar"><span>INSIDE THE SPECIMEN / INVERSE TOPOLOGY OPTIMIZATION</span><span id="to-stage" role="status">INITIAL STIFFNESS FIELD</span></div>
+<div class="to-bar"><span>3D SPECIMENS / INVERSE TOPOLOGY OPTIMIZATION</span><span id="to-stage" role="status">INITIAL STIFFNESS FIELD</span></div>
 <div class="to-views">
-<figure class="to-view"><figcaption>01 / MEASURE THE SURFACE<small>Speckled front face · schematic strain contours</small></figcaption><canvas id="to-observe" role="img" aria-label="Steel coupon with DIC surface strain contours"></canvas></figure>
-<figure class="to-view"><figcaption>02 / UPDATE THE MODEL<small>Estimated element stiffness · exposed back face</small></figcaption><canvas id="to-estimate" role="img" aria-label="Element stiffness reconstruction evolving through iterations"></canvas></figure>
-<figure class="to-view"><figcaption>03 / RECONSTRUCT DAMAGE<small>Backside recesses · estimated defect geometry</small></figcaption><canvas id="to-result" role="img" aria-label="Steel coupon showing reconstructed hidden damage"></canvas></figure>
+<figure class="to-view"><figcaption>01 / MEASURE THE SURFACE<small>3D surface · schematic strain contours</small></figcaption><canvas id="to-observe" tabindex="0" style="cursor:grab;touch-action:pan-y" role="img" aria-label="Steel coupon with DIC surface strain contours"></canvas></figure>
+<figure class="to-view"><figcaption>02 / UPDATE THE MODEL<small>3D voxel mesh · evolving stiffness</small></figcaption><canvas id="to-estimate" tabindex="0" style="cursor:grab;touch-action:pan-y" role="img" aria-label="Element stiffness reconstruction evolving through iterations"></canvas></figure>
+<figure class="to-view"><figcaption>03 / RECONSTRUCT DAMAGE<small>3D backside recesses · estimated geometry</small></figcaption><canvas id="to-result" tabindex="0" style="cursor:grab;touch-action:pan-y" role="img" aria-label="Steel coupon showing reconstructed hidden damage"></canvas></figure>
 </div>
 <div class="to-controls">
 <label for="to-config">Specimen <select id="to-config"><option value="2">2 · Two backside defects</option><option value="3">3 · Off-center defect</option><option value="4">4 · Centered defect</option><option value="1">1 · Intact reference</option></select></label>
-<button type="button" id="to-play" aria-pressed="false">Play process</button><button type="button" id="to-reset">Reset</button>
+<button type="button" id="to-play" aria-pressed="true">Pause animation</button><button type="button" id="to-reset">Reset</button><button type="button" id="to-orbit" aria-pressed="true">Auto orbit</button>
 <button type="button" id="to-truth" aria-pressed="false">Show target outline</button>
 <label for="to-threshold">Damage threshold <input id="to-threshold" type="range" min="20" max="85" value="55" step="1"><output id="to-threshold-value" for="to-threshold">0.55</output></label>
 </div>
 <div class="to-timeline"><label for="to-iteration">Iteration</label><input id="to-iteration" type="range" min="0" max="350" value="0" step="1"><output id="to-count" for="to-iteration">0 / 350</output></div>
 <div class="to-footer"><div><div class="to-gradient"></div><div class="to-legend"><span>Low stiffness / possible defect</span><span>Intact</span></div></div><p id="to-explanation">Begin with a uniform stiffness field. Play or drag the iteration slider to reveal the hidden damage.</p></div>
 <p class="to-note">Illustrative reconstruction inspired by the paper; animated fields and iterations are schematic, not a live FE/MMA solve or recorded experimental results. Specimens have backside recesses, not through-holes. The threshold controls classification of the illustrative stiffness field.</p>
+</div>
+<div class="to-paper-figures">
+<figure><a href="topology-figures/figure-15.png" target="_blank" rel="noopener noreferrer" aria-label="Open Figure 15 at full resolution"><img src="topology-figures/figure-15.png" loading="lazy" width="1256" height="773" alt="Figure 15: experimental DIC and updated numerical strain and displacement fields, with absolute difference maps, for the two-defect specimen."></a><figcaption><strong>Figure 15 · Measured vs. reconstructed response</strong>Experimental DIC fields, updated model fields, and absolute differences for configuration 2. Strain components εxx, εxy, εyy and displacement components U, V, W.<span>Click to expand · Published results</span></figcaption></figure>
+<figure><a href="topology-figures/figure-18.png" target="_blank" rel="noopener noreferrer" aria-label="Open Figure 18 at full resolution"><img src="topology-figures/figure-18.png" loading="lazy" width="1256" height="277" alt="Figure 18: simulated topology optimization for centered-defect configuration 4, showing initial values, target, estimated stiffness, binary detections, true positives, false positives, false negatives and true negatives."></a><figcaption><strong>Figure 18 · Reconstructing the centered defect</strong>Simulated configuration 4: (a) initial values, (b) target, (c) element stiffness, (d) binary detections, (e) true positives, (f) false positives, (g) false negatives, and (h) true negatives.<span>Click to expand · Published results</span></figcaption></figure>
 </div>
 <p style="font-size:.76rem;margin:16px 0 0"><a href="https://doi.org/10.1016/j.engstruct.2020.111712" target="_blank" rel="noopener noreferrer" style="color:#6bdccf;text-decoration:underline">Read the study ↗</a> · Dizaji, Alipour &amp; Harris · <em>Engineering Structures</em> 230 (2021), 111712</p>
 </div></article>
@@ -1868,37 +1882,40 @@ render();
 const root=document.getElementById('topology-optimization');if(!root)return;
 const $=id=>document.getElementById('to-'+id),canvases=['observe','estimate','result'].map(id=>$(id)),contexts=canvases.map(c=>c.getContext('2d'));
 const iteration=$('iteration'),config=$('config'),threshold=$('threshold'),play=$('play'),truth=$('truth'),motion=matchMedia('(prefers-reduced-motion: reduce)');
-let running=false,visible=false,last=0,frame=0,showTruth=false;
-// Normalized gauge coordinates. Recess arrangements follow configurations 1–4 in Fig. 5.
-function recess(x,y){const c=Number(config.value);if(c===1)return 0;
-const centers=c===2?[-.36,.36]:c===3?[-.36]:[0];
-return Math.max(...centers.map(cy=>{const dx=Math.abs(x)/.98,dy=Math.abs(y-cy)/.145;return Math.max(0,Math.min(1,Math.min((1-dx)*12,(1-dy)*12)));}));}
-function stiffness(x,y,t){const p=t/350,learn=1-Math.exp(-p*5.4),d=recess(x,y),noise=Math.sin(x*14+y*20)*Math.sin(y*17-x*9);return Math.max(.08,Math.min(1,.79+.19*learn-.68*d*learn+.1*noise*Math.sin(Math.PI*p)*(1-p)));}
-function color(v){const a=v<.55?[250,139,101]:[88,202,187],b=v<.55?[234,201,129]:[74,141,179],q=v<.55?v/.55:(v-.55)/.45;return 'rgb('+a.map((n,i)=>Math.round(n+(b[i]-n)*q)).join(',')+')';}
-function couponPath(ctx,cx,top,w,h){ctx.beginPath();ctx.moveTo(cx-w*.48,top);ctx.lineTo(cx+w*.48,top);ctx.lineTo(cx+w*.48,top+h*.18);ctx.bezierCurveTo(cx+w*.48,top+h*.23,cx+w*.30,top+h*.23,cx+w*.30,top+h*.29);ctx.lineTo(cx+w*.30,top+h*.71);ctx.bezierCurveTo(cx+w*.30,top+h*.77,cx+w*.48,top+h*.77,cx+w*.48,top+h*.82);ctx.lineTo(cx+w*.48,top+h);ctx.lineTo(cx-w*.48,top+h);ctx.lineTo(cx-w*.48,top+h*.82);ctx.bezierCurveTo(cx-w*.48,top+h*.77,cx-w*.30,top+h*.77,cx-w*.30,top+h*.71);ctx.lineTo(cx-w*.30,top+h*.29);ctx.bezierCurveTo(cx-w*.30,top+h*.23,cx-w*.48,top+h*.23,cx-w*.48,top+h*.18);ctx.closePath();}
-function drawPanel(ctx,canvas,mode){const W=canvas.clientWidth||260,H=canvas.clientHeight||300,dpr=Math.min(devicePixelRatio||1,2);if(canvas.width!==Math.round(W*dpr)||canvas.height!==Math.round(H*dpr)){canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
-const cx=W*.5,top=30,h=H-65,w=Math.min(W*.44,110),gTop=top+h*.30,gH=h*.4,gW=w*.58,t=Number(iteration.value);
-// A shallow offset extrusion makes the coupon thickness legible.
-ctx.save();ctx.translate(5,4);couponPath(ctx,cx,top,w,h);ctx.fillStyle='#233b49';ctx.fill();ctx.restore();couponPath(ctx,cx,top,w,h);const metal=ctx.createLinearGradient(cx-w/2,0,cx+w/2,0);metal.addColorStop(0,'#657e8b');metal.addColorStop(.35,'#c1d0d6');metal.addColorStop(.6,'#8ba2ae');metal.addColorStop(1,'#405c6c');ctx.fillStyle=metal;ctx.fill();ctx.strokeStyle='#a5c3ce';ctx.lineWidth=1;ctx.stroke();
-const nx=16,ny=52,cw=gW/nx,ch=gH/ny;
-for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){const x=(i+.5)/nx*2-1,y=(j+.5)/ny*2-1,px=cx-gW/2+i*cw,py=gTop+j*ch,v=stiffness(x,y,t);
-if(mode===0){const d=recess(x,y),field=.4+.13*y+.37*d+.07*Math.sin(y*9+x*2);ctx.fillStyle=color(1-field*.8);ctx.fillRect(px,py,cw+.2,ch+.2);if((i*7+j*3)%5===0){ctx.fillStyle='#0a1b25';ctx.beginPath();ctx.arc(px+cw*.5,py+ch*.5,.65,0,Math.PI*2);ctx.fill();}}
-else if(mode===1){ctx.fillStyle=color(v);ctx.fillRect(px,py,cw-.25,ch-.25);}
-else if(v<Number(threshold.value)/100){ctx.fillStyle='#102431';ctx.fillRect(px,py,cw+.2,ch+.2);ctx.fillStyle='rgba(255,174,117,.32)';ctx.fillRect(px,py,cw,.6);}}
-if(showTruth&&mode>0&&Number(config.value)!==1){ctx.strokeStyle='#f9db91';ctx.setLineDash([3,3]);const centers=Number(config.value)===2?[-.36,.36]:Number(config.value)===3?[-.36]:[0];for(const cy of centers)ctx.strokeRect(cx-gW*.49,gTop+(cy+1)*gH/2-gH*.0725,gW*.98,gH*.145);ctx.setLineDash([]);}
-// Tensile grip blocks and loading arrows.
-for(const yy of [top+4,top+h-18]){ctx.fillStyle='#152f40';ctx.fillRect(cx-w*.53,yy,w*1.06,14);ctx.strokeStyle='#486779';ctx.strokeRect(cx-w*.53,yy,w*1.06,14);for(let k=-2;k<=2;k++){ctx.fillStyle='#b4c5cf';ctx.beginPath();ctx.arc(cx+k*w*.16,yy+7,1.3,0,Math.PI*2);ctx.fill();}}
-ctx.strokeStyle='#5dddc7';ctx.fillStyle='#5dddc7';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(cx,top-3);ctx.lineTo(cx,top-17);ctx.moveTo(cx-4,top-12);ctx.lineTo(cx,top-18);ctx.lineTo(cx+4,top-12);ctx.stroke();ctx.beginPath();ctx.moveTo(cx,top+h+3);ctx.lineTo(cx,top+h+17);ctx.moveTo(cx-4,top+h+12);ctx.lineTo(cx,top+h+18);ctx.lineTo(cx+4,top+h+12);ctx.stroke();
-ctx.font='10px system-ui';ctx.textAlign='center';ctx.fillStyle='#88a9ba';ctx.fillText(mode===0?'DIC front face':mode===1?'Element stiffness xᵢ':'Reconstructed back face',cx,H-7);
+let running=!motion.matches,visible=false,last=0,frame=0,showTruth=false,spin=true,yaw=.32,pitch=.65,drag=null,hold=0;
+function defect(x,y){const c=Number(config.value);if(c===1)return 0;const centers=c===2?[-.36,.36]:c===3?[-.36]:[0];return Math.max(...centers.map(cx=>Math.max(0,Math.min(1,Math.min((1-Math.abs(x-cx)/.145)*10,(1-Math.abs(y)/.98)*10)))));}
+function stiffness(x,y,t){const p=t/350,learn=1-Math.exp(-p*5.4),noise=Math.sin(x*33+y*8)*Math.sin(y*19-x*21);return Math.max(.06,Math.min(1,.96-.85*defect(x,y)*learn+.26*noise*Math.sin(Math.PI*p)*(1-p)));}
+// Shared scientific palette: blue = low stiffness, red = intact.
+function rgb(v){const stops=[[34,40,185],[0,150,245],[35,225,178],[247,233,50],[243,94,33],[180,19,46]],a=Math.max(0,Math.min(4.999,v*5)),i=Math.floor(a),f=a-i;return stops[i].map((n,j)=>Math.round(n+(stops[i+1][j]-n)*f));}
+function shade(c,s){return 'rgb('+c.map(x=>Math.round(Math.min(255,x*s))).join(',')+')';}
+function drawPanel(ctx,canvas,mode){const W=canvas.clientWidth||280,H=canvas.clientHeight||300,dpr=Math.min(devicePixelRatio||1,2);if(canvas.width!==Math.round(W*dpr)||canvas.height!==Math.round(H*dpr)){canvas.width=Math.round(W*dpr);canvas.height=Math.round(H*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+const sc=Math.min((W-36)/220,(H-80)/120),cy=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch),t=Number(iteration.value),faces=[];
+function project(x,y,z){const xx=x*cy-y*sy,yy=x*sy+y*cy,depth=yy*cp-z*sp;return [W/2+xx*sc,H*.48+(yy*sp-z*cp)*sc,depth];}
+function face(points,col,edge){const ps=points.map(v=>project(...v));faces.push({ps,depth:ps.reduce((a,p)=>a+p[2],0)/ps.length,col,edge});}
+function box(x,y,z,dx,dy,dz,col,mesh=false){const a=[x,y,z],b=[x+dx,y,z],c=[x+dx,y+dy,z],d=[x,y+dy,z],e=[x,y,z+dz],f=[x+dx,y,z+dz],g=[x+dx,y+dy,z+dz],h=[x,y+dy,z+dz],edge=mesh?'rgba(0,0,0,.24)':null;face([e,f,g,h],shade(col,1.05),edge);face([a,b,f,e],shade(col,.65),edge);face([b,c,g,f],shade(col,.80),edge);face([c,d,h,g],shade(col,.73),edge);face([d,a,e,h],shade(col,.83),edge);}
+// Ground grid and soft specimen shadow anchor the floating geometry.
+ctx.strokeStyle='#142c3a';ctx.lineWidth=.65;for(let x=-120;x<=120;x+=20){const a=project(x,-45,-10),b=project(x,45,-10);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();}for(let y=-40;y<=40;y+=10){const a=project(-120,y,-10),b=project(120,y,-10);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();}
+// Full coupon, shoulders, and gauge: true projected solid faces, with shallow backside recesses.
+for(const x of [-100,60])box(x,-10,0,40,20,4,[113,144,166]);
+for(const side of [-1,1])for(let k=0;k<5;k++){const x=side<0?-60+k*3:45+k*3,ww=side<0?10-k*.74:6.3+k*.74;box(x,-ww,0,3,ww*2,4,[130,158,180]);}
+const nx=42,ny=8,dx=90/nx,dy=12.6/ny;
+for(let i=0;i<nx;i++)for(let j=0;j<ny;j++){const x=(i+.5)/nx*2-1,y=(j+.5)/ny*2-1,px=-45+i*dx,py=-6.3+j*dy,v=stiffness(x,y,t);let col;
+if(mode===0){const field=Math.max(0,Math.min(1,.5+.28*Math.sin(x*6+y*1.8)+.25*defect(x,y)));col=rgb(field);box(px,py,0,dx,dy,4,col);}
+else if(mode===1)box(px,py,0,dx,dy,4,rgb(v),true);
+else{const damaged=v<Number(threshold.value)/100;box(px,py,0,dx,dy,damaged?2:4,damaged?[35,115,245]:[243,108,63],true);}}
+faces.sort((a,b)=>b.depth-a.depth);for(const f of faces){ctx.beginPath();f.ps.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();ctx.fillStyle=f.col;ctx.fill();if(f.edge){ctx.lineWidth=.35;ctx.strokeStyle=f.edge;ctx.stroke();}}
+if(showTruth&&mode>0&&Number(config.value)!==1){const cs=Number(config.value)===2?[-.36,.36]:Number(config.value)===3?[-.36]:[0];ctx.strokeStyle='#ffffff';ctx.lineWidth=1.4;ctx.setLineDash([4,3]);for(const c of cs){const pts=[[c*45-6.525,-6.17,4.5],[c*45+6.525,-6.17,4.5],[c*45+6.525,6.17,4.5],[c*45-6.525,6.17,4.5]];ctx.beginPath();pts.map(p=>project(...p)).forEach((p,i)=>i?ctx.lineTo(...p.slice(0,2)):ctx.moveTo(...p.slice(0,2)));ctx.closePath();ctx.stroke();}ctx.setLineDash([]);}
+// Applied tensile directions, drawn at the specimen ends.
+ctx.strokeStyle='#62ebdb';ctx.lineWidth=1.6;for(const side of [-1,1]){const a=project(side*103,0,2),b=project(side*117,0,2);ctx.beginPath();ctx.moveTo(...a.slice(0,2));ctx.lineTo(...b.slice(0,2));ctx.stroke();const angle=Math.atan2(b[1]-a[1],b[0]-a[0]);ctx.beginPath();ctx.moveTo(b[0]-6*Math.cos(angle-.5),b[1]-6*Math.sin(angle-.5));ctx.lineTo(...b.slice(0,2));ctx.lineTo(b[0]-6*Math.cos(angle+.5),b[1]-6*Math.sin(angle+.5));ctx.stroke();}
+ctx.font='10px system-ui';ctx.textAlign='center';ctx.fillStyle='#9fb8cc';ctx.fillText(mode===0?'DIC surface response':mode===1?'3D element stiffness xᵢ':'Recess geometry · 2 mm deep',W/2,H-32);ctx.fillStyle='#5d829c';ctx.fillText('DRAG TO ORBIT',W/2,H-15);
 }
-function render(){canvases.forEach((c,i)=>drawPanel(contexts[i],c,i));const t=Number(iteration.value);$('count').textContent=t+' / 350';$('threshold-value').value=(Number(threshold.value)/100).toFixed(2);$('stage').textContent=t===0?'INITIAL STIFFNESS FIELD':t<100?'LOCALIZE THE ANOMALY':t<260?'REFINE ELEMENT STIFFNESS':'RECONSTRUCTED FIELD';$('explanation').textContent=t===0?'Begin with a uniform stiffness field. Play or drag the iteration slider to reveal the hidden damage.':t<100?'Surface response constrains the model. Local stiffness variations begin to reveal possible defects.':t<260?'Successive stiffness updates sharpen the location and extent of the hidden recesses.':'Classify the reconstructed field using the damage threshold. Toggle the target outline to compare locations.';}
-function stop(){running=false;cancelAnimationFrame(frame);play.textContent='Play process';play.setAttribute('aria-pressed','false');last=0;}
-function tick(now){if(!running)return;if(!visible||document.hidden){last=now;frame=requestAnimationFrame(tick);return;}if(!last)last=now;const delta=now-last;if(delta>35){iteration.value=Math.min(350,Number(iteration.value)+Math.min(delta/45,3));last=now;render();}if(Number(iteration.value)>=350){stop();return;}frame=requestAnimationFrame(tick);}
-play.addEventListener('click',()=>{if(running){stop();return;}if(Number(iteration.value)>=350)iteration.value=0;running=true;play.textContent='Pause process';play.setAttribute('aria-pressed','true');last=0;frame=requestAnimationFrame(tick);});
-$('reset').addEventListener('click',()=>{stop();iteration.value=0;threshold.value=55;showTruth=false;truth.setAttribute('aria-pressed','false');render();});
-config.addEventListener('change',()=>{stop();iteration.value=0;render();});iteration.addEventListener('input',()=>{stop();render();});threshold.addEventListener('input',render);truth.addEventListener('click',()=>{showTruth=!showTruth;truth.setAttribute('aria-pressed',String(showTruth));render();});
-new ResizeObserver(render).observe(root);if('IntersectionObserver'in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(!visible)stop();}).observe(root);else visible=true;
-motion.addEventListener('change',stop);render();
+function render(){canvases.forEach((c,i)=>drawPanel(contexts[i],c,i));const t=Number(iteration.value);$('count').textContent=t+' / 350';$('threshold-value').value=(Number(threshold.value)/100).toFixed(2);$('stage').textContent=t===0?'INITIAL STIFFNESS FIELD':t<100?'LOCALIZE THE ANOMALY':t<260?'REFINE ELEMENT STIFFNESS':'RECONSTRUCTED FIELD';$('explanation').textContent=t<100?'Surface response constrains the initial model. Local stiffness changes reveal possible defects.':t<260?'Watch the colored element field evolve as the hidden recess locations become sharper.':'Compare the reconstructed recesses with the target outline. Change the threshold to explore classification.';}
+function button(){play.textContent=running?'Pause animation':'Play animation';play.setAttribute('aria-pressed',String(running));}
+function tick(now){frame=requestAnimationFrame(tick);if(!visible||document.hidden){last=now;return;}if(!last)last=now;const dt=Math.min(now-last,70);if(dt<33)return;last=now;if(running){if(Number(iteration.value)>=350){hold+=dt;if(hold>2400){hold=0;iteration.value=0;}}else iteration.value=Math.min(350,Number(iteration.value)+Math.max(1,Math.round(dt/42)));if(spin&&!drag)yaw+=dt*.00009;render();}}
+function stop(){running=false;button();}
+play.addEventListener('click',()=>{running=!running;button();});$('reset').addEventListener('click',()=>{iteration.value=0;hold=0;yaw=.32;pitch=.65;threshold.value=55;showTruth=false;truth.setAttribute('aria-pressed','false');render();});config.addEventListener('change',()=>{iteration.value=0;hold=0;render();});iteration.addEventListener('input',()=>{stop();render();});threshold.addEventListener('input',render);truth.addEventListener('click',()=>{showTruth=!showTruth;truth.setAttribute('aria-pressed',String(showTruth));render();});$('orbit').addEventListener('click',()=>{spin=!spin;$('orbit').setAttribute('aria-pressed',String(spin));});
+for(const canvas of canvases){canvas.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId);});canvas.addEventListener('pointermove',e=>{if(!drag)return;yaw+=(e.clientX-drag[0])*.008;pitch=Math.max(.18,Math.min(1.4,pitch+(e.clientY-drag[1])*.008));drag=[e.clientX,e.clientY];render();});for(const type of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(type,()=>drag=null);canvas.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();yaw+=(e.key==='ArrowRight'?.12:e.key==='ArrowLeft'?-.12:0);pitch=Math.max(.18,Math.min(1.4,pitch+(e.key==='ArrowDown'?.1:e.key==='ArrowUp'?-.1:0)));render();});}
+new ResizeObserver(render).observe(root);if('IntersectionObserver'in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;last=0;}).observe(root);else visible=true;motion.addEventListener('change',()=>{if(motion.matches)stop();});button();render();frame=requestAnimationFrame(tick);
 })();
 
 </script>
