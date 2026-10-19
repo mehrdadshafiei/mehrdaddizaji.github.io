@@ -672,21 +672,21 @@
         <h2 id="phd-section-title" style="display:flex;align-items:center;gap:12px"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 17h23a4 4 0 0 1 4 4v20H14a4 4 0 0 1-4-4V17Zm0 20a4 4 0 0 1 4-4h23M17 23h13M17 28h9"/><path d="m7 10 17-7 17 7-17 7-17-7Zm9 4v5c5 3 11 3 16 0v-5M41 10v10"/></svg><span>Ph.D. Dissertation</span></h2>
         <article class="dissertation-feature" aria-labelledby="dissertation-title">
           <figure class="dissertation-art dissertation-interactive" id="dissertation-lab">
- <div class="diss-lab-heading"><span>FROM SURFACE MOTION TO HIDDEN GEOMETRY</span><strong>Interactive inverse topology optimization</strong><p>Explore how a uniform stiffness field evolves to reveal a concealed defect.</p></div>
+ <div class="diss-lab-heading"><span>FROM SURFACE MOTION TO HIDDEN GEOMETRY</span><strong>Interactive inverse topology optimization</strong><p>Four element layers: optimization removes elements only from the two middle layers, while the outer layers remain intact.</p></div>
  <div class="diss-scenes">
   <div><h4><b>01</b> Measure surface motion</h4><svg id="diss-measure" viewBox="0 0 600 340" role="img" aria-label="Stereo DIC cameras measuring the specimen surface"></svg><p>Stereo 3D-DIC · full-field observations</p></div>
   <div><h4><b>02</b> Update element stiffness</h4><svg id="diss-optimize" viewBox="0 0 600 340" role="img" tabindex="0" aria-label="Interactive stiffness reconstruction. Drag or use arrow keys to rotate."></svg><p>Inverse model · topology refinement</p></div>
-  <div><h4><b>03</b> Reveal defect geometry</h4><svg id="diss-reconstruct" viewBox="0 0 600 340" role="img" tabindex="0" aria-label="Interactive reconstructed internal defect. Drag or use arrow keys to rotate."></svg><p>Low-stiffness regions · 3D reconstruction</p></div>
+  <div><h4><b>03</b> Reveal defect geometry</h4><svg id="diss-reconstruct" viewBox="0 0 600 340" role="img" tabindex="0" aria-label="Interactive reconstructed internal defect. Drag or use arrow keys to rotate."></svg><p>Layers 2 &amp; 3 optimized · outer layers preserved</p></div>
  </div>
  <div class="diss-legend"><span class="diss-colorbar"></span><span>Low stiffness / defect</span><span>Intact material</span><small>Drag a model or use ← ↑ ↓ → to rotate</small></div>
  <div class="diss-controls">
- <button id="diss-play" type="button" aria-pressed="false">Play optimization</button><button id="diss-reset" type="button">Reset view</button>
+ <button id="diss-play" type="button" aria-pressed="false">Play optimization</button><button id="diss-reset" type="button">Reset view</button><button id="diss-layers" type="button" aria-pressed="true">Separate layers</button>
  <label>Defect pattern<select id="diss-pattern"><option value="single">Single internal pocket</option><option value="double">Two internal pockets</option><option value="diagonal">Inclined defect</option></select></label>
  <label class="diss-progress">Iteration <output id="diss-count" for="diss-iteration">0 / 160</output><input id="diss-iteration" type="range" min="0" max="160" value="0" step="1"></label>
  <label>Reveal threshold <output id="diss-cut-value" for="diss-cut">0.45</output><input id="diss-cut" type="range" min="20" max="70" value="45"></label>
  </div>
  <p class="diss-stage" id="diss-stage" aria-live="polite">Start with a uniform specimen; play or scrub to reveal the hidden region.</p>
- <figcaption>Conceptual animation of the dissertation framework. Illustrative fields and iterations; not a live finite element solver or measured dissertation results.</figcaption>
+ <figcaption>Conceptual animation of the dissertation framework. Layers are separated for visibility. Illustrative fields and iterations; not a live finite element solver or measured dissertation results.</figcaption>
 </figure>
 
           <div class="dissertation-copy">
@@ -1941,31 +1941,44 @@ new ResizeObserver(render).observe(root);if('IntersectionObserver'in window)new 
 <script id="dissertation-interactive-script">(()=>{'use strict';
 const root=document.getElementById('dissertation-lab');if(!root)return;
 const $=id=>document.getElementById('diss-'+id),svgs=['measure','optimize','reconstruct'].map($),slider=$('iteration'),pattern=$('pattern'),cut=$('cut'),button=$('play'),motion=matchMedia('(prefers-reduced-motion: reduce)');
-let running=!motion.matches,visible=false,frame=0,last=0,elapsed=0,hold=0,yaw=-.32,pitch=.64,drag=null;
+let running=!motion.matches,visible=false,frame=0,last=0,elapsed=0,hold=0,yaw=-.32,pitch=.64,drag=null,separate=true;
 const palettes=[[101,55,239],[9,142,255],[18,223,208],[214,237,67],[255,152,46],[240,68,110]];
 function color(v,s=1){let p=Math.max(0,Math.min(4.999,v*5)),i=Math.floor(p),f=p-i;return 'rgb('+palettes[i].map((n,j)=>Math.round(Math.min(255,(n*(1-f)+palettes[i+1][j]*f)*s))).join(',')+')';}
 function defect(x,y){if(pattern.value==='double')return Math.max(Math.exp(-(((x-.39)/.16)**4+(y/.49)**4)),Math.exp(-(((x+.39)/.16)**4+(y/.49)**4)));if(pattern.value==='diagonal')return Math.exp(-(((x-y*.38)/.17)**4+(y/.8)**6));return Math.exp(-((x/.28)**4+(y/.62)**4));}
 function render(){const t=+slider.value/160,learn=1-Math.exp(-t*5),threshold=+cut.value/100;
 svgs.forEach((svg,mode)=>{let faces=[];const cy=Math.cos(yaw),sy=Math.sin(yaw),sp=Math.sin(pitch),cp=Math.cos(pitch);
 function pt(x,y,z){const xx=x*cy-y*sy,yy=x*sy+y*cy;return[300+xx,199+yy*sp-z*cp,yy*cp+z*sp];}
-const poly=(ps,fill,stroke='#051122',width=.45)=>'<polygon points="'+ps.map(p=>p.slice(0,2).map(n=>n.toFixed(2)).join(',')).join(' ')+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="'+width+'" stroke-linejoin="round"/>';
+let activeLayer=0;
+const poly=(ps,fill,stroke='#051122',width=.45)=>'<polygon points="'+ps.map(p=>p.slice(0,2).map(n=>n.toFixed(2)).join(',')).join(' ')+'" data-layer="'+activeLayer+'" fill="'+fill+'" stroke="'+stroke+'" stroke-width="'+width+'" stroke-linejoin="round"/>';
 function face(ps,fill){const p=ps.map(v=>pt(...v));faces.push({d:p.reduce((sum,v)=>sum+v[2],0)/p.length,html:poly(p,fill)});}
-function box(x,y,z,dx,dy,dz,v){face([[x,y,z+dz],[x+dx,y,z+dz],[x+dx,y+dy,z+dz],[x,y+dy,z+dz]],color(v));face([[x,y,z],[x+dx,y,z],[x+dx,y,z+dz],[x,y,z+dz]],color(v,.64));face([[x+dx,y,z],[x+dx,y+dy,z],[x+dx,y+dy,z+dz],[x+dx,y,z+dz]],color(v,.8));face([[x,y+dy,z],[x,y,z],[x,y,z+dz],[x,y+dy,z+dz]],color(v,.7));face([[x+dx,y+dy,z],[x,y+dy,z],[x,y+dy,z+dz],[x+dx,y+dy,z+dz]],color(v,.82));}
-let html='<ellipse cx="300" cy="263" rx="220" ry="27" fill="#000" opacity=".28"/>';
+function box(x,y,z,dx,dy,dz,v,edges){face([[x,y,z+dz],[x+dx,y,z+dz],[x+dx,y+dy,z+dz],[x,y+dy,z+dz]],color(v));
+if(edges[0])face([[x,y,z],[x+dx,y,z],[x+dx,y,z+dz],[x,y,z+dz]],color(v,.64));
+if(edges[1])face([[x+dx,y,z],[x+dx,y+dy,z],[x+dx,y+dy,z+dz],[x+dx,y,z+dz]],color(v,.8));
+if(edges[2])face([[x,y+dy,z],[x,y,z],[x,y,z+dz],[x,y+dy,z+dz]],color(v,.7));
+if(edges[3])face([[x+dx,y+dy,z],[x,y+dy,z],[x,y+dy,z+dz],[x+dx,y+dy,z+dz]],color(v,.82));}
+let html='<ellipse cx="300" cy="283" rx="220" ry="27" fill="#000" opacity=".28"/>';
 for(let x=-240;x<=240;x+=40){const a=pt(x,-90,-18),b=pt(x,90,-18);html+='<path d="M'+a[0]+','+a[1]+'L'+b[0]+','+b[1]+'" stroke="#25435d" stroke-width=".7"/>';}
-const nx=36,ny=12;
-for(let i=0;i<nx;i++)for(let j=0;j<ny;j++){const x=(i+.5)/nx*2-1,y=(j+.5)/ny*2-1,d=defect(x,y),noise=Math.sin(i*1.9+j)*Math.cos(j*1.7-i*.3),v=Math.max(.03,Math.min(1,.96-.91*d*learn+.16*noise*Math.sin(Math.PI*t)*(1-t)));
-let field=mode===0?Math.max(0,Math.min(1,.2+.55*(x+1)/2+.28*d+.04*Math.sin(j))):v;
-const dz=mode===2?(v<threshold?4:28):28;box(-210+i*420/nx,-55+j*110/ny,0,420/nx,110/ny,dz,mode===2?(v<threshold?.08:.88):field);}
+const nx=36,ny=12,nz=4,layerHeight=10,gap=separate?14:0;
+const values=Array.from({length:nx},(_,i)=>Array.from({length:ny},(_,j)=>{const x=(i+.5)/nx*2-1,y=(j+.5)/ny*2-1,d=defect(x,y),noise=Math.sin(i*1.9+j)*Math.cos(j*1.7-i*.3);return {v:Math.max(.03,Math.min(1,.96-.91*d*learn+.16*noise*Math.sin(Math.PI*t)*(1-t))),field:Math.max(0,Math.min(1,.2+.55*(x+1)/2+.28*d+.04*Math.sin(j)))};}));
+function occupied(i,j,k){return i>=0&&i<nx&&j>=0&&j<ny&&!(mode>0&&(k===1||k===2)&&values[i][j].v<threshold);}
+for(let k=0;k<nz;k++){activeLayer=k+1;for(let i=0;i<nx;i++)for(let j=0;j<ny;j++){
+if(!occupied(i,j,k))continue;
+const middle=k===1||k===2,cell=values[i][j];
+const field=mode===0?cell.field:middle?(mode===2?.88:cell.v):(k===0?.72:.97);
+box(-210+i*420/nx,-55+j*110/ny,k*(layerHeight+gap),420/nx,110/ny,layerHeight,field,
+[!occupied(i,j-1,k),!occupied(i+1,j,k),!occupied(i-1,j,k),!occupied(i,j+1,k)]);
+}}
 faces.sort((a,b)=>a.d-b.d);html+=faces.map(f=>f.html).join('');
 if(mode===0){html+='<g fill="#173e5d" stroke="#94dcff" stroke-width="2">';for(const cx of[140,460])html+='<rect x="'+(cx-32)+'" y="25" width="64" height="40" rx="8"/><circle cx="'+cx+'" cy="45" r="14" fill="#05172b"/><circle cx="'+cx+'" cy="45" r="7" fill="#45d9ef"/>';html+='</g><path d="M140 65L95 155L440 166ZM460 65L95 155L440 166Z" fill="#34e6df" fill-opacity=".06" stroke="#65e6e2" stroke-opacity=".5" stroke-dasharray="5 6"/><text x="300" y="44" text-anchor="middle" fill="#94e7ff" font-size="13" font-family="system-ui">STEREO VISION</text>';}
 if(mode===1){html+='<text x="300" y="37" text-anchor="middle" fill="#a8f2dd" font-size="14" font-family="system-ui">'+(t<.2?'INITIAL FIELD':t<.75?'LOCALIZING LOW STIFFNESS':'REFINED STIFFNESS FIELD')+'</text>';}
-if(mode===2)html+='<text x="300" y="37" text-anchor="middle" fill="#ffc995" font-size="14" font-family="system-ui">'+(t<.3?'UNIFORM STARTING MODEL':'DEFECT GEOMETRY EMERGES')+'</text>';
+if(mode===2)html+='<text x="300" y="37" text-anchor="middle" fill="#ffc995" font-size="14" font-family="system-ui">'+(t<.3?'UNIFORM STARTING MODEL':'TWO MIDDLE LAYERS: ELEMENT REMOVAL')+'</text>';
+html+='<text x="300" y="322" text-anchor="middle" fill="#b7cde3" font-size="12" font-family="system-ui">4 element layers · outer layers preserved</text>';
 html+='<g fill="none" stroke="#69f5cf" stroke-width="3">';for(const side of[-1,1]){const a=pt(side*222,0,14),b=pt(side*265,0,14);html+='<path d="M'+a[0]+','+a[1]+'L'+b[0]+','+b[1]+'m'+(-side*10)+',-6l'+(side*10)+',6l'+(-side*10)+',6"/>';}html+='</g>';svg.innerHTML=html;
-});$('count').textContent=slider.value+' / 160';$('cut-value').textContent=threshold.toFixed(2);const stage=t<.2?0:t<.75?1:2;if(root.dataset.stage!==String(stage)){root.dataset.stage=stage;$('stage').textContent=['Start with a uniform specimen; play or scrub to reveal the hidden region.','Element stiffness evolves: cooler colors localize the hidden low-stiffness regions.','The inferred defect is revealed as recessed geometry. Adjust the threshold to compare its boundary.'][stage];}}
+});$('count').textContent=slider.value+' / 160';$('cut-value').textContent=threshold.toFixed(2);const stage=t<.2?0:t<.75?1:2;if(root.dataset.stage!==String(stage)){root.dataset.stage=stage;$('stage').textContent=['Start with a uniform specimen; play or scrub to reveal the hidden region.','Element stiffness evolves: cooler colors localize the hidden low-stiffness regions.','Elements are removed only from layers 2 and 3. Layers 1 and 4 remain intact; separate the layers to inspect the internal void.'][stage];}}
 function sync(){button.textContent=running?'Pause optimization':'Play optimization';button.setAttribute('aria-pressed',String(running));if(frame){cancelAnimationFrame(frame);frame=0;}last=0;if(running&&visible&&!document.hidden)frame=requestAnimationFrame(tick);}
 function tick(now){frame=0;if(!last)last=now;const dt=Math.min(80,now-last);last=now;elapsed+=dt;let changed=false;if(+slider.value>=160){hold+=dt;if(hold>2800){slider.value=0;hold=0;changed=true;}}else if(elapsed>=100){slider.value=Math.min(160,+slider.value+Math.floor(elapsed/100));elapsed%=100;changed=true;}if(changed)render();if(running&&visible&&!document.hidden)frame=requestAnimationFrame(tick);}
-button.addEventListener('click',()=>{running=!running;sync();});slider.addEventListener('input',()=>{running=false;sync();render();});cut.addEventListener('input',render);pattern.addEventListener('change',()=>{slider.value=0;hold=0;render();});$('reset').addEventListener('click',()=>{slider.value=0;cut.value=45;yaw=-.32;pitch=.64;hold=0;elapsed=0;render();});
+$('layers').addEventListener('click',()=>{separate=!separate;$('layers').setAttribute('aria-pressed',String(separate));render();});
+button.addEventListener('click',()=>{running=!running;sync();});slider.addEventListener('input',()=>{running=false;sync();render();});cut.addEventListener('input',render);pattern.addEventListener('change',()=>{slider.value=0;hold=0;render();});$('reset').addEventListener('click',()=>{slider.value=0;cut.value=45;yaw=-.32;pitch=.64;hold=0;elapsed=0;separate=true;$('layers').setAttribute('aria-pressed','true');render();});
 svgs.forEach(svg=>{svg.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY];svg.setPointerCapture(e.pointerId);});svg.addEventListener('pointermove',e=>{if(!drag)return;yaw+=(e.clientX-drag[0])*.006;pitch=Math.max(.2,Math.min(1.35,pitch+(e.clientY-drag[1])*.006));drag=[e.clientX,e.clientY];render();});['pointerup','pointercancel','lostpointercapture'].forEach(type=>svg.addEventListener(type,()=>drag=null));svg.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();yaw+=e.key==='ArrowLeft'?-.12:e.key==='ArrowRight'?.12:0;pitch=Math.max(.2,Math.min(1.35,pitch+(e.key==='ArrowUp'?-.1:e.key==='ArrowDown'?.1:0)));render();});});
 if('IntersectionObserver'in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();},{threshold:.02}).observe(root);else visible=true;document.addEventListener('visibilitychange',sync);motion.addEventListener('change',()=>{if(motion.matches)running=false;sync();});render();sync();
 })();
