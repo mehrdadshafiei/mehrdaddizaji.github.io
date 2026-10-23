@@ -581,7 +581,8 @@
     .site-name{flex:0 0 auto;color:#f7f9ff;font-size:1rem;font-weight:650;line-height:1.35;letter-spacing:.01em;text-shadow:0 1px 6px rgba(0,0,0,.9)}
     .site-header nav{flex:1;min-width:0;margin-inline:0}
     .site-name:focus-visible{outline:2px solid var(--cyan);outline-offset:5px}
-    #about .hero-grid{grid-template-columns:1fr}
+    #about .hero-grid{grid-template-columns:minmax(0,1.25fr) minmax(220px,.75fr)}
+    @media(max-width:980px){#about .hero-grid{grid-template-columns:1fr}}
     @media(max-width:720px){.site-header .nav-wrap{flex-direction:column;align-items:stretch;gap:10px}.site-name br{display:none}.site-name br::after{content:' '}.site-name{font-size:.95rem}.site-header nav{width:100%}}
 </style>
 </head>
@@ -636,7 +637,9 @@
             <a class="btn secondary" href="#publications">Selected Publications</a>
           </div>
         </div>
-
+        <aside class="hero-card profile-card">
+          <img class="profile-photo" src="mehrdad-shafiei-dizaji.jpg" alt="Professional portrait of Mehrdad Shafiei Dizaji" width="600" height="683" loading="lazy" decoding="async" />
+        </aside>
       </div>
       <div class="container about-lab-wrap">
         <div class="about-lab about-experiment">
