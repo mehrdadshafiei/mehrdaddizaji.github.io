@@ -575,8 +575,9 @@
 </style>
 <style>
     /* Approved bridge footage and digital twin composite. */
-    .twin-background video{width:100%;height:calc(100svh - 90px);margin-top:90px;object-fit:contain;opacity:1;background:#000}
-    @media(max-width:720px){.twin-background video{height:62svh;margin-top:150px}}
+    .twin-background video{position:absolute;inset:0;width:100%;height:100%;margin:0;object-fit:cover;object-position:center;opacity:1;background:#000}
+    .hero.animation-intro{min-height:calc(100svh - var(--homepage-header-height,90px))}
+    @media(max-width:720px){.hero.animation-intro{min-height:calc(100svh - var(--homepage-header-height,150px))}}
     @media(prefers-reduced-motion:reduce){.twin-background video{display:block}}
 </style>
 </head>
@@ -1551,6 +1552,14 @@ if('IntersectionObserver'in window)new IntersectionObserver(e=>{visible=e[0].isI
   </footer>
 
   <script>
+    // Fill the first viewport below the actual navigation height.
+    const homepageHeader = document.querySelector('.site-header');
+    const syncHomepageHeaderHeight = () => {
+      document.documentElement.style.setProperty('--homepage-header-height', homepageHeader.offsetHeight + 'px');
+    };
+    syncHomepageHeaderHeight();
+    if ('ResizeObserver' in window) new ResizeObserver(syncHomepageHeaderHeight).observe(homepageHeader);
+    window.addEventListener('resize', syncHomepageHeaderHeight, { passive: true });
     const twinScene = document.getElementById('digital-twin-scene');
     const motionToggle = document.getElementById('motion-toggle');
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
