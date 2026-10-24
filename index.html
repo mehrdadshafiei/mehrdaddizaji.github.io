@@ -611,7 +611,7 @@
       <nav>
         <a href="#about"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><circle cx="24" cy="16" r="7"/><path d="M10 40v-4c0-7 6-11 14-11s14 4 14 11v4"/><path d="M18 39h12"/></svg><span>About me</span></a>
         <a href="#dissertations-theses"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 17h23a4 4 0 0 1 4 4v20H14a4 4 0 0 1-4-4V17Zm0 20a4 4 0 0 1 4-4h23M17 23h13M17 28h9"/><path d="m7 10 17-7 17 7-17 7-17-7Zm9 4v5c5 3 11 3 16 0v-5M41 10v10"/></svg><span>Dissertations</span></a>
-        <a href="#research"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M19 7h10M22 7v12L11 36a4 4 0 0 0 3 6h20a4 4 0 0 0 3-6L26 19V7"/><path d="M17 29h14"/><circle cx="23" cy="35" r="1"/><path d="M36 10v8m-4-4h8"/></svg><span>Research</span></a>
+        
         <a href="#projects"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M6 16a4 4 0 0 1 4-4h11l4 5h13a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z"/><path d="m19 27-5 4 5 4m10-8 5 4-5 4m-6 2 2-12"/></svg><span>Projects</span></a>
         <a href="#industry-projects"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M7 33h34M10 33V18m28 15V18M10 21h28M10 21l14 10 14-10M18 33v8m12-8v8M7 41h34"/><path d="M17 14v-4h14v4"/></svg><span>Industry Projects</span></a>
         <a href="#research-proposals"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 5h20l8 8v29H10Z"/><path d="M29 5v9h9M16 33h16M16 38h10"/><path d="M19 22a5 5 0 1 1 10 0c0 2-2 3-2 5h-6c0-2-2-3-2-5ZM22 30h4"/></svg><span>Funding</span></a>
@@ -646,7 +646,7 @@
             <span>Structural Health Monitoring & AI</span>
           </div>
           <div class="hero-actions">
-            <a class="btn primary" href="#research">Explore Research</a>
+            <a class="btn primary" href="#projects">Explore Projects</a>
             <a class="btn secondary" href="#publications">Selected Publications</a>
           </div>
         </div>
@@ -752,10 +752,15 @@
       </div>
     </section>
 
-    <section class="section alt" id="research">
+    
+
+    <section class="section" id="projects">
       <div class="container">
+        <p class="section-kicker">Featured Research</p>
+        <h2>Projects</h2>
+        <div id="research" style="margin-bottom:48px;scroll-margin-top:100px">
         <p class="section-kicker">Research Areas</p>
-        <h2>Core expertise</h2>
+        <h3>Core expertise</h3>
         <div class="card-grid">
           <article class="card">
             <figure class="expertise-picture"><img src="research-deep-learning-attention.jpg" alt="Deep learning architecture with spatial attention and temporal feature fusion." width="640" height="400" loading="lazy" decoding="async"><figcaption>Attention-based deep learning</figcaption></figure>
@@ -788,13 +793,8 @@
             <p>Finite element model updating, bridge load rating, structural optimization, testing, and sensor-data integration.</p>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="container">
-        <p class="section-kicker">Featured Research</p>
-        <h2>Projects</h2>
+    </div>
+        <h3>Selected projects</h3>
         <div class="project-list">
           <article class="project">
             <div class="project-num">01</div>
