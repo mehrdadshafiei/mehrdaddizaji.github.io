@@ -619,6 +619,42 @@
 
 .site-header .nav-submenus a{opacity:1}
 </style>
+<style id="explore-navigation-styles">
+.site-header.explore-header{background:transparent;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;pointer-events:none}
+.explore-header .explore-shell{width:min(490px,calc(100% - 56px));max-width:none;margin:30px 0 0 28px;padding:0}
+.explore-header .homepage-name{position:static;display:block;left:auto;right:auto;top:auto;margin:0;font-size:18px;line-height:1.4;text-align:left;letter-spacing:.04em;pointer-events:auto;text-shadow:0 2px 8px #000;background:transparent}
+.site-header.explore-header.is-scrolled .homepage-name{display:block}
+.explore-header .homepage-specialties{font-size:11px;margin-top:8px;letter-spacing:.1em}
+.explore-header .explore-menu{position:relative;margin-top:20px;pointer-events:auto}
+.explore-trigger{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:9px;overflow:hidden;border:1px solid #ffffff66;border-radius:16px;background:linear-gradient(125deg,rgba(8,127,187,.72),rgba(103,84,218,.72) 48%,rgba(185,62,146,.72));background-size:250% 250%;color:#fff;padding:14px 20px;font:500 13px/1.4 Inter,system-ui,sans-serif;letter-spacing:.03em;cursor:pointer;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);animation:explore-color-flow 7s ease-in-out infinite,explore-soft-glow 4s ease-in-out infinite;transition:transform .2s}
+.explore-trigger::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 25%,#ffffff30 46%,transparent 65%);background-size:250% 100%;pointer-events:none;animation:explore-shine 6s ease-in-out infinite}
+.explore-sparkle{display:inline-block;font-size:24px;line-height:1;transform-origin:center;animation:explore-sparkle 4s ease-in-out infinite}
+.explore-trigger:hover,.explore-trigger[aria-expanded="true"]{transform:translateY(-2px)}
+.explore-trigger:hover .explore-sparkle,.explore-trigger[aria-expanded="true"] .explore-sparkle{animation-duration:1.8s}
+.explore-trigger:focus-visible{outline:2px solid #b5f7ff;outline-offset:4px}
+.explore-panel-wrap{position:absolute;left:0;top:100%;width:100%;padding-top:10px}
+.explore-panel-wrap[hidden]{display:none!important}
+.explore-panel{padding:13px;border-radius:15px;border:1px solid #97cfdf40;background:rgba(11,29,41,.30);box-shadow:0 18px 45px #0004;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);max-height:calc(100dvh - 210px);overflow-y:auto;overscroll-behavior:contain;animation:explore-panel-arrive .24s ease-out both;transform-origin:top left}
+.site-header.explore-header nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;width:100%;max-width:none;margin:0;overflow:visible}
+.site-header.explore-header nav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-width:0;min-height:74px;padding:8px 3px;margin:0;border:1px solid transparent;border-radius:10px;background:transparent;font-size:11px;line-height:1.4;white-space:normal;text-align:center;color:#f3f9ff;text-shadow:0 1px 5px #000}
+.site-header.explore-header nav .nav-picture{width:25px;height:25px;color:#86dce8}
+.explore-header nav .nav-icon-tile{fill:transparent}
+.site-header.explore-header nav a:hover,.site-header.explore-header nav a:focus-visible,.site-header.explore-header nav a[aria-expanded="true"]{background:rgba(33,77,97,.20);border-color:#8ce2e650;transform:none}
+.site-header.explore-header .nav-submenus{position:static;top:auto;left:auto;transform:none;width:100%;padding-top:12px}
+.site-header.explore-header .nav-subpanel{padding:13px 0 0;border:0;border-top:1px solid #9bc7d433;border-radius:0;background:transparent;box-shadow:none;max-height:none;overflow:visible}
+.site-header.explore-header .nav-subtitle{font-size:11px;margin-bottom:10px}
+.site-header.explore-header .nav-sublinks{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.site-header.explore-header .nav-submenus a{min-width:0;min-height:54px;gap:5px;padding:9px 6px;background:rgba(23,60,76,.10);border-color:#86bdcd33;color:#f3f9ff;font-size:11px;opacity:1}
+.site-header.explore-header .nav-submenus .nav-icon-tile{fill:transparent}
+.site-header.explore-header .nav-submenus a:hover,.site-header.explore-header .nav-submenus a:focus-visible{background:rgba(40,96,116,.30)}
+@keyframes explore-color-flow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes explore-soft-glow{0%,100%{box-shadow:0 6px 20px #5b4bd650,inset 0 1px 0 #ffffff55}50%{box-shadow:0 7px 30px #a14bdc90,0 0 14px #20a7dc40,inset 0 1px 0 #ffffff77}}
+@keyframes explore-shine{0%,65%{background-position:170% 0}95%,100%{background-position:-80% 0}}
+@keyframes explore-sparkle{0%,100%{transform:rotate(-7deg) scale(1);opacity:.85}50%{transform:rotate(9deg) scale(1.13);opacity:1}}
+@keyframes explore-panel-arrive{from{opacity:0;transform:translateY(-7px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:480px){.explore-header .explore-shell{width:calc(100% - 36px);margin:24px 0 0 18px}.explore-header .homepage-name{font-size:clamp(13px,3.6vw,16px)}.site-header.explore-header nav{grid-template-columns:repeat(3,minmax(0,1fr))}.site-header.explore-header nav a{min-height:66px}.site-header.explore-header .nav-sublinks{grid-template-columns:repeat(2,minmax(0,1fr))}.explore-panel{max-height:calc(100dvh - 185px)}}
+@media(prefers-reduced-motion:reduce){.explore-trigger,.explore-trigger::after,.explore-sparkle,.explore-panel{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
@@ -626,9 +662,13 @@
   <source src="https://videos.pexels.com/video-files/19065825/19065825-hd_1280_720_30fps.mp4" type="video/mp4">
 </video></div>
   <button class="motion-toggle" id="motion-toggle" type="button" hidden>Pause background</button>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <nav aria-label="Main navigation">
+  <header class="site-header explore-header">
+  <div class="container explore-shell">
+    <p class="homepage-name"><span>Mehrdad Shafiei Dizaji, Ph.D.</span><span class="homepage-specialties">DT | SHM | NDE | AI | FEA</span></p>
+    <div class="explore-menu">
+      <button class="explore-trigger" type="button" aria-expanded="false" aria-controls="explore-navigation"><span class="explore-sparkle" aria-hidden="true">✦</span><span>Explore</span></button>
+      <div class="explore-panel-wrap" id="explore-navigation" hidden>
+        <div class="explore-panel"><nav aria-label="Main navigation">
         <a data-submenu="nav-sub-about" aria-controls="nav-sub-about" aria-expanded="false" href="#about"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><circle cx="24" cy="16" r="7"/><path d="M10 40v-4c0-7 6-11 14-11s14 4 14 11v4"/><path d="M18 39h12"/></svg><span>About me</span></a>
         
         
@@ -645,10 +685,12 @@
         
         <a href="#contact"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="5" y="10" width="38" height="28" rx="6"/><path d="m7 14 17 13 17-13M7 35l11-11m23 11L30 24"/></svg><span>Contact</span></a>
       </nav>
-    </div>
 <div class="nav-submenus" hidden><div class="nav-subpanel" id="nav-sub-about" aria-label="About me subsections" hidden><p class="nav-subtitle">About me</p><div class="nav-sublinks"><a href="#about"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><circle cx="24" cy="16" r="7"/><path d="M10 40v-4c0-7 6-11 14-11s14 4 14 11v4"/><path d="M18 39h12"/></svg><span>Profile</span></a><a href="#cv"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M24 12c-5-5-12-5-19-3v29c7-2 14-2 19 3 5-5 12-5 19-3V9c-7-2-14-2-19 3Zm0 0v29"/><path d="M11 17h7m-7 7h7m12-7h7m-7 7h7"/></svg><span>CV</span></a><a href="#about-experiment"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><rect x="13" y="5" width="22" height="38" rx="5"/><path d="M19 11h10M20 35h8M18 19l6-4 6 4-6 4-6-4ZM18 27l6-4 6 4-6 4-6-4Z"/></svg><span>3D-DIC experiment</span></a></div></div><div class="nav-subpanel" id="nav-sub-projects" aria-label="Projects subsections" hidden><p class="nav-subtitle">Projects</p><div class="nav-sublinks"><a href="#research"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="5" y="15" width="38" height="26" rx="5"/><path d="M16 15V9h16v6M5 26c12 6 26 6 38 0M21 27h6v7h-6Z"/></svg><span>Research areas</span></a><a href="#selected-projects"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M6 16a4 4 0 0 1 4-4h11l4 5h13a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z"/><path d="m19 27-5 4 5 4m10-8 5 4-5 4m-6 2 2-12"/></svg><span>Research projects</span></a><a href="#industry-projects"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M6 16a4 4 0 0 1 4-4h11l4 5h13a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z"/><path d="m19 27-5 4 5 4m10-8 5 4-5 4m-6 2 2-12"/></svg><span>Industry projects</span></a><a href="#research-gallery"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><rect x="13" y="5" width="22" height="38" rx="5"/><path d="M19 11h10M20 35h8M18 19l6-4 6 4-6 4-6-4ZM18 27l6-4 6 4-6 4-6-4Z"/></svg><span>Gallery</span></a><a href="#research-proposals-title"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 5h20l8 8v29H10Z"/><path d="M29 5v9h9M16 33h16M16 38h10"/><path d="M19 22a5 5 0 1 1 10 0c0 2-2 3-2 5h-6c0-2-2-3-2-5ZM22 30h4"/></svg><span>Research proposals</span></a><a href="#received-funding"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M24 12c-5-5-12-5-19-3v29c7-2 14-2 19 3 5-5 12-5 19-3V9c-7-2-14-2-19 3Zm0 0v29"/><path d="M11 17h7m-7 7h7m12-7h7m-7 7h7"/></svg><span>Fellowships &amp; awards</span></a></div></div><div class="nav-subpanel" id="nav-sub-experience" aria-label="Research subsections" hidden><p class="nav-subtitle">Research</p><div class="nav-sublinks"><a href="#research-appointments"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="5" y="15" width="38" height="26" rx="5"/><path d="M16 15V9h16v6M5 26c12 6 26 6 38 0M21 27h6v7h-6Z"/></svg><span>Appointments</span></a><a href="#lab-experience"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="5" y="15" width="38" height="26" rx="5"/><path d="M16 15V9h16v6M5 26c12 6 26 6 38 0M21 27h6v7h-6Z"/></svg><span>Lab experience</span></a><a href="#dissertations-theses"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M24 12c-5-5-12-5-19-3v29c7-2 14-2 19 3 5-5 12-5 19-3V9c-7-2-14-2-19 3Zm0 0v29"/><path d="M11 17h7m-7 7h7m12-7h7m-7 7h7"/></svg><span>Dissertations</span></a><a href="#research-education"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><circle cx="24" cy="16" r="7"/><path d="M10 40v-4c0-7 6-11 14-11s14 4 14 11v4"/><path d="M18 39h12"/></svg><span>Education &amp; tools</span></a><a href="#publications"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M24 12c-5-5-12-5-19-3v29c7-2 14-2 19 3 5-5 12-5 19-3V9c-7-2-14-2-19 3Zm0 0v29"/><path d="M11 17h7m-7 7h7m12-7h7m-7 7h7"/></svg><span>Publications</span></a><a href="#developed-apps"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><rect x="13" y="5" width="22" height="38" rx="5"/><path d="M19 11h10M20 35h8M18 19l6-4 6 4-6 4-6-4ZM18 27l6-4 6 4-6 4-6-4Z"/></svg><span>Apps &amp; UI/UX</span></a><a href="#struct-ar-app"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><rect x="13" y="5" width="22" height="38" rx="5"/><path d="M19 11h10M20 35h8M18 19l6-4 6 4-6 4-6-4ZM18 27l6-4 6 4-6 4-6-4Z"/></svg><span>STRUCT-AR</span></a><a href="#ar-design-app"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M6 16a4 4 0 0 1 4-4h11l4 5h13a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z"/><path d="m19 27-5 4 5 4m10-8 5 4-5 4m-6 2 2-12"/></svg><span>AR design</span></a><a href="#research-demo"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><rect x="13" y="5" width="22" height="38" rx="5"/><path d="M19 11h10M20 35h8M18 19l6-4 6 4-6 4-6-4ZM18 27l6-4 6 4-6 4-6-4Z"/></svg><span>Demo video</span></a></div></div><div class="nav-subpanel" id="nav-sub-teaching" aria-label="Teaching subsections" hidden><p class="nav-subtitle">Teaching</p><div class="nav-sublinks"><a href="#teaching-courses"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="m5 17 19-9 19 9-19 9-19-9Z"/><path d="M13 23v11c7 6 15 6 22 0V23M43 17v14"/></svg><span>Courses</span></a><a href="#teaching-mentorship"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><circle cx="24" cy="16" r="7"/><path d="M10 40v-4c0-7 6-11 14-11s14 4 14 11v4"/><path d="M18 39h12"/></svg><span>Mentorship</span></a><a href="#ce5340-syllabus-title"><svg class="nav-subicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M24 12c-5-5-12-5-19-3v29c7-2 14-2 19 3 5-5 12-5 19-3V9c-7-2-14-2-19 3Zm0 0v29"/><path d="M11 17h7m-7 7h7m12-7h7m-7 7h7"/></svg><span>Syllabus</span></a></div></div></div>
-    <p class="homepage-name"><span>M.S.D., Ph.D.</span><span class="homepage-specialties">DT | SHM | NDE | AI | FEA</span></p>
-  </header>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 
   <main>
     <section class="hero animation-intro" id="home" aria-label="Aerial bridge footage"></section>
@@ -2153,41 +2195,39 @@ if('IntersectionObserver'in window)new IntersectionObserver(e=>{visible=e[0].isI
 </script>
 <script id="nav-disclosure-script">
 (()=>{
-const header=document.querySelector('.site-header');
+const header=document.querySelector('.explore-header');
 if(!header)return;
-const nav=header.querySelector('nav'),box=header.querySelector('.nav-submenus');
-if(!nav||!box)return;
-const triggers=Array.from(nav.querySelectorAll('[data-submenu]'));
+const menu=header.querySelector('.explore-menu'),trigger=header.querySelector('.explore-trigger'),wrap=header.querySelector('.explore-panel-wrap'),nav=header.querySelector('nav'),box=header.querySelector('.nav-submenus');
+if(!menu||!trigger||!wrap||!nav||!box)return;
+const links=[...nav.querySelectorAll('[data-submenu]')],panels=[...box.querySelectorAll('.nav-subpanel')];
 let active=null,timer;
 function cancel(){clearTimeout(timer);}
-function close(){cancel();triggers.forEach(link=>link.setAttribute('aria-expanded','false'));box.querySelectorAll('.nav-subpanel').forEach(panel=>panel.hidden=true);box.hidden=true;active=null;}
-function open(link){cancel();active=link;triggers.forEach(other=>other.setAttribute('aria-expanded',String(other===link)));box.hidden=false;box.querySelectorAll('.nav-subpanel').forEach(panel=>panel.hidden=panel.id!==link.dataset.submenu);}
-function delayClose(){cancel();timer=setTimeout(close,180);}
-triggers.forEach(link=>{
-link.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')open(link);});
-link.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse')delayClose();});
-link.addEventListener('focus',()=>open(link));
-let touchWasOpen=false;
-link.addEventListener('pointerdown',event=>{if(event.pointerType!=='mouse')touchWasOpen=active===link;});
-link.addEventListener('click',event=>{
-if(window.matchMedia('(hover: none)').matches&&!touchWasOpen){event.preventDefault();open(link);return;}
-close();
+function closeSub(){active=null;box.hidden=true;links.forEach(a=>a.setAttribute('aria-expanded','false'));panels.forEach(p=>p.hidden=true);}
+function openMenu(){cancel();wrap.hidden=false;trigger.setAttribute('aria-expanded','true');}
+function closeMenu(){cancel();closeSub();wrap.hidden=true;trigger.setAttribute('aria-expanded','false');}
+function openSub(a){openMenu();active=a;box.hidden=false;links.forEach(b=>b.setAttribute('aria-expanded',String(a===b)));panels.forEach(p=>p.hidden=p.id!==a.dataset.submenu);}
+trigger.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')openMenu();});
+trigger.addEventListener('focus',()=>{if(trigger.matches(':focus-visible'))openMenu();});
+trigger.addEventListener('click',()=>{if(wrap.hidden)openMenu();else closeMenu();});
+trigger.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();openMenu();nav.querySelector('a')?.focus();}});
+menu.addEventListener('pointerenter',cancel);
+menu.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){cancel();timer=setTimeout(closeMenu,180);}});
+links.forEach(a=>{
+let wasOpen=false;
+a.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')openSub(a);});
+a.addEventListener('focus',()=>openSub(a));
+a.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')wasOpen=active===a;});
+a.addEventListener('click',e=>{if(matchMedia('(hover: none)').matches&&!wasOpen){e.preventDefault();openSub(a);}else closeMenu();});
+a.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();openSub(a);box.querySelector('.nav-subpanel:not([hidden]) a')?.focus();}});
 });
-link.addEventListener('keydown',event=>{if(event.key==='ArrowDown'){event.preventDefault();open(link);box.querySelector('.nav-subpanel:not([hidden]) a')?.focus();}});
-});
-nav.querySelectorAll('a:not([data-submenu])').forEach(link=>{link.addEventListener('pointerenter',close);link.addEventListener('focus',close);});
-box.addEventListener('pointerenter',cancel);
-box.addEventListener('pointerleave',delayClose);
-box.addEventListener('focusin',cancel);
-box.querySelectorAll('a').forEach(link=>link.addEventListener('click',close));
-header.addEventListener('pointerleave',close);
-header.addEventListener('focusout',event=>{if(!header.contains(event.relatedTarget))close();});
-header.addEventListener('keydown',event=>{if(event.key==='Escape'&&active){event.preventDefault();const trigger=active;trigger.focus();close();}});
-document.addEventListener('pointerdown',event=>{if(!header.contains(event.target))close();});
-window.addEventListener('scroll',close,{passive:true});
-close();
+nav.querySelectorAll('a:not([data-submenu])').forEach(a=>{a.addEventListener('pointerenter',closeSub);a.addEventListener('focus',closeSub);a.addEventListener('click',closeMenu);});
+box.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+header.addEventListener('focusout',e=>{if(!header.contains(e.relatedTarget))closeMenu();});
+header.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();trigger.focus();closeMenu();}});
+document.addEventListener('pointerdown',e=>{if(!menu.contains(e.target))closeMenu();});
+window.addEventListener('scroll',closeMenu,{passive:true});
+closeMenu();
 })();
-
 </script>
 </body>
 </html>
