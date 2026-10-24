@@ -585,6 +585,11 @@
     @media(max-width:980px){#about .hero-grid{grid-template-columns:1fr}}
     @media(max-width:720px){.site-header .nav-wrap{flex-direction:column;align-items:stretch;gap:10px}.site-name br{display:none}.site-name br::after{content:' '}.site-name{font-size:.95rem}.site-header nav{width:100%}}
 </style>
+<style id="homepage-name-overlay">
+    .homepage-name{position:absolute;top:100%;left:12px;right:12px;margin:8px 0 0;text-align:center;color:#fff;font-size:16px;font-weight:500;line-height:1.4;letter-spacing:.04em;text-shadow:0 1px 6px #000,0 2px 12px #000;pointer-events:none;background:transparent}
+    .site-header.is-scrolled .homepage-name{display:none}
+    @media(max-width:720px){.homepage-name{font-size:14px}}
+  </style>
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
@@ -614,6 +619,7 @@
         <a href="#contact"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><rect x="5" y="10" width="38" height="28" rx="6"/><path d="m7 14 17 13 17-13M7 35l11-11m23 11L30 24"/></svg><span>Contact</span></a>
       </nav>
     </div>
+    <p class="homepage-name">Mehrdad Shafiei Dizaji, Ph.D.</p>
   </header>
 
   <main>
