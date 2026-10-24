@@ -588,8 +588,8 @@
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
-<video id="digital-twin-scene" autoplay muted loop playsinline preload="metadata" poster="bridge-digital-twin-clean-poster.jpg">
-  <source src="bridge-digital-twin-clean.mp4" type="video/mp4">
+<video id="homepage-background-video" autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/19065825/drone-flying-over-bridge-19065825.jpeg?auto=compress">
+  <source src="https://videos.pexels.com/video-files/19065825/19065825-hd_1280_720_30fps.mp4" type="video/mp4">
 </video></div>
   <button class="motion-toggle" id="motion-toggle" type="button" hidden>Pause background</button>
   <header class="site-header">
@@ -617,7 +617,7 @@
   </header>
 
   <main>
-    <section class="hero animation-intro" id="home" aria-label="Digital twin concept: a sensor-equipped physical bridge exchanges measurements and model updates with an AI-enhanced digital representation"></section>
+    <section class="hero animation-intro" id="home" aria-label="Aerial bridge footage"></section>
 
     <section class="section about-section" id="about">
       <div class="container hero-grid">
@@ -1556,7 +1556,7 @@ if('IntersectionObserver'in window)new IntersectionObserver(e=>{visible=e[0].isI
 
   <script>
     const homepageHeader = document.querySelector('.site-header');
-    const twinScene = document.getElementById('digital-twin-scene');
+    const twinScene = document.getElementById('homepage-background-video');
     const motionToggle = document.getElementById('motion-toggle');
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
     let userPaused = false;
