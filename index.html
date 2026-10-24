@@ -594,6 +594,11 @@
     .homepage-specialties{display:block;margin-top:7px;font-size:12px;line-height:1.5;letter-spacing:.08em;font-weight:400}
     @media(max-width:720px){.homepage-specialties{font-size:11px}}
   </style>
+<style id="merged-theses-layout">
+    #dissertations-theses .thesis-subsection + .thesis-subsection{margin-top:64px}
+    #phd-section-title,#msc-title{font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.2;margin-bottom:24px}
+    @media(max-width:720px){#dissertations-theses .thesis-subsection + .thesis-subsection{margin-top:44px}}
+  </style>
 </head>
 <body>
 <div class="research-background twin-background" aria-hidden="true">
@@ -605,8 +610,7 @@
     <div class="container nav-wrap">
       <nav>
         <a href="#about"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><circle cx="24" cy="16" r="7"/><path d="M10 40v-4c0-7 6-11 14-11s14 4 14 11v4"/><path d="M18 39h12"/></svg><span>About me</span></a>
-        <a href="#phd-dissertation"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 17h23a4 4 0 0 1 4 4v20H14a4 4 0 0 1-4-4V17Zm0 20a4 4 0 0 1 4-4h23M17 23h13M17 28h9"/><path d="m7 10 17-7 17 7-17 7-17-7Zm9 4v5c5 3 11 3 16 0v-5M41 10v10"/></svg><span>PhD Dissertation</span></a>
-        <a href="#msc-thesis"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M11 12 24 8l13 4M11 12l13 12 13-12M11 36l13-12 13 12M11 12v24M37 12v24"/><circle cx="11" cy="12" r="4"/><circle cx="11" cy="36" r="4"/><circle cx="24" cy="24" r="5"/><circle cx="37" cy="12" r="4"/><circle cx="37" cy="36" r="4"/></svg><span>M.Sc. thesis</span></a>
+        <a href="#dissertations-theses"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 17h23a4 4 0 0 1 4 4v20H14a4 4 0 0 1-4-4V17Zm0 20a4 4 0 0 1 4-4h23M17 23h13M17 28h9"/><path d="m7 10 17-7 17 7-17 7-17-7Zm9 4v5c5 3 11 3 16 0v-5M41 10v10"/></svg><span>Dissertations &amp; Theses</span></a>
         <a href="#research"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M19 7h10M22 7v12L11 36a4 4 0 0 0 3 6h20a4 4 0 0 0 3-6L26 19V7"/><path d="M17 29h14"/><circle cx="23" cy="35" r="1"/><path d="M36 10v8m-4-4h8"/></svg><span>Research</span></a>
         <a href="#projects"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x="0.5" y="0.5" width="47" height="47" rx="13" stroke="none"/><path d="M6 16a4 4 0 0 1 4-4h11l4 5h13a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4Z"/><path d="m19 27-5 4 5 4m10-8 5 4-5 4m-6 2 2-12"/></svg><span>Projects</span></a>
         <a href="#industry-projects"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M7 33h34M10 33V18m28 15V18M10 21h28M10 21l14 10 14-10M18 33v8m12-8v8M7 41h34"/><path d="M17 14v-4h14v4"/></svg><span>Industry Projects</span></a>
@@ -668,10 +672,13 @@
       </div>
     </section>
 
-    <section class="section" id="phd-dissertation" aria-labelledby="phd-section-title">
+    <section class="section" id="dissertations-theses" aria-labelledby="theses-title">
       <div class="container">
-        <p class="section-kicker">Doctoral Research · University of Virginia</p>
-        <h2 id="phd-section-title" style="display:flex;align-items:center;gap:12px"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 17h23a4 4 0 0 1 4 4v20H14a4 4 0 0 1-4-4V17Zm0 20a4 4 0 0 1 4-4h23M17 23h13M17 28h9"/><path d="m7 10 17-7 17 7-17 7-17-7Zm9 4v5c5 3 11 3 16 0v-5M41 10v10"/></svg><span>Ph.D. Dissertation</span></h2>
+        <p class="section-kicker">Graduate Research</p>
+        <h2 id="theses-title">Dissertations &amp; Theses</h2>
+        <div id="phd-dissertation" class="thesis-subsection" aria-labelledby="phd-section-title">
+<p class="section-kicker">Doctoral Research · University of Virginia</p>
+        <h3 id="phd-section-title" style="display:flex;align-items:center;gap:12px"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M10 17h23a4 4 0 0 1 4 4v20H14a4 4 0 0 1-4-4V17Zm0 20a4 4 0 0 1 4-4h23M17 23h13M17 28h9"/><path d="m7 10 17-7 17 7-17 7-17-7Zm9 4v5c5 3 11 3 16 0v-5M41 10v10"/></svg><span>Ph.D. Dissertation</span></h3>
         <article class="dissertation-feature" aria-labelledby="dissertation-title">
           <figure class="dissertation-art dissertation-interactive" id="dissertation-lab">
  <div class="diss-lab-heading"><span>FROM SURFACE MOTION TO HIDDEN GEOMETRY</span><strong>Interactive inverse topology optimization</strong><p>Four connected element layers with no gaps. Two rectangular recesses on opposite edges follow the reference figure; only the top two layers lose elements.</p></div>
@@ -700,14 +707,10 @@
             <a class="btn primary" href="https://libraetd.lib.virginia.edu/public_view/n296wz61j" target="_blank" rel="noopener noreferrer">Read Ph.D. Dissertation ↗</a>
           </div>
         </article>
-      </div>
-    </section>
-
-
-    <section class="section" id="msc-thesis" aria-labelledby="msc-title">
-      <div class="container">
-        <p class="section-kicker">M.Sc. research · Neural networks &amp; structural dynamics</p>
-        <h2 id="msc-title" style="display:flex;align-items:center;gap:12px"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M11 12 24 8l13 4M11 12l13 12 13-12M11 36l13-12 13 12M11 12v24M37 12v24"/><circle cx="11" cy="12" r="4"/><circle cx="11" cy="36" r="4"/><circle cx="24" cy="24" r="5"/><circle cx="37" cy="12" r="4"/><circle cx="37" cy="36" r="4"/></svg><span>M.Sc. thesis</span></h2>
+        </div>
+        <div id="msc-thesis" class="thesis-subsection" aria-labelledby="msc-title">
+<p class="section-kicker">M.Sc. research · Neural networks &amp; structural dynamics</p>
+        <h3 id="msc-title" style="display:flex;align-items:center;gap:12px"><svg class="nav-picture" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect class="nav-icon-tile" x=".5" y=".5" width="47" height="47" rx="13" stroke="none"/><path d="M11 12 24 8l13 4M11 12l13 12 13-12M11 36l13-12 13 12M11 12v24M37 12v24"/><circle cx="11" cy="12" r="4"/><circle cx="11" cy="36" r="4"/><circle cx="24" cy="24" r="5"/><circle cx="37" cy="12" r="4"/><circle cx="37" cy="36" r="4"/></svg><span>M.Sc. thesis</span></h3>
         <h3>Designing High-Precision Fast Nonlinear Dam Neuro-Modelers and Comparison with Finite-Element Analysis</h3>
         <p class="dissertation-meta">Abdolreza Joghataie &amp; Mehrdad Shafiei Dizaji · Journal of Engineering Mechanics, 139(10), 1311–1324 · 2013</p>
         <p class="msc-intro">How can a neural network learn a dam’s response to an earthquake? This research develops a dam-specific neuro-modeler trained on finite element simulations. A moving window of ground acceleration and feedback from the previous crest response allow a feed-forward network to represent nonlinear, history-dependent behavior. The paper investigates the Koyna, Pine Flat, and Sefid-Rud concrete gravity dams.</p>
@@ -745,6 +748,7 @@
           <div class="msc-note"><strong>About this interactive model:</strong> the 15–8–2 architecture (including one input bias), two linear and six tanh hidden neurons, feedback arrangement, and 0.02 s time step follow the paper. This browser demo uses chosen illustrative weights and synthetic signals; it does not reproduce the paper’s trained models, earthquake records, finite element results, or dam-specific predictions. All response values are normalized. <a href="https://doi.org/10.1061/(ASCE)EM.1943-7889.0000572" target="_blank" rel="noopener noreferrer">Read the published paper ↗</a></div>
         </div>
         <div class="msc-method"><article><strong>01 / Generate response data</strong><p>Analyze each dam with a nonlinear finite element model using a smeared crack formulation. Collect crest displacement and velocity under training excitation.</p></article><article><strong>02 / Train the neuro-modeler</strong><p>Adjust connection weights with back-propagation. Use acceleration history and previous response as inputs to learn the next response.</p></article><article><strong>03 / Test on unseen earthquakes</strong><p>Compare the trained network with finite element analyses under earthquake excitations excluded from training, including near- and far-field events.</p></article></div>
+        </div>
       </div>
     </section>
 
